@@ -1,0 +1,210 @@
+'use client';
+
+import React, { useState } from 'react';
+import { Mail, MapPin, AlertTriangle, CheckCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+
+export default function ContactPage() {
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    // Simulasi pengiriman data
+    setTimeout(() => {
+      setFormStatus('success');
+    }, 1500);
+  };
+
+  return (
+    <div className="bg-slate-950 min-h-screen relative overflow-hidden flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 selection:bg-blue-500/30 selection:text-blue-200">
+      
+      {/* Background Decor (Cyber Glow) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+      
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        
+        {/* Header Section */}
+        <div className="text-center mb-12 lg:mb-16">
+          <div className="inline-flex items-center justify-center p-2 bg-slate-900/50 rounded-full mb-6 border border-slate-800 backdrop-blur-sm">
+             <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+             <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Open for Consultation</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+            Let's Secure Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Future</span>
+          </h1>
+          <p className="mt-4 text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Diskusikan kebutuhan keamanan siber Anda dengan tim ahli kami. Respon cepat, solusi tepat sasaran.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          
+          {/* =========================================
+              KOLOM INFO KONTAK (KIRI di Desktop / BAWAH di Mobile)
+              Logic: order-2 (mobile), lg:order-1 (desktop)
+          ========================================= */}
+          <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
+            
+            {/* Urgent Box */}
+            <div className="bg-gradient-to-br from-red-950/80 to-red-900/40 border border-red-500/30 rounded-3xl p-8 relative overflow-hidden group hover:border-red-500/50 transition-all duration-300 shadow-lg shadow-red-900/10">
+               <div className="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-md">EMERGENCY</div>
+               {/* Animated Pulse behind Icon */}
+               <div className="absolute top-8 left-8 w-12 h-12 bg-red-500/20 rounded-full blur-xl animate-pulse"></div>
+               
+               <div className="flex items-start relative z-10">
+                  <div className="p-3 bg-red-500/10 rounded-xl border border-red-500/20 mr-5 group-hover:scale-110 transition-transform duration-300">
+                    <AlertTriangle className="h-8 w-8 text-red-500" />
+                  </div>
+                  <div>
+                     <h3 className="text-lg font-bold text-white mb-1">Incident Response</h3>
+                     <p className="text-red-200/80 text-sm mb-3">Sedang diserang ransomware atau malware? Jangan panik.</p>
+                     <div className="text-red-400 font-mono text-xl font-bold tracking-wide hover:text-red-300 transition-colors cursor-pointer">
+                        +62 812-3456-7890
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* Regular Info Box */}
+            <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-3xl p-8 space-y-8 hover:border-slate-700 transition-colors shadow-xl">
+               {/* Address */}
+               <div className="flex items-start group">
+                  <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20 mr-5 group-hover:bg-blue-500/20 transition-colors">
+                     <MapPin className="h-6 w-6 text-blue-500" />
+                  </div>
+                  <div>
+                     <p className="text-white font-bold text-lg mb-1">Headquarters</p>
+                     <p className="text-slate-400 leading-relaxed text-sm">
+                        Gedung Cyber 2, Lt. 15<br/>
+                        Jl. H.R. Rasuna Said Blok X-5<br/>
+                        Jakarta Selatan, 12950
+                     </p>
+                  </div>
+               </div>
+
+               <div className="w-full h-px bg-slate-800/50"></div>
+
+               {/* Email */}
+               <div className="flex items-start group">
+                  <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20 mr-5 group-hover:bg-blue-500/20 transition-colors">
+                     <Mail className="h-6 w-6 text-blue-500" />
+                  </div>
+                  <div>
+                     <p className="text-white font-bold text-lg mb-1">Business Inquiry</p>
+                     <a href="mailto:sales@avangard.id" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
+                        sales@avangard.id
+                     </a>
+                  </div>
+               </div>
+            </div>
+            
+            {/* Trust Badge */}
+            <div className="flex items-center justify-center space-x-2 text-slate-500 text-sm py-4">
+              <ShieldCheck className="w-4 h-4" />
+              <span>Data Anda dilindungi dengan enkripsi End-to-End.</span>
+            </div>
+
+          </div>
+
+          {/* =========================================
+              KOLOM FORM (KANAN di Desktop / ATAS di Mobile)
+              Logic: order-1 (mobile), lg:order-2 (desktop)
+          ========================================= */}
+          <div className="lg:col-span-7 order-1 lg:order-2">
+            <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
+               {/* Top Gradient Line */}
+               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 opacity-50"></div>
+
+               {formStatus === 'success' ? (
+                 <div className="text-center py-20 animate-in fade-in zoom-in duration-500">
+                   <div className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6 ring-4 ring-green-500/20">
+                     <CheckCircle className="w-12 h-12 text-green-500" />
+                   </div>
+                   <h3 className="text-3xl font-bold text-white mb-4">Pesan Diterima!</h3>
+                   <p className="text-slate-400 max-w-md mx-auto mb-8 text-lg">
+                     Terima kasih telah menghubungi Avangard. Tim spesialis kami akan meninjau permintaan Anda dan menghubungi Anda dalam waktu 1x24 jam.
+                   </p>
+                   <button 
+                     onClick={() => setFormStatus('idle')} 
+                     className="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-medium transition-all"
+                   >
+                     Kirim Pesan Lain
+                   </button>
+                 </div>
+               ) : (
+                 <form onSubmit={handleSubmit} className="space-y-6">
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                         <label htmlFor="name" className="text-sm font-semibold text-slate-300 ml-1">Nama Lengkap</label>
+                         <input 
+                           type="text" id="name" required placeholder="John Doe"
+                           className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600" 
+                         />
+                      </div>
+                      <div className="space-y-2">
+                         <label htmlFor="email" className="text-sm font-semibold text-slate-300 ml-1">Email Perusahaan</label>
+                         <input 
+                           type="email" id="email" required placeholder="name@company.com"
+                           className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600" 
+                         />
+                      </div>
+                   </div>
+
+                   <div className="space-y-2">
+                     <label htmlFor="service" className="text-sm font-semibold text-slate-300 ml-1">Layanan yang Diminati</label>
+                     <div className="relative">
+                       <select id="service" className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer">
+                         <option>Penetration Testing (VAPT)</option>
+                         <option>Managed SOC (Security Operations)</option>
+                         <option>ISO 27001 / GDPR Compliance</option>
+                         <option>Incident Response (Darurat)</option>
+                         <option>Lainnya / Konsultasi Umum</option>
+                       </select>
+                       <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
+                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                       </div>
+                     </div>
+                   </div>
+
+                   <div className="space-y-2">
+                     <label htmlFor="message" className="text-sm font-semibold text-slate-300 ml-1">Detail Kebutuhan / Pesan</label>
+                     <textarea 
+                       id="message" rows={5} required placeholder="Ceritakan sedikit tentang infrastruktur atau masalah keamanan yang Anda hadapi..."
+                       className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600 resize-none"
+                     ></textarea>
+                   </div>
+
+                   <button 
+                     type="submit" 
+                     disabled={formStatus === 'submitting'} 
+                     className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white text-lg font-bold rounded-xl shadow-lg shadow-blue-900/20 hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center group"
+                   >
+                      {formStatus === 'submitting' ? (
+                        <span className="flex items-center">
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Memproses...
+                        </span>
+                      ) : (
+                        <>
+                          Kirim Permintaan Konsultasi 
+                          <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
+                   </button>
+                   
+                   <p className="text-center text-xs text-slate-500 mt-4">
+                     Dengan mengirimkan formulir ini, Anda menyetujui Kebijakan Privasi kami.
+                   </p>
+                 </form>
+               )}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}

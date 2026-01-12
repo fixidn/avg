@@ -1,0 +1,262 @@
+import React from 'react';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { 
+  ShieldAlert, Search, FileCheck, Activity, 
+  CheckCircle2, ArrowRight, Server, Lock, 
+  BarChart3, Eye, FileText, Zap 
+} from 'lucide-react';
+
+// =========================================================
+// 1. DATABASE KONTEN LAYANAN
+// =========================================================
+// Di sini kita mendefinisikan semua teks, warna, dan fitur untuk setiap layanan.
+// Slug adalah kunci URL (misal: avangard.id/services/vapt)
+
+const servicesData: any = {
+  "vapt": {
+    title: "VAPT & Ethical Hacking",
+    subtitle: "Vulnerability Assessment & Penetration Testing",
+    description: "Simulasi serangan siber terkontrol untuk mengekspos celah keamanan pada aplikasi dan infrastruktur Anda sebelum peretas jahat menemukannya.",
+    gradient: "from-red-500 to-orange-500", // Aksen Warna Merah
+    iconColor: "text-red-500",
+    features: [
+      { title: "Web & Mobile App Pentest", desc: "Menguji keamanan aplikasi iOS, Android, dan Web App (OWASP Top 10)." },
+      { title: "Network Infrastructure", desc: "Menemukan port terbuka, konfigurasi lemah, dan patch yang terlewat pada server." },
+      { title: "Social Engineering", desc: "Menguji kewaspadaan karyawan terhadap simulasi Phishing terarah." },
+      { title: "Detailed Reporting", desc: "Laporan teknis untuk tim IT dan laporan eksekutif untuk manajemen." }
+    ],
+    process: [
+      { step: "01", name: "Reconnaissance", desc: "Mengumpulkan informasi intelijen tentang target secara pasif dan aktif." },
+      { step: "02", name: "Scanning", desc: "Menggunakan tools otomatis dan manual untuk memetakan permukaan serangan." },
+      { step: "03", name: "Exploitation", desc: "Mencoba mengeksploitasi celah untuk membuktikan dampak risiko (Proof of Concept)." },
+      { step: "04", name: "Reporting", desc: "Menyusun laporan remediasi dan rekomendasi perbaikan." }
+    ]
+  },
+  "soc": {
+    title: "Managed SOC",
+    subtitle: "Security Operations Center (Blue Team)",
+    description: "Layanan pemantauan keamanan 24/7. Kami bertindak sebagai mata dan telinga digital Anda, mendeteksi ancaman secara real-time dan merespons sebelum kerusakan terjadi.",
+    gradient: "from-blue-500 to-cyan-500", // Aksen Warna Biru
+    iconColor: "text-blue-500",
+    features: [
+      { title: "24/7 Real-time Monitoring", desc: "Analisis log lalu lintas jaringan tanpa henti oleh tim analis manusia dan AI." },
+      { title: "Threat Hunting", desc: "Secara proaktif mencari indikator kompromi (IoC) yang tersembunyi di jaringan." },
+      { title: "SIEM Management", desc: "Konfigurasi dan tuning dashboard SIEM (Wazuh/Splunk) agar minim false positive." },
+      { title: "Incident Response Support", desc: "Eskalasi langsung saat insiden kritis terdeteksi." }
+    ],
+    process: [
+      { step: "01", name: "Log Ingestion", desc: "Mengumpulkan log dari Firewall, Server, dan Endpoint." },
+      { step: "02", name: "Correlation", desc: "Engine SIEM menghubungkan pola-pola aneh yang terdeteksi." },
+      { step: "03", name: "Triage & Analysis", desc: "Analis L1/L2 memvalidasi apakah ini ancaman nyata atau false alarm." },
+      { step: "04", name: "Response", desc: "Notifikasi ke klien dan tindakan mitigasi awal (blokir IP, isolasi host)." }
+    ]
+  },
+  "compliance": {
+    title: "GRC & Compliance",
+    subtitle: "Governance, Risk, and Compliance",
+    description: "Pastikan bisnis Anda memenuhi standar regulasi global dan nasional. Kami mendampingi Anda dari gap analysis hingga audit readiness.",
+    gradient: "from-green-500 to-emerald-500", // Aksen Warna Hijau
+    iconColor: "text-green-500",
+    features: [
+      { title: "ISO 27001 Readiness", desc: "Persiapan dokumen dan kontrol teknis untuk sertifikasi ISO 27001." },
+      { title: "UU PDP (Privacy Data)", desc: "Kepatuhan terhadap Undang-Undang Pelindungan Data Pribadi Indonesia." },
+      { title: "IT Risk Assessment", desc: "Identifikasi dan valuasi risiko aset informasi perusahaan." },
+      { title: "Policy Development", desc: "Penyusunan SOP dan Kebijakan Keamanan Informasi yang solid." }
+    ],
+    process: [
+      { step: "01", name: "Gap Analysis", desc: "Membandingkan kondisi saat ini dengan persyaratan standar (ISO/Regulasi)." },
+      { step: "02", name: "Implementation", desc: "Membantu menerapkan kontrol keamanan dan perbaikan proses." },
+      { step: "03", name: "Internal Audit", desc: "Simulasi audit untuk memastikan kesiapan organisasi." },
+      { step: "04", name: "Certification", desc: "Pendampingan saat audit eksternal berlangsung." }
+    ]
+  },
+  "incident-response": {
+    title: "Incident Response",
+    subtitle: "Digital Forensics & Recovery",
+    description: "Layanan gawat darurat siber. Ketika Anda diserang Ransomware atau Malware, tim kami terjun langsung untuk mengisolasi, menganalisis, dan memulihkan sistem.",
+    gradient: "from-purple-500 to-pink-500", // Aksen Warna Ungu (Urgent)
+    iconColor: "text-purple-500",
+    features: [
+      { title: "Ransomware Recovery", desc: "Negosiasi, dekripsi (jika mungkin), dan pemulihan data dari backup." },
+      { title: "Malware Analysis", desc: "Reverse engineering malware untuk memahami cara kerjanya." },
+      { title: "Digital Forensics", desc: "Investigasi jejak digital untuk keperluan hukum dan bukti (Chain of Custody)." },
+      { title: "Post-Incident Report", desc: "Analisis root cause agar serangan serupa tidak terulang." }
+    ],
+    process: [
+      { step: "01", name: "Identification", desc: "Menentukan lingkup insiden dan jenis serangan." },
+      { step: "02", name: "Containment", desc: "Mengisolasi sistem yang terinfeksi agar tidak menyebar." },
+      { step: "03", name: "Eradication", desc: "Menghapus malware dan menutup celah keamanan." },
+      { step: "04", name: "Recovery", desc: "Mengembalikan sistem ke operasional normal secara bertahap." }
+    ]
+  }
+};
+
+// =========================================================
+// 2. CONFIG: STATIC PARAMS (Untuk Build Time Optimization)
+// =========================================================
+export async function generateStaticParams() {
+  return Object.keys(servicesData).map((slug) => ({
+    slug: slug,
+  }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const service = servicesData[slug];
+  if (!service) return { title: 'Service Not Found' };
+  return {
+    title: `${service.subtitle} | Avangard Services`,
+    description: service.description,
+  };
+}
+
+// =========================================================
+// 3. MAIN COMPONENT (PAGE)
+// =========================================================
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Await params (Next.js 15 Requirement)
+  const { slug } = await params;
+  
+  const service = servicesData[slug];
+
+  // Handle 404 jika slug ngawur
+  if (!service) {
+    return notFound();
+  }
+
+  return (
+    <div className="bg-slate-950 min-h-screen relative overflow-hidden selection:bg-blue-500/30 selection:text-blue-200">
+      
+      {/* Background Decor */}
+      <div className={`absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-b ${service.gradient} opacity-10 blur-[120px] rounded-full pointer-events-none`}></div>
+
+      {/* ---------------- HERO SECTION ---------------- */}
+      <div className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 ${service.iconColor} text-xs font-bold tracking-widest uppercase mb-6`}>
+             <Activity className="w-3 h-3" />
+             Avangard Professional Services
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+            {service.title}
+          </h1>
+          <h2 className={`text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r ${service.gradient} mb-8`}>
+            {service.subtitle}
+          </h2>
+          
+          <p className="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            {service.description}
+          </p>
+
+          <div className="mt-10 flex justify-center gap-4">
+            <Link href="/contact" className={`px-8 py-4 bg-gradient-to-r ${service.gradient} text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition-all hover:-translate-y-1`}>
+              Konsultasi Sekarang
+            </Link>
+            <Link href="/services" className="px-8 py-4 border border-slate-700 text-slate-300 font-medium rounded-xl hover:bg-slate-900 transition-all">
+              Lihat Layanan Lain
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ---------------- FEATURES GRID ---------------- */}
+      <section className="py-20 bg-slate-900/30 border-y border-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl font-bold text-white">Apa yang Kami Tawarkan?</h3>
+            <p className="text-slate-400 mt-4">Lingkup pekerjaan dan kapabilitas utama dalam layanan ini.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {service.features.map((feature: any, idx: number) => (
+              <div key={idx} className="bg-slate-950 border border-slate-800 p-8 rounded-2xl hover:border-slate-600 transition-colors group">
+                <div className={`w-12 h-12 rounded-lg bg-slate-900 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-slate-800`}>
+                   <CheckCircle2 className={`w-6 h-6 ${service.iconColor}`} />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">{feature.title}</h4>
+                <p className="text-slate-400 leading-relaxed">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- PROCESS / METHODOLOGY ---------------- */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
+         <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+               
+               {/* Left: Text */}
+               <div>
+                  <h3 className="text-3xl font-bold text-white mb-6">Metodologi Kami</h3>
+                  <p className="text-slate-400 mb-10 text-lg">
+                    Kami bekerja dengan standar internasional (NIST / OWASP) untuk memastikan hasil yang terstruktur, terukur, dan dapat dipertanggungjawabkan.
+                  </p>
+                  
+                  <div className="space-y-8">
+                     {service.process.map((step: any, idx: number) => (
+                        <div key={idx} className="flex gap-6">
+                           <div className="flex-none">
+                              <span className={`flex items-center justify-center w-12 h-12 rounded-full border-2 bg-slate-900 text-lg font-bold ${service.iconColor} border-slate-700`}>
+                                 {step.step}
+                              </span>
+                           </div>
+                           <div>
+                              <h4 className="text-xl font-bold text-white mb-2">{step.name}</h4>
+                              <p className="text-slate-400">{step.desc}</p>
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+               </div>
+
+               {/* Right: Visual Card */}
+               <div className={`relative aspect-square lg:aspect-[4/5] bg-gradient-to-br ${service.gradient} rounded-3xl p-1`}>
+                  <div className="absolute inset-0 bg-slate-950/90 rounded-[22px] m-[2px] flex items-center justify-center overflow-hidden">
+                      {/* Decorative Abstract UI */}
+                      <div className="text-center p-8 relative z-10">
+                         <div className={`w-24 h-24 mx-auto mb-8 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-2xl shadow-slate-900`}>
+                            <FileCheck className="w-10 h-10 text-white" />
+                         </div>
+                         <h4 className="text-2xl font-bold text-white mb-2">Enterprise Grade</h4>
+                         <p className="text-slate-400 text-sm mb-8">Standardized & Secure Procedure</p>
+                         
+                         <div className="space-y-3">
+                            <div className="h-2 w-48 bg-slate-800 rounded mx-auto overflow-hidden">
+                               <div className={`h-full w-2/3 bg-gradient-to-r ${service.gradient} animate-pulse`}></div>
+                            </div>
+                            <div className="h-2 w-32 bg-slate-800 rounded mx-auto"></div>
+                         </div>
+                      </div>
+
+                      {/* Background Grid */}
+                      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </section>
+
+      {/* ---------------- CTA FOOTER ---------------- */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto text-center bg-slate-900 border border-slate-800 rounded-3xl p-12 relative overflow-hidden">
+          <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.gradient}`}></div>
+          
+          <h2 className="text-3xl font-bold text-white mb-6">
+             Siap Mengamankan Bisnis Anda?
+          </h2>
+          <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+             Jangan tunggu sampai insiden terjadi. Hubungi tim ahli Avangard untuk mendapatkan proposal teknis dan penawaran harga.
+          </p>
+          <Link href="/contact" className={`inline-flex items-center px-8 py-4 bg-white text-slate-950 font-bold rounded-xl hover:bg-slate-200 transition-colors`}>
+            Hubungi Sales <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+    </div>
+  );
+}
