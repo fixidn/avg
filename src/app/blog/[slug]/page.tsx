@@ -6,15 +6,17 @@ import { Calendar, ArrowLeft } from 'lucide-react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import type { Metadata, ResolvingMetadata } from 'next';
 
+// Tipe Data untuk Params
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
+// 1. GENERATE STATIC PARAMS
 export async function generateStaticParams() {
   const query = `*[_type == "post"]{ "slug": slug.current }`;
   const posts = await client.fetch(query);
 
-  return posts.map((post: any) => ({
+  return posts.map((post: { slug: string }) => ({
     slug: post.slug,
   }));
 }
@@ -80,7 +82,7 @@ const RichTextComponents: PortableTextComponents = {
 };
 // --- CUSTOM COMPONENTS END ---
 
-// Fetch Single Post
+// Helper: Fetch Single Post
 async function getPost(slug: string) {
   const query = `*[_type == "post" && slug.current == $slug][0] {
     title,
@@ -88,21 +90,19 @@ async function getPost(slug: string) {
     publishedAt,
     body
   }`;
-  // Debugging: Pastikan slug ada isinya
-  if (!slug) throw new Error("Slug is required"); 
   
+  if (!slug) return null;
   return client.fetch(query, { slug });
 }
 
-// 1. Fungsi Generate Metadata (SEO)
+// 2. GENERATE METADATA (SEO & SOLUSI ERROR TYPESCRIPT)
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Await params (Wajib di Next.js 15+)
   const { slug } = await params;
   
-  // Ambil data untuk SEO (Judul & Gambar saja)
+  // Ambil data minimal untuk SEO
   const query = `*[_type == "post" && slug.current == $slug][0] { 
     title, 
     "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",
@@ -116,9 +116,11 @@ export async function generateMetadata(
     };
   }
 
-  // Ambil URL gambar (jika ada)
-  const previousImages = (await parent).openGraph?.images || [];
-  const postImage = post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : [];
+  // --- BAGIAN PERBAIKAN UTAMA ---
+  // Jika ada gambar, ambil URL string-nya. Jika tidak, return null (jangan array kosong [])
+  const postImage = post.mainImage 
+    ? urlFor(post.mainImage).width(1200).height(630).url() 
+    : null;
 
   return {
     title: `${post.title} | Avangard Insight`,
@@ -126,7 +128,9 @@ export async function generateMetadata(
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [postImage, ...previousImages],
+      // Logika Conditional: Jika postImage ada, masukkan ke array. Jika tidak, array kosong.
+      // Kita HAPUS ...previousImages agar tampilan share lebih bersih (hanya gambar artikel)
+      images: postImage ? [postImage] : [],
       type: 'article',
       publishedTime: post.publishedAt,
       authors: ['Avangard Security'],
@@ -135,18 +139,18 @@ export async function generateMetadata(
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [postImage], // Gambar thumbnail besar di Twitter/X
+      images: postImage ? [postImage] : [],
     },
   };
 }
 
-// 2. Update Component Signature
+// 3. MAIN COMPONENT
 export default async function BlogPost({ params }: Props) {
   
   const { slug } = await params; 
-
   const post = await getPost(slug);
 
+  // Fallback jika post tidak ditemukan
   if (!post) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
@@ -177,7 +181,7 @@ export default async function BlogPost({ params }: Props) {
             <span className="flex items-center bg-slate-900 px-3 py-1 rounded-full border border-slate-800">
               <Calendar className="w-3.5 h-3.5 mr-2 text-blue-500" />
               {new Date(post.publishedAt).toLocaleDateString('id-ID', {
-                 day: 'numeric', month: 'long', year: 'numeric'
+                  day: 'numeric', month: 'long', year: 'numeric'
               })}
             </span>
           </div>
@@ -201,12 +205,12 @@ export default async function BlogPost({ params }: Props) {
         )}
 
         {/* Content Body (Rich Text) */}
-<div className="max-w-none text-slate-300">
-  <PortableText 
-    value={post.body} 
-    components={RichTextComponents} 
-  />
-</div>
+        <div className="max-w-none text-slate-300">
+          <PortableText 
+            value={post.body} 
+            components={RichTextComponents} 
+          />
+        </div>
 
         <hr className="my-12 border-slate-800" />
         
