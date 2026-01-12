@@ -12,6 +12,7 @@ export default function ServicesPage() {
   const services = [
     {
       title: "Vulnerability Assessment & Penetration Testing",
+      slug: "vapt", // <--- Slug sesuai dengan [slug]/page.tsx
       description: "Simulasi serangan siber terkontrol (Ethical Hacking) untuk mengekspos celah keamanan pada Web, Mobile App, dan Jaringan sebelum peretas menemukannya.",
       icon: <Search className="w-8 h-8" />,
       color: "text-red-500",
@@ -21,6 +22,7 @@ export default function ServicesPage() {
     },
     {
       title: "Managed SOC (Blue Team)",
+      slug: "soc", // <--- Slug sesuai
       description: "Monitoring keamanan 24/7 menggunakan teknologi SIEM terkini dan tim analis ahli untuk mendeteksi ancaman secara real-time dan melakukan mitigasi proaktif.",
       icon: <Activity className="w-8 h-8" />,
       color: "text-blue-500",
@@ -30,6 +32,7 @@ export default function ServicesPage() {
     },
     {
       title: "Incident Response & Forensics",
+      slug: "incident-response", // <--- Slug sesuai
       description: "Tim gerak cepat (CSIRT) yang siap 24/7 untuk menangani insiden peretasan, ransomware, dan investigasi forensik digital untuk memulihkan operasional bisnis.",
       icon: <ShieldAlert className="w-8 h-8" />,
       color: "text-purple-500",
@@ -39,6 +42,7 @@ export default function ServicesPage() {
     },
     {
       title: "Security Compliance (GRC)",
+      slug: "compliance", // <--- Slug sesuai
       description: "Pendampingan persiapan audit ISO 27001, PCI-DSS, dan kepatuhan terhadap UU PDP (Pelindungan Data Pribadi) agar bisnis Anda memenuhi standar regulasi.",
       icon: <FileCheck className="w-8 h-8" />,
       color: "text-green-500",
@@ -48,6 +52,7 @@ export default function ServicesPage() {
     },
     {
       title: "Secure Infrastructure Design",
+      slug: "secure-design", // <--- Pastikan Anda menambah data ini di [slug]/page.tsx nanti
       description: "Perancangan arsitektur jaringan dan server yang aman (System Hardening), termasuk implementasi Firewall, WAF, IPS, dan segmentasi jaringan zero-trust.",
       icon: <Server className="w-8 h-8" />,
       color: "text-cyan-500",
@@ -57,6 +62,7 @@ export default function ServicesPage() {
     },
     {
       title: "Phishing Simulation & Training",
+      slug: "phishing", // <--- Pastikan Anda menambah data ini di [slug]/page.tsx nanti
       description: "Program edukasi karyawan melalui simulasi serangan phishing nyata untuk meningkatkan kesadaran keamanan (Security Awareness) dan mencegah human error.",
       icon: <Lock className="w-8 h-8" />,
       color: "text-orange-500",
@@ -112,11 +118,14 @@ export default function ServicesPage() {
                 {service.description}
               </p>
 
-              {/* Action Link */}
+              {/* Action Link (UPDATED: Menggunakan Link Next.js) */}
               <div className="absolute bottom-8 left-8">
-                 <span className={`inline-flex items-center text-sm font-bold ${service.color} group-hover:underline decoration-2 underline-offset-4 cursor-pointer`}>
+                 <Link 
+                    href={`/services/${service.slug}`} 
+                    className={`inline-flex items-center text-sm font-bold ${service.color} group-hover:underline decoration-2 underline-offset-4 cursor-pointer`}
+                 >
                     Pelajari Teknis <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                 </span>
+                 </Link>
               </div>
               
               {/* Spacer for absolute positioning */}

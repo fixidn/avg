@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Avangard Security',
     description: 'Mitra keamanan siber terpercaya untuk bisnis Anda.',
-    url: 'https://avangard.id',
+    url: 'https://stacopa-avangard.com',
     siteName: 'Avangard Security',
     locale: 'id_ID',
     type: 'website',

@@ -88,12 +88,12 @@ const Footer = () => {
               <li>
                 <Link href="/about" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">About Us</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/blog" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">Insights & Blog</Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link href="/careers" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">Careers</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">Contact</Link>
               </li>
@@ -114,8 +114,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" />
-                <a href="mailto:support@avangard.id" className="text-slate-400 hover:text-white transition-colors text-sm">
-                  support@avangard.id
+                <a href="mailto:support@stacopa-avangard.com" className="text-slate-400 hover:text-white transition-colors text-sm">
+                  support@stacopa-avangard.com
                 </a>
               </li>
               <li className="flex items-center">
