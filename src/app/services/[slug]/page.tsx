@@ -10,15 +10,13 @@ import {
 // =========================================================
 // 1. DATABASE KONTEN LAYANAN
 // =========================================================
-// Di sini kita mendefinisikan semua teks, warna, dan fitur untuk setiap layanan.
-// Slug adalah kunci URL (misal: avangard.id/services/vapt)
 
 const servicesData: any = {
   "vapt": {
     title: "VAPT & Ethical Hacking",
     subtitle: "Vulnerability Assessment & Penetration Testing",
     description: "Simulasi serangan siber terkontrol untuk mengekspos celah keamanan pada aplikasi dan infrastruktur Anda sebelum peretas jahat menemukannya.",
-    gradient: "from-red-500 to-orange-500", // Aksen Warna Merah
+    gradient: "from-red-500 to-orange-500",
     iconColor: "text-red-500",
     features: [
       { title: "Web & Mobile App Pentest", desc: "Menguji keamanan aplikasi iOS, Android, dan Web App (OWASP Top 10)." },
@@ -37,7 +35,7 @@ const servicesData: any = {
     title: "Managed SOC",
     subtitle: "Security Operations Center (Blue Team)",
     description: "Layanan pemantauan keamanan 24/7. Kami bertindak sebagai mata dan telinga digital Anda, mendeteksi ancaman secara real-time dan merespons sebelum kerusakan terjadi.",
-    gradient: "from-blue-500 to-cyan-500", // Aksen Warna Biru
+    gradient: "from-blue-500 to-cyan-500",
     iconColor: "text-blue-500",
     features: [
       { title: "24/7 Real-time Monitoring", desc: "Analisis log lalu lintas jaringan tanpa henti oleh tim analis manusia dan AI." },
@@ -56,7 +54,7 @@ const servicesData: any = {
     title: "GRC & Compliance",
     subtitle: "Governance, Risk, and Compliance",
     description: "Pastikan bisnis Anda memenuhi standar regulasi global dan nasional. Kami mendampingi Anda dari gap analysis hingga audit readiness.",
-    gradient: "from-green-500 to-emerald-500", // Aksen Warna Hijau
+    gradient: "from-green-500 to-emerald-500",
     iconColor: "text-green-500",
     features: [
       { title: "ISO 27001 Readiness", desc: "Persiapan dokumen dan kontrol teknis untuk sertifikasi ISO 27001." },
@@ -75,7 +73,7 @@ const servicesData: any = {
     title: "Incident Response",
     subtitle: "Digital Forensics & Recovery",
     description: "Layanan gawat darurat siber. Ketika Anda diserang Ransomware atau Malware, tim kami terjun langsung untuk mengisolasi, menganalisis, dan memulihkan sistem.",
-    gradient: "from-purple-500 to-pink-500", // Aksen Warna Ungu (Urgent)
+    gradient: "from-purple-500 to-pink-500",
     iconColor: "text-purple-500",
     features: [
       { title: "Ransomware Recovery", desc: "Negosiasi, dekripsi (jika mungkin), dan pemulihan data dari backup." },
@@ -115,12 +113,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // 3. MAIN COMPONENT (PAGE)
 // =========================================================
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  // Await params (Next.js 15 Requirement)
   const { slug } = await params;
   
   const service = servicesData[slug];
 
-  // Handle 404 jika slug ngawur
   if (!service) {
     return notFound();
   }
@@ -128,10 +124,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="bg-slate-950 min-h-screen relative overflow-hidden selection:bg-blue-500/30 selection:text-blue-200">
       
-      {/* Background Decor */}
       <div className={`absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-b ${service.gradient} opacity-10 blur-[120px] rounded-full pointer-events-none`}></div>
 
-      {/* ---------------- HERO SECTION ---------------- */}
       <div className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 ${service.iconColor} text-xs font-bold tracking-widest uppercase mb-6`}>
@@ -161,7 +155,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
-      {/* ---------------- FEATURES GRID ---------------- */}
       <section className="py-20 bg-slate-900/30 border-y border-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -183,12 +176,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      {/* ---------------- PROCESS / METHODOLOGY ---------------- */}
       <section className="py-24 px-4 sm:px-6 lg:px-8">
          <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                
-               {/* Left: Text */}
                <div>
                   <h3 className="text-3xl font-bold text-white mb-6">Metodologi Kami</h3>
                   <p className="text-slate-400 mb-10 text-lg">
@@ -212,10 +203,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   </div>
                </div>
 
-               {/* Right: Visual Card */}
                <div className={`relative aspect-square lg:aspect-[4/5] bg-gradient-to-br ${service.gradient} rounded-3xl p-1`}>
                   <div className="absolute inset-0 bg-slate-950/90 rounded-[22px] m-[2px] flex items-center justify-center overflow-hidden">
-                      {/* Decorative Abstract UI */}
                       <div className="text-center p-8 relative z-10">
                          <div className={`w-24 h-24 mx-auto mb-8 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-2xl shadow-slate-900`}>
                             <FileCheck className="w-10 h-10 text-white" />
@@ -231,7 +220,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                          </div>
                       </div>
 
-                      {/* Background Grid */}
                       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
                   </div>
                </div>
@@ -240,7 +228,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
          </div>
       </section>
 
-      {/* ---------------- CTA FOOTER ---------------- */}
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto text-center bg-slate-900 border border-slate-800 rounded-3xl p-12 relative overflow-hidden">
           <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.gradient}`}></div>

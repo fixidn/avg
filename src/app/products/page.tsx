@@ -169,7 +169,6 @@ export default function ProductsPage() {
                </div>
             </div>
 
-            {/* Text Content */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Avangard <span className="text-cyan-500">Secure Gateway</span>

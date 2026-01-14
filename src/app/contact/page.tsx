@@ -1,71 +1,160 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, AlertTriangle, CheckCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Mail, MapPin, CheckCircle, ArrowRight, ShieldCheck, AlertCircle, Phone } from 'lucide-react';
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
 
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    phone: '',
+    service: 'Penetration Testing (VAPT)', 
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const sanitizeInput = (text: string) => {
+    const map: { [key: string]: string } = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return text.trim().replace(reg, (match) => (map[match]));
+  };
+
+  const validate = (): boolean => {
+    let tempErrors: FormErrors = {};
+    let isValid = true;
+
+    if (!formData.name.trim()) {
+      tempErrors.name = "Nama lengkap wajib diisi";
+      isValid = false;
+    } else if (formData.name.length < 3) {
+      tempErrors.name = "Nama terlalu pendek (min. 3 karakter)";
+      isValid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) {
+      tempErrors.email = "Email perusahaan wajib diisi";
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      tempErrors.email = "Format email tidak valid";
+      isValid = false;
+    }
+
+    if (!formData.message.trim()) {
+      tempErrors.message = "Pesan tidak boleh kosong";
+      isValid = false;
+    } else if (formData.message.length < 10) {
+      tempErrors.message = "Mohon jelaskan kebutuhan Anda lebih detail (min. 10 karakter)";
+      isValid = false;
+    }
+
+    setErrors(tempErrors);
+    return isValid;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    if (name !== 'phone' && errors[name as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validate()) return;
+
     setFormStatus('submitting');
-    // Simulasi pengiriman data
-    setTimeout(() => {
+
+    const cleanData = {
+      name: sanitizeInput(formData.name),
+      email: sanitizeInput(formData.email),
+      phone: sanitizeInput(formData.phone),
+      service: sanitizeInput(formData.service),
+      message: sanitizeInput(formData.message)
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cleanData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Gagal mengirim data ke server');
+      }
+
       setFormStatus('success');
-    }, 1500);
+      setFormData({ 
+        name: '', 
+        email: '', 
+        phone: '',
+        service: 'Penetration Testing (VAPT)', 
+        message: '' 
+      });
+
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert("Maaf, terjadi gangguan koneksi. Silakan coba lagi atau hubungi kami via email langsung.");
+      setFormStatus('idle');
+    }
   };
 
   return (
     <div className="bg-slate-950 min-h-screen relative overflow-hidden flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 selection:bg-blue-500/30 selection:text-blue-200">
       
-      {/* Background Decor (Cyber Glow) */}
+      {/* Background Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
       
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
-        {/* Header Section */}
+        {/* Header Title */}
         <div className="text-center mb-12 lg:mb-16">
           <div className="inline-flex items-center justify-center p-2 bg-slate-900/50 rounded-full mb-6 border border-slate-800 backdrop-blur-sm">
              <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
              <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Open for Consultation</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-            Let's Secure Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Future</span>
+            Let's Secure <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Your Future</span>
           </h1>
           <p className="mt-4 text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
             Diskusikan kebutuhan keamanan siber Anda dengan tim ahli kami. Respon cepat, solusi tepat sasaran.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* =========================================
-              KOLOM INFO KONTAK (KIRI di Desktop / BAWAH di Mobile)
-              Logic: order-2 (mobile), lg:order-1 (desktop)
-          ========================================= */}
+          {/* KOLOM KIRI: INFO KONTAK */}
           <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
-            
-            {/* Urgent Box */}
-            <div className="bg-gradient-to-br from-red-950/80 to-red-900/40 border border-red-500/30 rounded-3xl p-8 relative overflow-hidden group hover:border-red-500/50 transition-all duration-300 shadow-lg shadow-red-900/10">
-               <div className="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-md">EMERGENCY</div>
-               {/* Animated Pulse behind Icon */}
-               <div className="absolute top-8 left-8 w-12 h-12 bg-red-500/20 rounded-full blur-xl animate-pulse"></div>
-               
-               <div className="flex items-start relative z-10">
-                  <div className="p-3 bg-red-500/10 rounded-xl border border-red-500/20 mr-5 group-hover:scale-110 transition-transform duration-300">
-                    <AlertTriangle className="h-8 w-8 text-red-500" />
-                  </div>
-                  <div>
-                     <h3 className="text-lg font-bold text-white mb-1">Incident Response</h3>
-                     <p className="text-red-200/80 text-sm mb-3">Sedang diserang ransomware atau malware? Jangan panik.</p>
-                     <div className="text-red-400 font-mono text-xl font-bold tracking-wide hover:text-red-300 transition-colors cursor-pointer">
-                        +62 812-3456-7890
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            {/* Regular Info Box */}
             <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-3xl p-8 space-y-8 hover:border-slate-700 transition-colors shadow-xl">
                {/* Address */}
                <div className="flex items-start group">
@@ -75,9 +164,9 @@ export default function ContactPage() {
                   <div>
                      <p className="text-white font-bold text-lg mb-1">Headquarters</p>
                      <p className="text-slate-400 leading-relaxed text-sm">
-                        Gedung Cyber 2, Lt. 15<br/>
-                        Jl. H.R. Rasuna Said Blok X-5<br/>
-                        Jakarta Selatan, 12950
+                       Gedung Cyber 2, Lt. 15<br/>
+                       Jl. H.R. Rasuna Said Blok X-5<br/>
+                       Jakarta Selatan, 12950
                      </p>
                   </div>
                </div>
@@ -92,27 +181,21 @@ export default function ContactPage() {
                   <div>
                      <p className="text-white font-bold text-lg mb-1">Business Inquiry</p>
                      <a href="mailto:sales@stacopa-avangard.com" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
-                        sales@stacopa-avangard.com
+                       sales@stacopa-avangard.com
                      </a>
                   </div>
                </div>
             </div>
             
-            {/* Trust Badge */}
-            <div className="flex items-center justify-center space-x-2 text-slate-500 text-sm py-4">
-              <ShieldCheck className="w-4 h-4" />
+            <div className="flex items-center justify-center space-x-2 text-slate-500 text-sm py-4 bg-slate-900/30 rounded-2xl border border-slate-800/50">
+              <ShieldCheck className="w-4 h-4 text-green-500" />
               <span>Data Anda dilindungi dengan enkripsi End-to-End.</span>
             </div>
-
           </div>
 
-          {/* =========================================
-              KOLOM FORM (KANAN di Desktop / ATAS di Mobile)
-              Logic: order-1 (mobile), lg:order-2 (desktop)
-          ========================================= */}
+          {/* KOLOM KANAN: FORM */}
           <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
-               {/* Top Gradient Line */}
                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 opacity-50"></div>
 
                {formStatus === 'success' ? (
@@ -132,48 +215,106 @@ export default function ContactPage() {
                    </button>
                  </div>
                ) : (
-                 <form onSubmit={handleSubmit} className="space-y-6">
+                 <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                   
+                   {/* Row 1: Name & Email */}
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                         <label htmlFor="name" className="text-sm font-semibold text-slate-300 ml-1">Nama Lengkap</label>
+                         <label htmlFor="name" className="text-sm font-semibold text-slate-300 ml-1">Nama Lengkap <span className="text-red-500">*</span></label>
                          <input 
-                           type="text" id="name" required placeholder="John Doe"
-                           className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600" 
+                           type="text" id="name" name="name"
+                           value={formData.name}
+                           onChange={handleChange}
+                           placeholder="John Doe"
+                           className={`w-full bg-slate-950/50 border text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600 
+                             ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-slate-700 focus:border-transparent'}`} 
                          />
+                         {errors.name && (
+                           <div className="flex items-center text-red-500 text-xs mt-1 ml-1 animate-pulse">
+                             <AlertCircle className="w-3 h-3 mr-1" /> {errors.name}
+                           </div>
+                         )}
                       </div>
+
                       <div className="space-y-2">
-                         <label htmlFor="email" className="text-sm font-semibold text-slate-300 ml-1">Email Perusahaan</label>
+                         <label htmlFor="email" className="text-sm font-semibold text-slate-300 ml-1">Email <span className="text-red-500">*</span></label>
                          <input 
-                           type="email" id="email" required placeholder="name@company.com"
-                           className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600" 
+                           type="email" id="email" name="email"
+                           value={formData.email}
+                           onChange={handleChange}
+                           placeholder="name@company.com"
+                           className={`w-full bg-slate-950/50 border text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600
+                             ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-700 focus:border-transparent'}`} 
                          />
+                         {errors.email && (
+                            <div className="flex items-center text-red-500 text-xs mt-1 ml-1 animate-pulse">
+                              <AlertCircle className="w-3 h-3 mr-1" /> {errors.email}
+                            </div>
+                         )}
                       </div>
                    </div>
 
-                   <div className="space-y-2">
-                     <label htmlFor="service" className="text-sm font-semibold text-slate-300 ml-1">Layanan yang Diminati</label>
-                     <div className="relative">
-                       <select id="service" className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer">
-                         <option>Penetration Testing (VAPT)</option>
-                         <option>Managed SOC (Security Operations)</option>
-                         <option>ISO 27001 / GDPR Compliance</option>
-                         <option>Incident Response (Darurat)</option>
-                         <option>Lainnya / Konsultasi Umum</option>
-                       </select>
-                       <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
-                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                       </div>
-                     </div>
+                   {/* Row 2: Phone & Service */}
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                         <label htmlFor="phone" className="text-sm font-semibold text-slate-300 ml-1">
+                           Nomor HP <span className="text-slate-500 font-normal text-xs ml-1">(Opsional)</span>
+                         </label>
+                         <div className="relative">
+                            <input 
+                              type="tel" id="phone" name="phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              placeholder="+62 812..."
+                              className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 pl-12 focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600" 
+                            />
+                            <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-500">
+                              <Phone className="w-5 h-5" />
+                            </div>
+                         </div>
+                      </div>
+
+                      <div className="space-y-2">
+                         <label htmlFor="service" className="text-sm font-semibold text-slate-300 ml-1">Layanan yang Diminati</label>
+                         <div className="relative">
+                           <select 
+                             id="service" name="service"
+                             value={formData.service}
+                             onChange={handleChange}
+                             className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer"
+                           >
+                             <option>Penetration Testing (VAPT)</option>
+                             <option>Managed SOC (Security Operations)</option>
+                             <option>ISO 27001 / GDPR Compliance</option>
+                             <option>Incident Response (Darurat)</option>
+                             <option>Lainnya / Konsultasi Umum</option>
+                           </select>
+                           <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
+                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                           </div>
+                         </div>
+                      </div>
                    </div>
 
+                   {/* Message */}
                    <div className="space-y-2">
-                     <label htmlFor="message" className="text-sm font-semibold text-slate-300 ml-1">Detail Kebutuhan / Pesan</label>
+                     <label htmlFor="message" className="text-sm font-semibold text-slate-300 ml-1">Detail Kebutuhan / Pesan <span className="text-red-500">*</span></label>
                      <textarea 
-                       id="message" rows={5} required placeholder="Ceritakan sedikit tentang infrastruktur atau masalah keamanan yang Anda hadapi..."
-                       className="w-full bg-slate-950/50 border border-slate-700 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600 resize-none"
+                       id="message" name="message" rows={5}
+                       value={formData.message}
+                       onChange={handleChange}
+                       placeholder="Ceritakan sedikit tentang infrastruktur atau masalah keamanan yang Anda hadapi..."
+                       className={`w-full bg-slate-950/50 border text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:text-slate-600 resize-none
+                         ${errors.message ? 'border-red-500 focus:border-red-500' : 'border-slate-700 focus:border-transparent'}`}
                      ></textarea>
+                     {errors.message && (
+                        <div className="flex items-center text-red-500 text-xs mt-1 ml-1 animate-pulse">
+                          <AlertCircle className="w-3 h-3 mr-1" /> {errors.message}
+                        </div>
+                     )}
                    </div>
 
+                   {/* Submit Button */}
                    <button 
                      type="submit" 
                      disabled={formStatus === 'submitting'} 

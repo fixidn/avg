@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { client, urlFor } from '@/lib/sanity';
 import { Calendar, ArrowRight, Clock } from 'lucide-react';
 
-// Tipe Data Artikel
 interface Post {
   _id: string;
   title: string;
@@ -14,7 +13,6 @@ interface Post {
   excerpt: string;
 }
 
-// Fetch Data dari Sanity
 async function getPosts() {
   const query = `*[_type == "post"] | order(publishedAt desc) {
     _id,
@@ -27,7 +25,6 @@ async function getPosts() {
   return client.fetch(query);
 }
 
-// Agar data selalu fresh (Revalidasi tiap 60 detik)
 export const revalidate = 60;
 
 export default async function BlogPage() {
@@ -37,7 +34,6 @@ export default async function BlogPage() {
     <div className="bg-slate-950 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         
-        {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
             Avangard Insight
@@ -47,7 +43,6 @@ export default async function BlogPage() {
           </p>
         </div>
 
-        {/* Grid Artikel */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.length > 0 ? (
             posts.map((post) => (
@@ -67,7 +62,6 @@ export default async function BlogPage() {
                   )}
                 </div>
                 
-                {/* Konten Kartu */}
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center text-xs font-medium text-slate-400 mb-4 space-x-4">
                     <span className="flex items-center">

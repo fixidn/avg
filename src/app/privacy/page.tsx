@@ -3,13 +3,12 @@ import Link from 'next/link';
 import { Shield, Lock, Eye, FileText } from 'lucide-react';
 
 export default function PrivacyPage() {
-  const lastUpdated = "8 Januari 2026"; // Sesuaikan tanggal
+  const lastUpdated = "8 Januari 2026";
 
   return (
     <div className="bg-slate-950 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         
-        {/* HEADER */}
         <div className="mb-12 border-b border-slate-800 pb-8">
           <h1 className="text-3xl font-extrabold text-white sm:text-4xl mb-4">
             Kebijakan Privasi
@@ -19,10 +18,8 @@ export default function PrivacyPage() {
           </p>
         </div>
 
-        {/* CONTENT */}
         <div className="space-y-12 text-slate-300 leading-relaxed">
 
-          {/* 1. PENGANTAR */}
           <section>
             <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
               <Shield className="w-6 h-6 mr-3 text-blue-500" />
@@ -36,7 +33,6 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          {/* 2. INFORMASI YANG KAMI KUMPULKAN */}
           <section>
             <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
               <FileText className="w-6 h-6 mr-3 text-blue-500" />
@@ -58,7 +54,6 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          {/* 3. PENGGUNAAN INFORMASI */}
           <section>
             <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
               <Eye className="w-6 h-6 mr-3 text-blue-500" />
@@ -76,7 +71,6 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          {/* 4. KEAMANAN DATA */}
           <section>
             <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
               <Lock className="w-6 h-6 mr-3 text-blue-500" />
@@ -90,7 +84,6 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          {/* 5. PENGUNGKAPAN KEPADA PIHAK KETIGA */}
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">
               5. Pengungkapan kepada Pihak Ketiga
@@ -100,7 +93,6 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          {/* 6. HAK ANDA */}
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">
               6. Hak Perlindungan Data Anda
@@ -110,7 +102,6 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          {/* 7. HUBUNGI KAMI */}
           <section className="bg-slate-900 rounded-2xl p-8 border border-slate-800">
             <h2 className="text-2xl font-bold text-white mb-4">
               Hubungi Kami

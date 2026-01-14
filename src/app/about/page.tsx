@@ -53,7 +53,6 @@ export default function AboutPage() {
                 <div key={idx} className="h-12 w-full flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer group">
                   <span className="text-slate-500 font-bold group-hover:text-blue-400">{cert}</span>
                   
-                  {/* Uncomment baris di bawah ini jika file gambar sudah tersedia */}
                   <Image src={`/certs/${cert}.svg`} alt={cert} width={120} height={60} className="max-h-12 w-auto object-contain" />
                 </div>
              ))}

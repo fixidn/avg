@@ -12,7 +12,7 @@ export default function ServicesPage() {
   const services = [
     {
       title: "Vulnerability Assessment & Penetration Testing",
-      slug: "vapt", // <--- Slug sesuai dengan [slug]/page.tsx
+      slug: "vapt",
       description: "Simulasi serangan siber terkontrol (Ethical Hacking) untuk mengekspos celah keamanan pada Web, Mobile App, dan Jaringan sebelum peretas menemukannya.",
       icon: <Search className="w-8 h-8" />,
       color: "text-red-500",
@@ -22,7 +22,7 @@ export default function ServicesPage() {
     },
     {
       title: "Managed SOC (Blue Team)",
-      slug: "soc", // <--- Slug sesuai
+      slug: "soc",
       description: "Monitoring keamanan 24/7 menggunakan teknologi SIEM terkini dan tim analis ahli untuk mendeteksi ancaman secara real-time dan melakukan mitigasi proaktif.",
       icon: <Activity className="w-8 h-8" />,
       color: "text-blue-500",
@@ -32,7 +32,7 @@ export default function ServicesPage() {
     },
     {
       title: "Incident Response & Forensics",
-      slug: "incident-response", // <--- Slug sesuai
+      slug: "incident-response",
       description: "Tim gerak cepat (CSIRT) yang siap 24/7 untuk menangani insiden peretasan, ransomware, dan investigasi forensik digital untuk memulihkan operasional bisnis.",
       icon: <ShieldAlert className="w-8 h-8" />,
       color: "text-purple-500",
@@ -42,7 +42,7 @@ export default function ServicesPage() {
     },
     {
       title: "Security Compliance (GRC)",
-      slug: "compliance", // <--- Slug sesuai
+      slug: "compliance",
       description: "Pendampingan persiapan audit ISO 27001, PCI-DSS, dan kepatuhan terhadap UU PDP (Pelindungan Data Pribadi) agar bisnis Anda memenuhi standar regulasi.",
       icon: <FileCheck className="w-8 h-8" />,
       color: "text-green-500",
@@ -52,7 +52,7 @@ export default function ServicesPage() {
     },
     {
       title: "Secure Infrastructure Design",
-      slug: "secure-design", // <--- Pastikan Anda menambah data ini di [slug]/page.tsx nanti
+      slug: "secure-design",
       description: "Perancangan arsitektur jaringan dan server yang aman (System Hardening), termasuk implementasi Firewall, WAF, IPS, dan segmentasi jaringan zero-trust.",
       icon: <Server className="w-8 h-8" />,
       color: "text-cyan-500",
@@ -62,7 +62,7 @@ export default function ServicesPage() {
     },
     {
       title: "Phishing Simulation & Training",
-      slug: "phishing", // <--- Pastikan Anda menambah data ini di [slug]/page.tsx nanti
+      slug: "phishing",
       description: "Program edukasi karyawan melalui simulasi serangan phishing nyata untuk meningkatkan kesadaran keamanan (Security Awareness) dan mencegah human error.",
       icon: <Lock className="w-8 h-8" />,
       color: "text-orange-500",
@@ -75,13 +75,11 @@ export default function ServicesPage() {
   return (
     <div className="bg-slate-950 min-h-screen relative overflow-hidden selection:bg-blue-500/30 selection:text-blue-200">
       
-      {/* Background Decor */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-20"></div>
       <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header Section */}
         <div className="max-w-7xl mx-auto text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/50 border border-slate-800 backdrop-blur-sm mb-6">
             <ShieldAlert className="w-4 h-4 text-blue-500" />
@@ -98,14 +96,12 @@ export default function ServicesPage() {
           </p>
         </div>
 
-        {/* Grid Layanan */}
         <div className="max-w-7xl mx-auto grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <div 
               key={index}
               className={`group relative p-8 bg-slate-900/40 backdrop-blur-sm border border-slate-800 rounded-3xl hover:bg-slate-900/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${service.border} ${service.glow}`}
             >
-              {/* Icon Box */}
               <div className={`w-16 h-16 rounded-2xl ${service.bg} ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ring-1 ring-white/5`}>
                 {service.icon}
               </div>
@@ -118,7 +114,6 @@ export default function ServicesPage() {
                 {service.description}
               </p>
 
-              {/* Action Link (UPDATED: Menggunakan Link Next.js) */}
               <div className="absolute bottom-8 left-8">
                  <Link 
                     href={`/services/${service.slug}`} 
@@ -128,17 +123,14 @@ export default function ServicesPage() {
                  </Link>
               </div>
               
-              {/* Spacer for absolute positioning */}
               <div className="h-6"></div>
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA (Premium Design) */}
         <div className="max-w-5xl mx-auto mt-24">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-blue-900/20 to-slate-900 border border-blue-500/20 p-10 sm:p-16 text-center">
              
-             {/* Glow Effects */}
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-500/5 blur-[80px] pointer-events-none"></div>
 
              <h3 className="relative z-10 text-3xl font-bold text-white mb-6">

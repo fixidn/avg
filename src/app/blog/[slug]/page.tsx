@@ -6,12 +6,10 @@ import { Calendar, ArrowLeft } from 'lucide-react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import type { Metadata, ResolvingMetadata } from 'next';
 
-// Tipe Data untuk Params
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-// 1. GENERATE STATIC PARAMS
 export async function generateStaticParams() {
   const query = `*[_type == "post"]{ "slug": slug.current }`;
   const posts = await client.fetch(query);
@@ -21,29 +19,24 @@ export async function generateStaticParams() {
   }));
 }
 
-// --- CUSTOM COMPONENTS START ---
 const RichTextComponents: PortableTextComponents = {
   block: {
-    // Kustomisasi Judul H2 (Sub-bab)
     h2: ({ children }) => (
       <h2 className="text-2xl md:text-3xl font-bold text-white mt-12 mb-6 pb-4 border-b border-slate-800 flex items-center">
         <span className="w-2 h-8 bg-blue-500 mr-4 rounded-sm"></span> {/* Aksen Biru */}
         {children}
       </h2>
     ),
-    // Kustomisasi Judul H3
     h3: ({ children }) => (
       <h3 className="text-xl md:text-2xl font-semibold text-slate-200 mt-8 mb-4">
         {children}
       </h3>
     ),
-    // Kustomisasi Kutipan (Blockquote)
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-blue-500 bg-slate-900/50 p-6 my-8 rounded-r-lg italic text-slate-300 shadow-sm">
         "{children}"
       </blockquote>
     ),
-    // Paragraf biasa (agar lebih lega)
     normal: ({ children }) => (
       <p className="mb-6 text-slate-300 leading-8 text-lg">
         {children}
@@ -51,13 +44,11 @@ const RichTextComponents: PortableTextComponents = {
     ),
   },
   list: {
-    // Bullet points
     bullet: ({ children }) => (
       <ul className="list-disc ml-6 mb-8 space-y-3 text-slate-300 marker:text-blue-500">
         {children}
       </ul>
     ),
-    // Numbered list
     number: ({ children }) => (
       <ol className="list-decimal ml-6 mb-8 space-y-3 text-slate-300 marker:text-slate-500">
         {children}
@@ -65,7 +56,6 @@ const RichTextComponents: PortableTextComponents = {
     ),
   },
   marks: {
-    // Link dalam teks
     link: ({ children, value }) => {
       const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined;
       return (
@@ -80,9 +70,7 @@ const RichTextComponents: PortableTextComponents = {
     },
   },
 };
-// --- CUSTOM COMPONENTS END ---
 
-// Helper: Fetch Single Post
 async function getPost(slug: string) {
   const query = `*[_type == "post" && slug.current == $slug][0] {
     title,
@@ -95,14 +83,12 @@ async function getPost(slug: string) {
   return client.fetch(query, { slug });
 }
 
-// 2. GENERATE METADATA (SEO & SOLUSI ERROR TYPESCRIPT)
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { slug } = await params;
   
-  // Ambil data minimal untuk SEO
   const query = `*[_type == "post" && slug.current == $slug][0] { 
     title, 
     "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",
@@ -116,8 +102,6 @@ export async function generateMetadata(
     };
   }
 
-  // --- BAGIAN PERBAIKAN UTAMA ---
-  // Jika ada gambar, ambil URL string-nya. Jika tidak, return null (jangan array kosong [])
   const postImage = post.mainImage 
     ? urlFor(post.mainImage).width(1200).height(630).url() 
     : null;
@@ -128,8 +112,6 @@ export async function generateMetadata(
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      // Logika Conditional: Jika postImage ada, masukkan ke array. Jika tidak, array kosong.
-      // Kita HAPUS ...previousImages agar tampilan share lebih bersih (hanya gambar artikel)
       images: postImage ? [postImage] : [],
       type: 'article',
       publishedTime: post.publishedAt,
@@ -144,13 +126,11 @@ export async function generateMetadata(
   };
 }
 
-// 3. MAIN COMPONENT
 export default async function BlogPost({ params }: Props) {
   
   const { slug } = await params; 
   const post = await getPost(slug);
 
-  // Fallback jika post tidak ditemukan
   if (!post) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
@@ -166,7 +146,6 @@ export default async function BlogPost({ params }: Props) {
     <div className="bg-slate-950 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <article className="max-w-3xl mx-auto">
         
-        {/* Tombol Back */}
         <Link 
           href="/blog" 
           className="inline-flex items-center text-slate-400 hover:text-white mb-8 transition-colors text-sm font-medium group"
@@ -175,7 +154,6 @@ export default async function BlogPost({ params }: Props) {
           Kembali ke Blog
         </Link>
 
-        {/* Header Artikel */}
         <header className="mb-10 text-center">
           <div className="flex items-center justify-center space-x-4 text-slate-400 text-sm mb-6">
             <span className="flex items-center bg-slate-900 px-3 py-1 rounded-full border border-slate-800">
@@ -191,7 +169,6 @@ export default async function BlogPost({ params }: Props) {
           </h1>
         </header>
 
-        {/* Main Image */}
         {post.mainImage && (
           <div className="relative w-full aspect-video mb-12 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
             <Image
@@ -204,7 +181,6 @@ export default async function BlogPost({ params }: Props) {
           </div>
         )}
 
-        {/* Content Body (Rich Text) */}
         <div className="max-w-none text-slate-300">
           <PortableText 
             value={post.body} 

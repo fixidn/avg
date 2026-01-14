@@ -11,7 +11,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Handle Scroll Effect (untuk border/shadow saat scroll)
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -24,7 +23,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock Body Scroll saat Mobile Menu terbuka
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -33,7 +31,6 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
-  // Daftar Link Navigasi
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
@@ -53,7 +50,6 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
 
-            {/* 1. LOGO */}
             <div className="flex-shrink-0 relative z-50"> 
               <Link href="/" onClick={() => setIsOpen(false)}>
                 <Image
@@ -67,7 +63,6 @@ const Navbar = () => {
               </Link>
             </div>
             
-            {/* 2. DESKTOP NAVIGATION (Hidden on Mobile) */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <Link 
@@ -78,7 +73,6 @@ const Navbar = () => {
                   }`}
                 >
                   {link.name}
-                  {/* Underline Animation for Active/Hover */}
                   <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-500 transition-all duration-300 ${
                     pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}></span>
@@ -86,7 +80,6 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* 3. DESKTOP CTA BUTTON */}
             <div className="hidden md:flex items-center">
               <Link 
                 href="/contact"
@@ -97,7 +90,6 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* 4. MOBILE MENU TOGGLE */}
             <div className="flex md:hidden z-50">
               <button 
                 onClick={() => setIsOpen(!isOpen)}
@@ -116,7 +108,6 @@ const Navbar = () => {
           MOBILE SIDEBAR OVERLAY
       ========================================= */}
       
-      {/* Backdrop (Hitam Transparan) */}
       <div 
         className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
@@ -124,20 +115,15 @@ const Navbar = () => {
         onClick={() => setIsOpen(false)} 
       />
 
-      {/* Sidebar Panel */}
       <div 
         className={`fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-slate-950 border-l border-slate-800 z-50 shadow-2xl transform transition-transform duration-300 ease-out md:hidden flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        {/* Header Sidebar */}
         <div className="h-20 flex items-center justify-between px-6 border-b border-slate-900 bg-slate-950">
            <span className="text-sm font-bold text-slate-500 tracking-widest uppercase">Navigation</span>
-           {/* Tombol close sudah dihandle oleh state isOpen di navbar utama, 
-               tapi kita biarkan area ini kosong agar rapi */}
         </div>
 
-        {/* List Menu Mobile */}
         <div className="flex-1 overflow-y-auto py-6 px-4 space-y-2">
           {navLinks.map((link) => (
             <Link 
@@ -167,7 +153,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Footer Sidebar (Socials) */}
         <div className="p-8 border-t border-slate-900 bg-slate-900/30">
           <div className="flex justify-center space-x-8">
             <a href="#" className="text-slate-500 hover:text-blue-500 transition-colors">

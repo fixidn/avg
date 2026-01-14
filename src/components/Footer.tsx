@@ -8,21 +8,16 @@ const Footer = () => {
   return (
     <footer className="bg-slate-950 pt-20 pb-10 relative overflow-hidden border-t border-slate-900">
       
-      {/* Decorative Top Gradient Line */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-900 to-transparent opacity-50"></div>
       
-      {/* Background Glow (Optional) */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-900/5 blur-[100px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* GRID UTAMA */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           
-          {/* KOLOM 1: BRAND & SOCIALS (Span 4 kolom) */}
           <div className="lg:col-span-4 space-y-6">
             <Link href="/" className="inline-block">
-              {/* Pastikan file white.svg ada di folder public */}
               <Image 
                 src="/white.svg"
                 alt="Avangard Logo"
@@ -36,7 +31,6 @@ const Footer = () => {
               Mitra strategis keamanan siber untuk bisnis modern. Kami mengamankan aset digital Anda dengan pendekatan Offensive & Defensive yang terintegrasi.
             </p>
 
-            {/* Social Icons */}
             <div className="flex space-x-4 pt-2">
               <a href="#" className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 hover:bg-blue-600 transition-all duration-300">
                 <Linkedin className="w-4 h-4" />
@@ -50,7 +44,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* KOLOM 2: SERVICES (Span 2 kolom) */}
           <div className="lg:col-span-2 lg:col-start-6">
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Services</h3>
             <ul className="space-y-4">
@@ -81,7 +74,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* KOLOM 3: COMPANY (Span 2 kolom) */}
           <div className="lg:col-span-2">
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Company</h3>
             <ul className="space-y-4">
@@ -100,7 +92,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* KOLOM 4: CONTACT INFO (Span 3 kolom) */}
           <div className="lg:col-span-3">
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Headquarters</h3>
             <ul className="space-y-4">
@@ -129,7 +120,6 @@ const Footer = () => {
 
         </div>
 
-        {/* BOTTOM BAR */}
         <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-xs">
             &copy; {currentYear} PT Stacopa Avangard. All rights reserved.
