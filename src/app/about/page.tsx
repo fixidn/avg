@@ -1,217 +1,179 @@
 import React from 'react';
 import Image from 'next/image';
-import { Target, CheckCircle2, Shield, Users, Lock, ChevronRight } from 'lucide-react';
+import { Shield, Globe, Lock, Activity } from 'lucide-react';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: "Tentang Kami | Avangard Security",
-  description: "Profil perusahaan Avangard Security, mitra pertahanan siber terpercaya.",
+export const metadata: Metadata = {
+  title: "Tentang Stacopa Avangard | Keamanan Siber Berbasis Intelijen",
+  description: "Divisi pertahanan siber dari Grup Stacopa, melindungi aset digital dengan warisan kepercayaan 50 tahun.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="bg-slate-950 min-h-screen relative overflow-hidden selection:bg-blue-500/30 selection:text-blue-200">
+    <main className="bg-slate-950 min-h-screen text-slate-300 selection:bg-blue-500/30 selection:text-blue-200 overflow-x-hidden">
       
       {/* ================================================================================= */}
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION - Identitas Utama */}
       {/* ================================================================================= */}
-      <div className="relative isolate pt-24 pb-20 sm:pt-32 sm:pb-24 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
-      
-        <div className="max-w-7xl mx-auto w-full relative z-10"></div>
-        
-        
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-400 mb-6 backdrop-blur-sm">
-              <span className="flex h-2 w-2 rounded-full bg-blue-400 mr-2 animate-pulse"></span>
-              Since 2020
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
-              Melindungi Masa Depan <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Digital Anda</span>
-            </h1>
-            
-            <p className="mt-6 text-lg leading-8 text-slate-400">
-              Avangard bukan sekadar vendor, tapi mitra strategis pertahanan siber kelas enterprise. Kami berdiri di garis depan untuk memastikan integritas data dan keberlangsungan bisnis Anda.
-            </p>
-          </div>
-        </div>
-      </div>
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none"></div>
 
-      {/* ================================================================================= */}
-      {/* 2. CERTIFICATION STRIP (Glassmorphism) */}
-      {/* ================================================================================= */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 -mt-8 mb-20">
-        <div className="rounded-3xl bg-slate-900/50 backdrop-blur-xl border border-slate-800 p-8 md:p-10 shadow-2xl">
-          <div className="text-center mb-8 border-b border-slate-800 pb-4">
-             <span className="text-sm font-semibold text-slate-400 tracking-widest uppercase">Diakui oleh Standar Global</span>
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-400 text-xs font-bold tracking-widest uppercase mb-8 animate-fade-in-up">
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            Tentang Stacopa Avangard
           </div>
-          
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6 items-center justify-items-center opacity-60 hover:opacity-100 transition-opacity duration-500">
-             {['ISO27001', 'OSCP+', 'EJPT', 'OSWE', 'EMAPT', 'EWPT'].map((cert, idx) => (
-                <div key={idx} className="h-12 w-full flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer group">
-                  <span className="text-slate-500 font-bold group-hover:text-blue-400">{cert}</span>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-8 leading-tight">
+            Pertahanan Siber <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
+              Berbasis Intelijen
+            </span>
+          </h1>
+
+          <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-16">
+            <span className="text-white font-semibold">Stacopa Avangard</span> adalah divisi pertahanan siber dan intelijen dari Grup Stacopa, yang dibangun di atas lebih dari 50 tahun keahlian, kepercayaan, dan keamanan.
+          </p>
+
+          <div className="border-t border-slate-800/60 pt-10 max-w-5xl mx-auto">
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-10">
+              Diakui oleh Standar Global
+            </p>
+            
+            <div className="grid grid-cols-2 gap-y-8 gap-x-8 md:grid-cols-3 lg:grid-cols-6 items-center justify-items-center">
+              {['ISO27001', 'oscp-plus', 'OSWE', 'EJPT', 'EMAPT', 'EWPT'].map((cert) => (
+                <div key={cert} className="group flex flex-col items-center justify-center w-full">
                   
-                  <Image src={`/certs/${cert}.svg`} alt={cert} width={120} height={60} className="max-h-12 w-auto object-contain" />
-                </div>
-             ))}
-          </div>
-        </div>
-      </div>
+                  <div className="relative h-12 w-full flex items-center justify-center grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 cursor-default">
 
-      {/* ================================================================================= */}
-      {/* 3. APPROACH SECTION (Split Layout) */}
-      {/* ================================================================================= */}
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
-          
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-              Pendekatan <span className="text-blue-500">Holistik</span>
-            </h2>
-            <p className="text-lg leading-relaxed text-slate-400 mb-10">
-              Keamanan siber bukan hanya tentang teknologi canggih, tapi juga tentang proses yang ketat dan manusia yang kompeten. Kami menggabungkan ketiganya.
-            </p>
+                    <Image 
+                      src={`/certs/${cert.toLowerCase().replace('+','-plus')}.svg`} 
+                      alt={cert}
+                      width={100} 
+                      height={50} 
+                      className="max-h-10 w-auto object-contain"
+                    />
 
-            <div className="space-y-6">
-              {/* Feature 1 */}
-              <div className="flex gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 hover:border-blue-500/30 transition-colors group">
-                <div className="flex-none mt-1">
-                  <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
-                    <Shield className="h-5 w-5 text-blue-400" />
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-white">Analisa Risiko Berbasis Bisnis</h3>
-                  <p className="mt-1 text-sm text-slate-400">Kami tidak hanya mencari celah teknis, tapi memahami dampak finansialnya bagi bisnis Anda.</p>
-                </div>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="flex gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 hover:border-blue-500/30 transition-colors group">
-                <div className="flex-none mt-1">
-                  <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
-                    <Users className="h-5 w-5 text-blue-400" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-white">Laporan Executive Level (C-Level)</h3>
-                  <p className="mt-1 text-sm text-slate-400">Bahasa teknis diterjemahkan menjadi wawasan bisnis yang dapat ditindaklanjuti oleh manajemen.</p>
-                </div>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="flex gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 hover:border-blue-500/30 transition-colors group">
-                <div className="flex-none mt-1">
-                  <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
-                    <Lock className="h-5 w-5 text-blue-400" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-white">Transparansi Total</h3>
-                  <p className="mt-1 text-sm text-slate-400">Tidak ada false-positive yang disembunyikan. Anda melihat apa yang kami lihat.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Visual (Abstract Representation) */}
-          <div className="relative aspect-square lg:aspect-[4/3] rounded-3xl overflow-hidden bg-slate-900 border border-slate-800 flex items-center justify-center group">
-              {/* Background Glow */}
-              <div className="absolute inset-0 bg-blue-600/5 group-hover:bg-blue-600/10 transition-colors"></div>
-              
-              {/* Animated Circles */}
-              <div className="absolute w-64 h-64 border border-blue-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-              <div className="absolute w-48 h-48 border border-dashed border-blue-500/40 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-              
-              <div className="text-center relative z-10 p-8 bg-slate-950/80 backdrop-blur-md rounded-2xl border border-slate-700 shadow-2xl">
-                 <Target className="w-20 h-20 text-blue-500 mx-auto mb-4 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-                 <p className="text-white font-bold text-xl tracking-widest">PRECISION</p>
-                 <p className="text-slate-500 text-xs mt-2 uppercase">Target Acquisition Confirmed</p>
-              </div>
-          </div>
         </div>
-      </div>
+      </section>
 
       {/* ================================================================================= */}
-      {/* 4. TEAM SECTION (Card Style) */}
+      {/* 2. THE LEGACY - Perusahaan Induk */}
       {/* ================================================================================= */}
-      <div className="bg-slate-950 py-24 sm:py-32 border-t border-slate-900 relative">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Meet The Experts</h2>
-            <p className="mt-4 text-lg text-slate-400">
-              Praktisi berpengalaman dengan sertifikasi internasional dan dedikasi tinggi pada keamanan data Anda.
-            </p>
-          </div>
+      <section className="py-20 bg-slate-900/50 border-y border-slate-800 relative">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden border border-slate-700 group shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10"></div>
             
-            {/* TEAM MEMBER 1 */}
-            <div className="group relative bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Shield className="w-24 h-24 text-blue-500" />
-               </div>
-               
-               <div className="relative mb-6">
-                 <div className="h-24 w-24 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-2xl font-bold text-blue-500 shadow-lg group-hover:scale-105 transition-transform">
-                   JD
-                 </div>
-               </div>
-               
-               <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">John Doe</h3>
-               <p className="text-sm font-semibold text-blue-500 mb-4 uppercase tracking-wider">Principal Consultant</p>
-               <div className="h-px w-full bg-slate-800 mb-4 group-hover:bg-blue-500/30 transition-colors"></div>
-               <p className="text-sm text-slate-400 leading-relaxed">
-                  Spesialis Defensive Security & Incident Response dengan pengalaman 10+ tahun menangani intrusi skala besar.
-               </p>
+            <div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
+               <Shield className="w-40 h-40 text-slate-700/50 group-hover:text-blue-900/30 transition-colors duration-700" />
+            </div>
+            
+            <div className="absolute bottom-0 left-0 p-8 z-20">
+              <div className="w-12 h-1 bg-blue-500 mb-4"></div>
+              <h3 className="text-3xl font-bold text-white mb-2">Stacopa Raya</h3>
+              <p className="text-blue-400 text-sm font-mono tracking-widest uppercase">Parent Company</p>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+              Warisan Presisi & Integritas
+            </h2>
+            <div className="space-y-6 text-lg text-slate-400 leading-relaxed text-justify">
+              <p>
+                Perusahaan induk kami, <strong className="text-white">Stacopa Raya</strong>, telah lama menjadi mitra pencetakan keamanan tepercaya bagi Pemerintah Indonesia dan industri perbankan nasional.
+              </p>
+              
+              <div className="relative pl-8 italic text-slate-300 bg-slate-800/20 p-6 rounded-r-xl border-l-4 border-blue-500">
+                <span className="absolute top-2 left-2 text-4xl text-blue-500/20 font-serif">"</span>
+                Melindungi aset-aset penting dengan disiplin, presisi, dan integritas.
+              </div>
+
+              <p>
+                Prinsip-prinsip inilah yang kami bawa ke dalam dunia digital. Kami memahami bahwa keamanan bukan hanya soal teknologi, tetapi tentang menjaga kepercayaan yang telah dibangun selama puluhan tahun.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ================================================================================= */}
+      {/* 3. APPROACH & MISSION - Ekspansi Digital */}
+      {/* ================================================================================= */}
+      <section className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Navigasi di Lanskap Ancaman Modern</h2>
+            <p className="text-slate-400 text-lg leading-relaxed">
+              Memperluas warisan ini ke ranah digital, Stacopa Avangard membantu organisasi menavigasi lanskap ancaman siber yang semakin kompleks.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/20 transition-all group">
+              <div className="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition group-hover:scale-110 duration-300">
+                <Activity className="w-7 h-7 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Praktis & Pragmatis</h3>
+              <p className="text-slate-400 leading-relaxed">
+                Pendekatan kami berlandaskan pada risiko dunia nyata. Kami tidak hanya memberikan teori, tetapi solusi pertahanan yang dapat diterapkan secara efektif.
+              </p>
             </div>
 
-            {/* TEAM MEMBER 2 */}
-            <div className="group relative bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Target className="w-24 h-24 text-blue-500" />
-               </div>
-
-               <div className="relative mb-6">
-                 <div className="h-24 w-24 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-2xl font-bold text-white shadow-lg group-hover:scale-105 transition-transform">
-                   AS
-                 </div>
-               </div>
-               
-               <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Ahmad Santoso</h3>
-               <p className="text-sm font-semibold text-blue-500 mb-4 uppercase tracking-wider">Senior Pentester</p>
-               <div className="h-px w-full bg-slate-800 mb-4 group-hover:bg-blue-500/30 transition-colors"></div>
-               <p className="text-sm text-slate-400 leading-relaxed">
-                  Fokus pada Offensive Security, Red Teaming Simulation, dan Eksploitasi Web Lanjut (Zero-day research).
-               </p>
+            <div className="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-900/20 transition-all group">
+              <div className="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 transition group-hover:scale-110 duration-300">
+                <Globe className="w-7 h-7 text-cyan-400" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Ekosistem Luas</h3>
+              <p className="text-slate-400 leading-relaxed">
+                Diperkuat melalui keterlibatan dengan regulator, akademisi, inovator, penegak hukum, dan praktisi berpengalaman untuk wawasan yang holistik.
+              </p>
             </div>
 
-            {/* TEAM MEMBER 3 */}
-            <div className="group relative bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Lock className="w-24 h-24 text-blue-500" />
-               </div>
-
-               <div className="relative mb-6">
-                 <div className="h-24 w-24 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-2xl font-bold text-white shadow-lg group-hover:scale-105 transition-transform">
-                   SR
-                 </div>
-               </div>
-               
-               <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Siti Rahma</h3>
-               <p className="text-sm font-semibold text-blue-500 mb-4 uppercase tracking-wider">GRC Specialist</p>
-               <div className="h-px w-full bg-slate-800 mb-4 group-hover:bg-blue-500/30 transition-colors"></div>
-               <p className="text-sm text-slate-400 leading-relaxed">
-                  Ahli Audit Keamanan, Kepatuhan ISO 27001, dan Manajemen Risiko IT untuk industri perbankan & fintech.
-               </p>
+            <div className="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-teal-500/50 hover:shadow-lg hover:shadow-teal-900/20 transition-all group">
+              <div className="w-14 h-14 bg-teal-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-500/20 transition group-hover:scale-110 duration-300">
+                <Lock className="w-7 h-7 text-teal-400" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Ketahanan & Relevansi</h3>
+              <p className="text-slate-400 leading-relaxed">
+                Kami memberikan pertahanan siber berbasis intelijen yang memprioritaskan ketahanan dan kepercayaan dalam lingkungan risiko yang konstan.
+              </p>
             </div>
+          </div>
 
+        </div>
+      </section>
+
+      {/* ================================================================================= */}
+      {/* 4. CLOSING STATEMENT */}
+      {/* ================================================================================= */}
+      <section className="py-20 px-6 border-t border-slate-800 bg-slate-900/30">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-10 leading-snug">
+            "Kami memberikan pertahanan siber berbasis intelijen yang memprioritaskan <span className="text-blue-400">ketahanan</span>, <span className="text-blue-400">relevansi</span>, dan <span className="text-blue-400">kepercayaan</span>."
+          </h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+             <a href="/contact" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-blue-900/50 hover:shadow-blue-500/40">
+               Hubungi Tim Kami
+             </a>
+             <a href="/services" className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg border border-slate-700 transition-all">
+               Lihat Layanan
+             </a>
           </div>
         </div>
-      </div>
+      </section>
 
-    </div>
+    </main>
   );
 }
