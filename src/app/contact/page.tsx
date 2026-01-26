@@ -132,12 +132,10 @@ export default function ContactPage() {
   return (
     <div className="bg-slate-950 min-h-screen relative overflow-hidden flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 selection:bg-blue-500/30 selection:text-blue-200">
       
-      {/* Background Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
       
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
-        {/* Header Title */}
         <div className="text-center mb-12 lg:mb-16">
           <div className="inline-flex items-center justify-center p-2 bg-slate-900/50 rounded-full mb-6 border border-slate-800 backdrop-blur-sm">
              <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
@@ -153,10 +151,8 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* KOLOM KIRI: INFO KONTAK */}
           <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
             <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-3xl p-8 space-y-8 hover:border-slate-700 transition-colors shadow-xl">
-               {/* Address */}
                <div className="flex items-start group">
                   <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20 mr-5 group-hover:bg-blue-500/20 transition-colors">
                      <MapPin className="h-6 w-6 text-blue-500" />
@@ -164,16 +160,14 @@ export default function ContactPage() {
                   <div>
                      <p className="text-white font-bold text-lg mb-1">Headquarters</p>
                      <p className="text-slate-400 leading-relaxed text-sm">
-                       Gedung Cyber 2, Lt. 15<br/>
-                       Jl. H.R. Rasuna Said Blok X-5<br/>
-                       Jakarta Selatan, 12950
+                       Jl. Jend Sudirman<br/>
+                       Jakarta Selatan, 12190
                      </p>
                   </div>
                </div>
 
                <div className="w-full h-px bg-slate-800/50"></div>
 
-               {/* Email */}
                <div className="flex items-start group">
                   <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20 mr-5 group-hover:bg-blue-500/20 transition-colors">
                      <Mail className="h-6 w-6 text-blue-500" />
@@ -193,7 +187,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* KOLOM KANAN: FORM */}
           <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 opacity-50"></div>
@@ -217,7 +210,6 @@ export default function ContactPage() {
                ) : (
                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                    
-                   {/* Row 1: Name & Email */}
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                          <label htmlFor="name" className="text-sm font-semibold text-slate-300 ml-1">Nama Lengkap <span className="text-red-500">*</span></label>
@@ -254,7 +246,6 @@ export default function ContactPage() {
                       </div>
                    </div>
 
-                   {/* Row 2: Phone & Service */}
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                          <label htmlFor="phone" className="text-sm font-semibold text-slate-300 ml-1">
@@ -296,7 +287,6 @@ export default function ContactPage() {
                       </div>
                    </div>
 
-                   {/* Message */}
                    <div className="space-y-2">
                      <label htmlFor="message" className="text-sm font-semibold text-slate-300 ml-1">Detail Kebutuhan / Pesan <span className="text-red-500">*</span></label>
                      <textarea 
@@ -314,7 +304,6 @@ export default function ContactPage() {
                      )}
                    </div>
 
-                   {/* Submit Button */}
                    <button 
                      type="submit" 
                      disabled={formStatus === 'submitting'} 

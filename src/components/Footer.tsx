@@ -80,12 +80,7 @@ const Footer = () => {
               <li>
                 <Link href="/about" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">About Us</Link>
               </li>
-              {/* <li>
-                <Link href="/blog" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">Insights & Blog</Link>
-              </li> */}
-              {/* <li>
-                <Link href="/careers" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">Careers</Link>
-              </li> */}
+              
               <li>
                 <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors text-sm">Contact</Link>
               </li>
@@ -98,9 +93,8 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-slate-400 text-sm leading-relaxed">
-                  Gedung Cyber 2, Lt. 15<br/>
-                  Jl. H.R. Rasuna Said Blok X-5<br/>
-                  Jakarta Selatan, 12950
+                  Jl. Jend Sudirman<br/>
+                  Jakarta Selatan, 12190
                 </span>
               </li>
               <li className="flex items-center">
@@ -109,12 +103,7 @@ const Footer = () => {
                   support@stacopa-avangard.com
                 </a>
               </li>
-              <li className="flex items-center">
-                <Phone className="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" />
-                <span className="text-slate-400 text-sm">
-                  +62 21 5555 8888
-                </span>
-              </li>
+              
             </ul>
           </div>
 
@@ -131,9 +120,6 @@ const Footer = () => {
             </Link>
             <Link href="/terms" className="text-slate-500 hover:text-slate-300 text-xs transition-colors">
               Terms of Service
-            </Link>
-            <Link href="/sitemap" className="text-slate-500 hover:text-slate-300 text-xs transition-colors">
-              Sitemap
             </Link>
           </div>
         </div>

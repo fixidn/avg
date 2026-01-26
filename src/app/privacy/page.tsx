@@ -111,7 +111,7 @@ export default function PrivacyPage() {
             </p>
             <div className="space-y-2 text-slate-300">
               <p><strong className="text-white">Email:</strong> privacy@avangard.id</p>
-              <p><strong className="text-white">Alamat:</strong> Gedung Cyber 2, Lt. 15, Jl. H.R. Rasuna Said Blok X-5, Jakarta Selatan</p>
+              <p><strong className="text-white">Alamat:</strong> Jl. Jend Sudirman, Jakarta Selatan</p>
             </div>
             <div className="mt-8">
               <Link href="/contact" className="text-blue-500 hover:text-blue-400 font-semibold hover:underline">
