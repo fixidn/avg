@@ -5,6 +5,7 @@ import { client, urlFor } from '@/lib/sanity';
 import { Calendar, ArrowLeft } from 'lucide-react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import type { Metadata, ResolvingMetadata } from 'next';
+import ShareButtons from '@/components/ShareButtons'; // <--- Import Komponen Share
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,7 +24,7 @@ const RichTextComponents: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
       <h2 className="text-2xl md:text-3xl font-bold text-white mt-12 mb-6 pb-4 border-b border-slate-800 flex items-center">
-        <span className="w-2 h-8 bg-blue-500 mr-4 rounded-sm"></span> {/* Aksen Biru */}
+        <span className="w-2 h-8 bg-blue-500 mr-4 rounded-sm"></span>
         {children}
       </h2>
     ),
@@ -142,6 +143,9 @@ export default async function BlogPost({ params }: Props) {
     );
   }
 
+  // --- BUAT URL DINAMIS UNTUK SHARE ---
+  const postUrl = `https://stacopa-avangard.com/blog/${slug}`;
+
   return (
     <div className="bg-slate-950 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <article className="max-w-3xl mx-auto">
@@ -187,6 +191,9 @@ export default async function BlogPost({ params }: Props) {
             components={RichTextComponents} 
           />
         </div>
+
+        {/* --- KOMPONEN SHARE BUTTONS DITAMPILKAN DI SINI --- */}
+        <ShareButtons url={postUrl} title={post.title} />
 
         <hr className="my-12 border-slate-800" />
         
