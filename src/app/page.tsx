@@ -21,8 +21,8 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.2)] animate-fade-in-up">
-            <span className="flex h-2 w-2 rounded-full bg-blue-400 mr-2 animate-pulse"></span>
-            Part of Stacopa Group — 50+ Years of Excellence
+            <span className="flex h-2 w-2 rounded-full bg-green-400 mr-2 animate-pulse"></span>
+            SUBSDIARY OF STACOPA GROUP — 50+ YEARS OF EXCELLENCE
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white tracking-tight leading-tight">
@@ -54,14 +54,14 @@ export default function Home() {
       </section>
 
       {/* =========================================
-          2. STATS SECTION (Updated Logic)
+          2. STATS SECTION (Updated Logic - 3 Items)
       ========================================= */}
       <section className="bg-slate-950 relative z-10 py-12 border-y border-slate-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6"> 
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Ubah grid-cols di sini menjadi 1 kolom di HP dan 3 kolom di Desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6"> 
             {[
-              { label: 'Rekam Jejak', value: '50+', suffix: 'Tahun', icon: Clock },
-              { label: 'Proyek Selesai', value: '10+', icon: Terminal },
+              { label: 'Tradisi', value: '50+', suffix: 'Tahun', icon: Clock },
               { label: 'Celah Terdeteksi', value: '500+', suffix: 'Vulns', icon: Target },
               { label: 'Support', value: '24/7', suffix: 'Ops', icon: Activity },
             ].map((stat, idx) => (
