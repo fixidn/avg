@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Avangard Security — Website
 
-## Getting Started
+Website resmi [Avangard Security](https://stacopa-avangard.com), anak perusahaan STACOPA Group. Dibangun dengan Next.js App Router dan Sanity CMS.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework:** Next.js 16 (App Router)
+- **CMS:** Sanity v5
+- **Styling:** Tailwind CSS v4
+- **Runtime:** Node.js v20
+- **Deployment:** Proxmox LXC + Cloudflare Tunnel
+
+## Struktur Proyek
+
+```
+src/
+├── app/              # Halaman & API routes (Next.js App Router)
+│   ├── api/contact/  # Form kontak → Telegram + CSV
+│   ├── blog/         # Blog listing & detail (dari Sanity)
+│   ├── services/     # Halaman layanan (dari Sanity)
+│   └── studio/       # Sanity Studio (CMS editor)
+├── components/       # Navbar, Footer, ShareButtons, dll
+├── lib/sanity.ts     # Sanity client & image URL builder
+└── sanity/schemas/   # Schema konten Sanity
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Buat file `.env.local` di root project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 
-## Learn More
+TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_CHAT_ID=your_chat_id
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Buka [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+Sanity Studio tersedia di [http://localhost:3000/studio](http://localhost:3000/studio).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Build & Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build dilakukan di lokal, hasil build di-upload ke server:
+
+```bash
+# 1. Build
+npm run build
+
+# 2. Deploy ke server (192.168.18.102)
+python deploy.py
+```
+
+Script `deploy.py` akan mengupload `.next/`, `public/`, dan config files ke server, lalu restart service `avangard-next.service` secara otomatis.
+
+### Struktur Server
+
+- **App directory:** `/opt/apps/avangard`
+- **Service:** `avangard-next.service` (systemd)
+- **Port:** 3000 (diakses via Cloudflare Tunnel)
+- **Contacts CSV:** `/opt/apps/avangard/data/contacts.csv`
+
+## Konten (Sanity CMS)
+
+Konten blog dan halaman layanan dikelola via Sanity Studio. Akses di `/studio` setelah login dengan akun Sanity yang terdaftar di project.
