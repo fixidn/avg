@@ -51,9 +51,9 @@ export default function ServicesPage() {
       glow: "group-hover:shadow-green-900/20"
     },
     {
-      title: "Secure Infrastructure Design",
+      title: "Secure Web Infrastructure",
       slug: "secure-design",
-      description: "Perancangan arsitektur jaringan dan server yang aman (System Hardening), termasuk implementasi Firewall, WAF, IPS, dan segmentasi jaringan zero-trust.",
+      description: "Perancangan dan pengerasan infrastruktur web yang aman sejak awal (Security by Design): Web Server Hardening, proteksi WAF, dan secure deployment.",
       icon: <Server className="w-8 h-8" />,
       color: "text-cyan-500",
       bg: "bg-cyan-500/10",

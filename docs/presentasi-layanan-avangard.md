@@ -31,7 +31,7 @@ Avangard menyediakan enam layanan yang saling melengkapi, mencakup siklus keaman
 | 2 | **Managed SOC** | Defensive | Pengawasan ancaman 24/7 tanpa membangun tim sendiri |
 | 3 | **Incident Response** | Defensive | Pemulihan cepat saat insiden terjadi |
 | 4 | **GRC & Compliance** | Compliance | Lolos audit ISO 27001, PCI-DSS, UU PDP |
-| 5 | **Secure Infrastructure Design** | Preventive | Bangun arsitektur aman sejak awal (zero-trust) |
+| 5 | **Secure Web Infrastructure** | Preventive | Bangun infrastruktur web aman sejak awal (security by design) |
 | 6 | **Phishing Simulation & Training** | Human Layer | Kurangi risiko human error sebagai pintu masuk serangan |
 
 ---
@@ -110,16 +110,16 @@ Memastikan bisnis Anda memenuhi standar regulasi global dan nasional. Kami menda
 
 ---
 
-### 3.5 Secure Infrastructure Design
-**System Hardening & Zero-Trust Architecture**
+### 3.5 Secure Web Infrastructure
+**Web Hardening & Secure Deployment**
 
-Perancangan arsitektur jaringan dan server yang aman **sejak awal** (*security by design*), dari system hardening hingga segmentasi jaringan zero-trust.
+Perancangan dan pengerasan infrastruktur web Anda agar aman **sejak awal** (*security by design*), dari konfigurasi web server hingga proteksi WAF dan secure deployment.
 
 **Apa yang kami tawarkan:**
-- **System Hardening** — pengerasan konfigurasi server, OS, dan layanan mengikuti CIS Benchmark.
-- **Firewall, WAF & IPS** — desain perimeter defense berlapis untuk menyaring trafik berbahaya.
-- **Network Segmentation** — pemisahan zona jaringan untuk membatasi pergerakan lateral.
-- **Zero-Trust Access** — penerapan prinsip *never trust, always verify* pada setiap akses.
+- **Web Server Hardening** — pengerasan konfigurasi web server, OS, dan layanan mengikuti CIS Benchmark.
+- **WAF & DDoS Protection** — proteksi aplikasi web dari serangan OWASP dan trafik berbahaya pada layer aplikasi.
+- **Secure Deployment & Config** — konfigurasi hosting/cloud yang aman, TLS/HTTPS, manajemen secret, dan pipeline CI/CD aman.
+- **Zero-Trust Access** — penerapan prinsip *never trust, always verify* pada akses aplikasi & panel admin.
 
 **Metodologi (4 tahap):**
 `01 Assessment` → `02 Design` → `03 Implementation` → `04 Validation`
@@ -161,8 +161,8 @@ Program edukasi karyawan melalui simulasi serangan phishing nyata untuk meningka
    PENCEGAHAN          DETEKSI           RESPONS          KEPATUHAN
  ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐
  │ VAPT       │    │ Managed    │    │ Incident   │    │ GRC &      │
- │ Secure     │ →  │ SOC        │ →  │ Response   │ →  │ Compliance │
- │ Design     │    │            │    │            │    │            │
+ │ Secure Web │ →  │ SOC        │ →  │ Response   │ →  │ Compliance │
+ │ Infra      │    │            │    │            │    │            │
  │ Phishing   │    │            │    │            │    │            │
  │ Training   │    │            │    │            │    │            │
  └────────────┘    └────────────┘    └────────────┘    └────────────┘

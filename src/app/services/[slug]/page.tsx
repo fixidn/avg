@@ -89,16 +89,16 @@ const servicesData: any = {
     ]
   },
   "secure-design": {
-    title: "Secure Infrastructure Design",
-    subtitle: "System Hardening & Zero-Trust Architecture",
-    description: "Perancangan arsitektur jaringan dan server yang aman sejak awal (Security by Design), mulai dari System Hardening hingga implementasi segmentasi jaringan zero-trust.",
+    title: "Secure Web Infrastructure",
+    subtitle: "Web Hardening & Secure Deployment",
+    description: "Perancangan dan pengerasan infrastruktur web Anda agar aman sejak awal (Security by Design), mulai dari konfigurasi web server hingga proteksi WAF dan secure deployment.",
     gradient: "from-cyan-500 to-blue-500",
     iconColor: "text-cyan-500",
     features: [
-      { title: "System Hardening", desc: "Pengerasan konfigurasi server, OS, dan layanan mengikuti baseline CIS Benchmark." },
-      { title: "Firewall, WAF & IPS", desc: "Desain dan implementasi perimeter defense berlapis untuk menyaring trafik berbahaya." },
-      { title: "Network Segmentation", desc: "Pemisahan zona jaringan (VLAN/micro-segmentation) untuk membatasi pergerakan lateral." },
-      { title: "Zero-Trust Access", desc: "Penerapan prinsip 'never trust, always verify' pada setiap akses sumber daya." }
+      { title: "Web Server Hardening", desc: "Pengerasan konfigurasi web server, OS, dan layanan mengikuti baseline CIS Benchmark." },
+      { title: "WAF & DDoS Protection", desc: "Proteksi aplikasi web dari serangan OWASP dan trafik berbahaya pada layer aplikasi." },
+      { title: "Secure Deployment & Config", desc: "Konfigurasi hosting/cloud yang aman, TLS/HTTPS, manajemen secret, dan pipeline CI/CD aman." },
+      { title: "Zero-Trust Access", desc: "Penerapan prinsip 'never trust, always verify' pada akses aplikasi dan panel admin." }
     ],
     process: [
       { step: "01", name: "Assessment", desc: "Memetakan arsitektur saat ini dan mengidentifikasi titik lemah desain." },
