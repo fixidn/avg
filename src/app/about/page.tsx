@@ -141,9 +141,9 @@ export default function AboutPage() {
               <div className="w-14 h-14 bg-teal-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-500/20 transition group-hover:scale-110 duration-300">
                 <Lock className="w-7 h-7 text-teal-400" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Ketahanan & Relevansi</h3>
+              <h3 className="text-xl font-bold text-white mb-4">Berbasis Intelijen Ancaman</h3>
               <p className="text-slate-400 leading-relaxed">
-                Kami memberikan pertahanan siber berbasis intelijen yang memprioritaskan ketahanan dan kepercayaan dalam lingkungan risiko yang konstan.
+                Deteksi dan pengujian kami diperbarui mengikuti threat intelligence terkini — feed CVE kerentanan aktif, pola serangan MITRE ATT&CK, OWASP, dan indikator kompromi (IoC) — agar pertahanan selalu relevan dengan ancaman nyata.
               </p>
             </div>
           </div>
