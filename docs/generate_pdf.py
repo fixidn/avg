@@ -116,81 +116,91 @@ VULNS = [
         "name": "SQL Injection (SQLi)",
         "owasp": "OWASP A03: Injection",
         "sev": "Critical",
-        "what": "Input pengguna disisipkan langsung ke query database tanpa sanitasi yang memadai.",
-        "example": "Kolom username pada form login diisi  ' OR '1'='1  sehingga autentikasi terlewati.",
-        "impact": "Pencurian seluruh isi database (data pelanggan, kredensial), bahkan pengambilalihan server.",
+        "plain": "Kolom isian di website (misalnya kotak login atau pencarian) bisa disisipi perintah rahasia. "
+                 "Karena website tidak memeriksa isian dengan benar, perintah itu ikut dijalankan ke database tempat semua data disimpan.",
+        "case": "Pada sebuah halaman login, cukup dengan mengetik kode singkat di kolom username, kami berhasil masuk sebagai admin tanpa tahu password aslinya.",
+        "impact": "Seluruh isi database - termasuk data pelanggan dan password - dapat dicuri, bahkan server bisa dikuasai.",
     },
     {
         "name": "Cross-Site Scripting (XSS)",
         "owasp": "OWASP A03: Injection",
         "sev": "High",
-        "what": "Aplikasi menampilkan input pengguna tanpa encoding, sehingga skrip berbahaya tereksekusi di browser korban.",
-        "example": "Komentar berisi <script> pencuri cookie tereksekusi saat halaman dibuka oleh admin.",
-        "impact": "Pencurian sesi/cookie, pengambilalihan akun, dan defacement tampilan.",
+        "plain": "Penyerang menitipkan kode tersembunyi melalui kolom yang bisa diisi publik (misalnya kolom komentar). "
+                 "Saat orang lain membuka halaman itu, kode tersebut berjalan diam-diam di browser mereka.",
+        "case": "Kami menaruh kode tersembunyi di kolom komentar. Ketika admin membuka halaman tersebut, sesi login admin langsung dapat kami ambil alih.",
+        "impact": "Akun korban (termasuk admin) bisa dibajak, dan tampilan website bisa diubah.",
     },
     {
         "name": "Broken Access Control (IDOR)",
         "owasp": "OWASP A01: Broken Access Control",
         "sev": "High",
-        "what": "Pengguna dapat mengakses data atau fungsi milik orang lain hanya dengan mengubah parameter.",
-        "example": "Mengubah  /invoice?id=1001  menjadi  id=1002  menampilkan tagihan pengguna lain.",
-        "impact": "Kebocoran data antar-pengguna dan akses fungsi admin tanpa otorisasi.",
+        "plain": "Setiap data biasanya punya nomor urut di alamat web. Bila website tidak mengecek apakah data itu memang milik Anda, "
+                 "cukup mengganti nomornya untuk melihat data orang lain.",
+        "case": "Dengan mengganti nomor pada alamat halaman tagihan (dari ...id=1001 menjadi ...id=1002), kami bisa melihat tagihan dan data milik pengguna lain.",
+        "impact": "Data pribadi antar-pengguna bocor, dan fungsi khusus admin bisa diakses orang tak berwenang.",
     },
     {
         "name": "Autentikasi & Sesi Lemah (Brute Force)",
         "owasp": "OWASP A07: Identification & Auth Failures",
         "sev": "High",
-        "what": "Tidak ada pembatasan percobaan login, kebijakan password lemah, atau sesi yang tidak kedaluwarsa.",
-        "example": "Penyerang mencoba ribuan kombinasi password tanpa diblokir (tanpa rate limiting / lockout).",
-        "impact": "Pengambilalihan akun secara massal (credential stuffing).",
+        "plain": "Website tidak membatasi berapa kali seseorang boleh salah memasukkan password. "
+                 "Penyerang bisa mencoba ribuan kombinasi password secara otomatis sampai tembus.",
+        "case": "Sistem login membiarkan kami mencoba password berkali-kali tanpa diblokir, sehingga akun dengan password lemah berhasil ditembus dalam hitungan menit.",
+        "impact": "Banyak akun bisa dibajak sekaligus, terutama yang passwordnya mudah ditebak.",
     },
     {
         "name": "Security Misconfiguration",
         "owasp": "OWASP A05: Security Misconfiguration",
         "sev": "Medium",
-        "what": "Konfigurasi default dibiarkan, panel admin terbuka, pesan error verbose, atau directory listing aktif.",
-        "example": "Halaman /admin dapat diakses publik; pesan error menampilkan stack trace & versi framework.",
-        "impact": "Memberi peta serangan kepada peretas dan akses tak sah ke panel administrasi.",
+        "plain": "Pengaturan bawaan yang tidak dirapikan - seperti halaman admin yang terbuka untuk umum, "
+                 "atau pesan error yang membocorkan informasi teknis sistem.",
+        "case": "Halaman admin ternyata bisa dibuka siapa saja tanpa login, dan pesan error menampilkan detail teknis sistem yang seharusnya dirahasiakan.",
+        "impact": "Penyerang mendapat peta sistem dan jalan masuk ke panel pengelola.",
     },
     {
-        "name": "Sensitive Data Exposure",
+        "name": "Kebocoran Data Sensitif",
         "owasp": "OWASP A02: Cryptographic Failures",
         "sev": "High",
-        "what": "Data sensitif dikirim atau disimpan tanpa enkripsi memadai; rahasia ter-hardcode di kode.",
-        "example": "Situs tanpa HTTPS/HSTS; API key tertanam di dalam file JavaScript front-end.",
-        "impact": "Penyadapan data (man-in-the-middle) dan penyalahgunaan kredensial/kunci.",
+        "plain": "Data penting dikirim atau disimpan tanpa pengamanan (enkripsi) yang layak, "
+                 "atau kunci rahasia tertinggal di dalam kode website.",
+        "case": "Kami menemukan website yang belum memakai HTTPS, serta kunci akses (API key) yang tertulis terang-terangan di dalam kode halaman.",
+        "impact": "Data bisa disadap di tengah jalan, dan kunci rahasia bisa disalahgunakan.",
     },
     {
         "name": "Cross-Site Request Forgery (CSRF)",
         "owasp": "OWASP A01: Broken Access Control",
         "sev": "Medium",
-        "what": "Aksi penting dieksekusi tanpa token anti-CSRF, sehingga dapat dipicu dari situs lain.",
-        "example": "Tautan tersembunyi memicu 'ubah email akun' saat korban yang sedang login mengkliknya.",
-        "impact": "Perubahan data akun atau transaksi atas nama korban tanpa sepengetahuannya.",
+        "plain": "Penyerang membuat korban yang sedang login tanpa sadar menjalankan sebuah aksi - "
+                 "misalnya mengganti email - hanya dengan mengklik tautan jebakan.",
+        "case": "Kami membuat sebuah tautan jebakan; saat korban yang sedang login mengkliknya, email akunnya berubah tanpa ia sadari.",
+        "impact": "Data akun atau transaksi bisa diubah atas nama korban tanpa sepengetahuannya.",
     },
     {
         "name": "Server-Side Request Forgery (SSRF)",
         "owasp": "OWASP A10: SSRF",
         "sev": "High",
-        "what": "Server dapat dipaksa mengakses URL internal yang dikendalikan oleh penyerang.",
-        "example": "Fitur 'ambil gambar dari URL' diarahkan ke  http://169.254.169.254/  (metadata cloud).",
-        "impact": "Akses ke layanan internal dan pencurian kredensial cloud.",
+        "plain": "Fitur yang meminta website mengambil data dari sebuah alamat bisa dibelokkan "
+                 "untuk mengakses sistem internal yang seharusnya tersembunyi.",
+        "case": "Lewat fitur 'ambil gambar dari alamat web', kami arahkan website untuk mengakses alamat internal penyimpan kredensial cloud - dan berhasil.",
+        "impact": "Akses ke sistem internal dan pencurian kredensial layanan cloud.",
     },
     {
-        "name": "Unrestricted File Upload (Webshell -> RCE)",
+        "name": "Unggah File Berbahaya (Webshell)",
         "owasp": "OWASP A05 / A03",
         "sev": "Critical",
-        "what": "Upload file tanpa validasi tipe, sehingga skrip server berbahaya bisa diunggah dan dieksekusi.",
-        "example": "Mengunggah  shell.php  melalui form 'upload foto profil', lalu mengaksesnya langsung.",
-        "impact": "Eksekusi kode jarak jauh (RCE) dan kendali penuh atas server.",
+        "plain": "Fitur unggah file (misalnya foto profil) tidak memeriksa jenis file, "
+                 "sehingga file berbahaya bisa diunggah lalu dijalankan di server.",
+        "case": "Melalui form unggah foto profil, kami berhasil mengunggah sebuah file program berbahaya, lalu menjalankannya untuk menguasai server.",
+        "impact": "Penyerang bisa menjalankan perintah apa pun dan menguasai server sepenuhnya.",
     },
     {
-        "name": "Vulnerable & Outdated Components",
+        "name": "Komponen Usang & Rentan",
         "owasp": "OWASP A06: Vulnerable Components",
         "sev": "High",
-        "what": "Menggunakan library, framework, atau plugin dengan kerentanan yang sudah diketahui publik (CVE).",
-        "example": "CMS atau plugin versi lama dengan CVE publik yang kode eksploitasinya tersedia bebas.",
-        "impact": "Dieksploitasi otomatis oleh bot dan menjadi pintu masuk awal serangan.",
+        "plain": "Website memakai komponen atau plugin versi lama yang kelemahannya sudah diketahui umum, "
+                 "dan cara membobolnya tersedia bebas di internet.",
+        "case": "Kami menemukan sistem yang memakai plugin versi lama dengan kelemahan publik, yang bisa dibobol memakai alat yang tersedia gratis.",
+        "impact": "Mudah diserang otomatis oleh bot, dan menjadi titik masuk awal peretas.",
     },
 ]
 
@@ -201,7 +211,7 @@ class PDF(FPDF):
             return
         self.set_font("Arial", "", 8)
         self.set_text_color(*GRAY)
-        self.cell(0, 8, "Avangard Security  -  Detail Layanan & Contoh Celah Keamanan Web", align="L")
+        self.cell(0, 8, "Avangard Security  -  Detail Layanan & Celah Keamanan Web", align="L")
         self.cell(0, 8, "stacopa-avangard.com", align="R")
         self.ln(10)
 
@@ -279,17 +289,17 @@ def vuln_block(pdf, n, v):
     pdf.ln(1.5)
 
     def row(label, value, color):
-        pdf.set_font("Arial", "B", 9)
+        pdf.set_font("Arial", "B", 8.5)
         pdf.set_text_color(*color)
-        pdf.cell(20, 5, label)
+        pdf.cell(0, 4.5, label, new_x="LMARGIN", new_y="NEXT")
         pdf.set_font("Arial", "", 9)
         pdf.set_text_color(*GRAY)
-        pdf.multi_cell(0, 5, value, new_x="LMARGIN", new_y="NEXT")
-        pdf.ln(0.5)
+        pdf.multi_cell(0, 4.8, value, new_x="LMARGIN", new_y="NEXT")
+        pdf.ln(1)
 
-    row("Apa itu:", v["what"], NAVY)
-    row("Contoh:", v["example"], BLUE)
-    row("Dampak:", v["impact"], RED)
+    row("Penjelasan", v["plain"], NAVY)
+    row("Yang kami temukan", v["case"], BLUE)
+    row("Dampaknya", v["impact"], RED)
     pdf.ln(4)
 
 
@@ -310,7 +320,7 @@ def build():
     pdf.ln(6)
     pdf.set_text_color(255, 255, 255)
     pdf.set_font("Arial", "B", 26)
-    pdf.multi_cell(0, 12, "Detail Layanan &\nContoh Celah Keamanan Web", align="C", new_x="LMARGIN", new_y="NEXT")
+    pdf.multi_cell(0, 12, "Detail Layanan &\nCelah Keamanan Web", align="C", new_x="LMARGIN", new_y="NEXT")
     pdf.ln(6)
     pdf.set_text_color(148, 163, 184)
     pdf.set_font("Arial", "", 12)
@@ -343,13 +353,14 @@ def build():
     pdf.add_page()
     pdf.set_text_color(*NAVY)
     pdf.set_font("Arial", "B", 18)
-    pdf.cell(0, 10, "Bagian II - 10 Contoh Celah Keamanan Web", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 10, "Bagian II - 10 Celah Web yang Paling Sering Kami Temukan", new_x="LMARGIN", new_y="NEXT")
     pdf.set_text_color(*GRAY)
     pdf.set_font("Arial", "", 10)
     pdf.multi_cell(0, 5.5,
-        "Selama pengujian (VAPT), kami telah menemukan 500+ celah keamanan pada aplikasi web klien. "
-        "Berikut 10 jenis celah yang paling representatif - seluruhnya mengacu pada OWASP Top 10, "
-        "standar industri untuk risiko keamanan aplikasi web. Contoh bersifat ilustratif untuk edukasi.",
+        "Saat menguji keamanan aplikasi web klien (VAPT), kami telah menemukan 500+ celah keamanan. "
+        "Berikut 10 jenis yang paling sering kami jumpai di lapangan, dijelaskan dengan bahasa sederhana "
+        "agar mudah dipahami. Seluruhnya mengacu pada OWASP Top 10, standar industri untuk risiko keamanan "
+        "aplikasi web. Detail temuan telah dianonimkan.",
         new_x="LMARGIN", new_y="NEXT")
     pdf.ln(5)
     for i, v in enumerate(VULNS, start=1):
