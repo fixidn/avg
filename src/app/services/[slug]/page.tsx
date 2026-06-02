@@ -71,15 +71,15 @@ const servicesData: any = {
   },
   "incident-response": {
     title: "Incident Response",
-    subtitle: "Digital Forensics & Recovery",
-    description: "Layanan gawat darurat siber. Ketika Anda diserang Ransomware atau Malware, tim kami terjun langsung untuk mengisolasi, menganalisis, dan memulihkan sistem.",
+    subtitle: "Emergency Response & Recovery",
+    description: "Layanan gawat darurat siber. Ketika Anda diserang Ransomware atau Malware, tim kami terjun langsung untuk mengisolasi, menghentikan penyebaran, dan memulihkan operasional sistem Anda.",
     gradient: "from-purple-500 to-pink-500",
     iconColor: "text-purple-500",
     features: [
-      { title: "Ransomware Recovery", desc: "Negosiasi, dekripsi (jika mungkin), dan pemulihan data dari backup." },
-      { title: "Malware Analysis", desc: "Reverse engineering malware untuk memahami cara kerjanya." },
-      { title: "Digital Forensics", desc: "Investigasi jejak digital untuk keperluan hukum dan bukti (Chain of Custody)." },
-      { title: "Post-Incident Report", desc: "Analisis root cause agar serangan serupa tidak terulang." }
+      { title: "Ransomware & Malware Containment", desc: "Isolasi cepat sistem yang terinfeksi untuk menghentikan penyebaran serangan." },
+      { title: "System Recovery", desc: "Pemulihan operasional bisnis dari backup yang bersih secara terkendali." },
+      { title: "Root Cause Analysis", desc: "Menentukan bagaimana serangan dapat terjadi untuk menutup celah penyebabnya." },
+      { title: "Hardening & Post-Incident Report", desc: "Rekomendasi perbaikan agar serangan serupa tidak terulang." }
     ],
     process: [
       { step: "01", name: "Identification", desc: "Menentukan lingkup insiden dan jenis serangan." },

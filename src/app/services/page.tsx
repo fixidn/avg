@@ -31,9 +31,9 @@ export default function ServicesPage() {
       glow: "group-hover:shadow-blue-900/20"
     },
     {
-      title: "Incident Response & Forensics",
+      title: "Incident Response",
       slug: "incident-response",
-      description: "Tim gerak cepat (CSIRT) yang siap 24/7 untuk menangani insiden peretasan, ransomware, dan investigasi forensik digital untuk memulihkan operasional bisnis.",
+      description: "Tim gerak cepat (CSIRT) yang siap menangani insiden peretasan dan ransomware: mengisolasi serangan dan memulihkan operasional bisnis Anda dengan cepat.",
       icon: <ShieldAlert className="w-8 h-8" />,
       color: "text-purple-500",
       bg: "bg-purple-500/10",

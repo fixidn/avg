@@ -29,7 +29,7 @@ Avangard menyediakan enam layanan yang saling melengkapi, mencakup siklus keaman
 |---|---|---|---|
 | 1 | **VAPT & Ethical Hacking** | Offensive | Temukan & tutup celah sebelum dieksploitasi |
 | 2 | **Managed SOC** | Defensive | Pengawasan ancaman 24/7 tanpa membangun tim sendiri |
-| 3 | **Incident Response & Forensics** | Defensive | Pemulihan cepat saat insiden terjadi |
+| 3 | **Incident Response** | Defensive | Pemulihan cepat saat insiden terjadi |
 | 4 | **GRC & Compliance** | Compliance | Lolos audit ISO 27001, PCI-DSS, UU PDP |
 | 5 | **Secure Infrastructure Design** | Preventive | Bangun arsitektur aman sejak awal (zero-trust) |
 | 6 | **Phishing Simulation & Training** | Human Layer | Kurangi risiko human error sebagai pintu masuk serangan |
@@ -74,16 +74,16 @@ Layanan pemantauan keamanan **24/7**. Kami bertindak sebagai mata dan telinga di
 
 ---
 
-### 3.3 Incident Response & Forensics
-**Digital Forensics & Recovery**
+### 3.3 Incident Response
+**Emergency Response & Recovery**
 
-Layanan gawat darurat siber. Ketika Anda diserang ransomware atau malware, tim kami terjun langsung untuk **mengisolasi, menganalisis, dan memulihkan** sistem.
+Layanan gawat darurat siber. Ketika Anda diserang ransomware atau malware, tim kami terjun langsung untuk **mengisolasi, menghentikan penyebaran, dan memulihkan** operasional sistem.
 
 **Apa yang kami tawarkan:**
-- **Ransomware Recovery** — negosiasi, dekripsi (jika memungkinkan), dan pemulihan data dari backup.
-- **Malware Analysis** — reverse engineering malware untuk memahami cara kerjanya.
-- **Digital Forensics** — investigasi jejak digital untuk keperluan hukum & bukti (chain of custody).
-- **Post-Incident Report** — analisis root cause agar serangan serupa tidak terulang.
+- **Ransomware & Malware Containment** — isolasi cepat sistem yang terinfeksi untuk menghentikan penyebaran serangan.
+- **System Recovery** — pemulihan operasional bisnis dari backup yang bersih secara terkendali.
+- **Root Cause Analysis** — menentukan bagaimana serangan dapat terjadi untuk menutup celah penyebabnya.
+- **Hardening & Post-Incident Report** — rekomendasi perbaikan agar serangan serupa tidak terulang.
 
 **Metodologi (4 tahap):**
 `01 Identification` → `02 Containment` → `03 Eradication` → `04 Recovery`
@@ -162,7 +162,7 @@ Program edukasi karyawan melalui simulasi serangan phishing nyata untuk meningka
  ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐
  │ VAPT       │    │ Managed    │    │ Incident   │    │ GRC &      │
  │ Secure     │ →  │ SOC        │ →  │ Response   │ →  │ Compliance │
- │ Design     │    │            │    │ & Forensics│    │            │
+ │ Design     │    │            │    │            │    │            │
  │ Phishing   │    │            │    │            │    │            │
  │ Training   │    │            │    │            │    │            │
  └────────────┘    └────────────┘    └────────────┘    └────────────┘
