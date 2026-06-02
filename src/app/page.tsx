@@ -22,7 +22,7 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.2)] animate-fade-in-up">
             <span className="flex h-2 w-2 rounded-full bg-green-400 mr-2 animate-pulse"></span>
-            SUBSDIARY OF STACOPA GROUP — 50+ YEARS OF EXCELLENCE
+            SUBSIDIARY OF STACOPA GROUP — 50+ YEARS OF EXCELLENCE
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white tracking-tight leading-tight">
@@ -33,7 +33,7 @@ export default function Home() {
           </h1>
           
           <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Mitra strategis keamanan siber untuk bisnis modern. Kami fokus pada Offensive Security (VAPT), Compliance, dan Blue Team Operations untuk melindungi data Anda.
+            Mitra strategis keamanan siber untuk bisnis modern. Kami fokus pada Offensive Security (VAPT), Compliance, dan Managed Detection & Response (MDR) untuk melindungi data Anda.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
@@ -63,7 +63,7 @@ export default function Home() {
             {[
               { label: 'Tradisi', value: '50+', suffix: 'Tahun', icon: Clock },
               { label: 'Celah Terdeteksi', value: '500+', suffix: 'Vulns', icon: Target },
-              { label: 'Support', value: '24/7', suffix: 'Ops', icon: Activity },
+              { label: 'Monitoring', value: '24/7', suffix: 'Otomatis', icon: Activity },
             ].map((stat, idx) => (
               <div 
                 key={idx} 
@@ -111,7 +111,7 @@ export default function Home() {
                 Offensive Security (VAPT)
               </h3>
               <p className="text-slate-400 leading-relaxed mb-8 text-sm">
-                Simulasi serangan dunia nyata (Pentest & Red Teaming) untuk menguji ketahanan infrastruktur Web, Mobile, dan API Anda sebelum peretas sesungguhnya melakukannya.
+                Simulasi serangan dunia nyata (Penetration Testing) untuk menguji ketahanan aplikasi Web dan API Anda sebelum peretas sesungguhnya melakukannya.
               </p>
               
               <Link href="/services/vapt" className="inline-flex items-center text-sm font-semibold text-white group/link">
@@ -150,10 +150,10 @@ export default function Home() {
               </div>
               
               <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
-                SOC & Managed Defense
+                Managed Detection & Response
               </h3>
               <p className="text-slate-400 leading-relaxed mb-8 text-sm">
-                Pusat operasi keamanan 24/7 yang memantau, mendeteksi, dan merespons ancaman secara real-time, didukung oleh intelijen ancaman terkini.
+                Monitoring berbasis SIEM untuk aplikasi web & cloud yang memantau otomatis sepanjang waktu, dengan analisis dan respons ancaman oleh tim ahli kami.
               </p>
               
               <Link href="/services/soc" className="inline-flex items-center text-sm font-semibold text-white group/link">
