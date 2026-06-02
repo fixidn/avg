@@ -41,9 +41,9 @@ export default function ServicesPage() {
       glow: "group-hover:shadow-purple-900/20"
     },
     {
-      title: "Security Compliance (GRC)",
+      title: "GRC & Compliance",
       slug: "compliance",
-      description: "Pendampingan persiapan audit ISO 27001, PCI-DSS, dan kepatuhan terhadap UU PDP (Pelindungan Data Pribadi) agar bisnis Anda memenuhi standar regulasi.",
+      description: "Pendampingan persiapan audit ISO 27001 dan kepatuhan terhadap UU PDP (Pelindungan Data Pribadi) agar bisnis Anda memenuhi standar regulasi.",
       icon: <FileCheck className="w-8 h-8" />,
       color: "text-green-500",
       bg: "bg-green-500/10",

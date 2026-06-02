@@ -7,7 +7,7 @@
 
 ## 1. Ringkasan Eksekutif
 
-Serangan siber bukan lagi soal *"apakah akan terjadi"*, melainkan *"kapan terjadi"*. Kebocoran data, ransomware, dan downtime operasional berdampak langsung pada **pendapatan, reputasi, dan kepatuhan regulasi** (UU Pelindungan Data Pribadi, ISO 27001, PCI-DSS).
+Serangan siber bukan lagi soal *"apakah akan terjadi"*, melainkan *"kapan terjadi"*. Kebocoran data, ransomware, dan downtime operasional berdampak langsung pada **pendapatan, reputasi, dan kepatuhan regulasi** (UU Pelindungan Data Pribadi, ISO 27001).
 
 Avangard Security menawarkan pendekatan **end-to-end** yang menggabungkan tiga pilar:
 
@@ -30,7 +30,7 @@ Avangard menyediakan enam layanan yang saling melengkapi, mencakup siklus keaman
 | 1 | **VAPT & Ethical Hacking** | Offensive | Temukan & tutup celah sebelum dieksploitasi |
 | 2 | **Managed Detection & Response (MDR)** | Defensive | Deteksi & respons ancaman berbasis SIEM tanpa membangun tim sendiri |
 | 3 | **Incident Response** | Defensive | Pemulihan cepat saat insiden terjadi |
-| 4 | **GRC & Compliance** | Compliance | Lolos audit ISO 27001, PCI-DSS, UU PDP |
+| 4 | **GRC & Compliance** | Compliance | Lolos audit ISO 27001 & kepatuhan UU PDP |
 | 5 | **Secure Web Infrastructure** | Preventive | Bangun infrastruktur web aman sejak awal (security by design) |
 | 6 | **Phishing Simulation & Training** | Human Layer | Kurangi risiko human error sebagai pintu masuk serangan |
 
