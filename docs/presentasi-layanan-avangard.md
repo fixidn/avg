@@ -14,7 +14,7 @@ Avangard Security menawarkan pendekatan **end-to-end** yang menggabungkan tiga p
 | Pilar | Fokus | Pertanyaan bisnis yang dijawab |
 |---|---|---|
 | **Offensive** | Menemukan celah sebelum peretas | *"Seberapa mudah kami diserang?"* |
-| **Defensive** | Memantau & merespons ancaman 24/7 | *"Apakah kami sedang diserang sekarang?"* |
+| **Defensive** | Memantau & merespons ancaman secara berkelanjutan | *"Apakah kami sedang diserang sekarang?"* |
 | **Compliance** | Memenuhi standar & regulasi | *"Apakah kami patuh dan siap diaudit?"* |
 
 Pendekatan ini memastikan keamanan tidak ditangani secara tambal sulam, melainkan sebagai **sistem yang terintegrasi dan terukur**.
@@ -28,7 +28,7 @@ Avangard menyediakan enam layanan yang saling melengkapi, mencakup siklus keaman
 | # | Layanan | Kategori | Nilai Utama bagi Bisnis |
 |---|---|---|---|
 | 1 | **VAPT & Ethical Hacking** | Offensive | Temukan & tutup celah sebelum dieksploitasi |
-| 2 | **Managed SOC** | Defensive | Pengawasan ancaman 24/7 tanpa membangun tim sendiri |
+| 2 | **Managed Detection & Response (MDR)** | Defensive | Deteksi & respons ancaman berbasis SIEM tanpa membangun tim sendiri |
 | 3 | **Incident Response** | Defensive | Pemulihan cepat saat insiden terjadi |
 | 4 | **GRC & Compliance** | Compliance | Lolos audit ISO 27001, PCI-DSS, UU PDP |
 | 5 | **Secure Web Infrastructure** | Preventive | Bangun infrastruktur web aman sejak awal (security by design) |
@@ -56,21 +56,21 @@ Simulasi serangan siber terkontrol terhadap **aplikasi web Anda** untuk mengeksp
 
 ---
 
-### 3.2 Managed SOC
-**Security Operations Center (Blue Team)**
+### 3.2 Managed Detection & Response (MDR)
+**Security Monitoring untuk Aplikasi Web & Cloud**
 
-Layanan pemantauan keamanan **24/7**. Kami bertindak sebagai mata dan telinga digital Anda, mendeteksi ancaman secara real-time dan merespons sebelum kerusakan terjadi.
+Pemantauan keamanan berkelanjutan berbasis SIEM untuk aplikasi web dan cloud Anda. Sistem kami memantau secara otomatis sepanjang waktu, dengan analisis dan respons oleh tim ahli kami.
 
 **Apa yang kami tawarkan:**
-- **24/7 Real-time Monitoring** — analisis log lalu lintas jaringan tanpa henti oleh tim analis dan AI.
-- **Threat Hunting** — proaktif mencari indikator kompromi (IoC) yang tersembunyi.
-- **SIEM Management** — konfigurasi & tuning dashboard SIEM (Wazuh/Splunk) agar minim false positive.
-- **Incident Response Support** — eskalasi langsung saat insiden kritis terdeteksi.
+- **Continuous SIEM Monitoring** — deteksi otomatis sepanjang waktu atas log aplikasi web, web server, WAF, dan cloud.
+- **Expert Alert Triage** — analis memvalidasi alert (jam kerja + eskalasi kritis), memisahkan ancaman nyata dari false positive.
+- **Threat Detection** — identifikasi pola serangan & indikator kompromi (IoC) pada layer aplikasi & cloud.
+- **Incident Response Support** — eskalasi & pendampingan respons cepat saat insiden kritis terdeteksi.
 
 **Metodologi (4 tahap):**
 `01 Log Ingestion` → `02 Correlation` → `03 Triage & Analysis` → `04 Response`
 
-> **Nilai bisnis:** Kapabilitas keamanan setara tim internal kelas enterprise, **tanpa biaya membangun dan mempertahankan SOC sendiri**.
+> **Nilai bisnis:** Kapabilitas deteksi & respons setara tim keamanan internal, **tanpa biaya membangun dan mempertahankan SOC sendiri**.
 
 ---
 
@@ -160,9 +160,9 @@ Program edukasi karyawan melalui simulasi serangan phishing nyata untuk meningka
 ```
    PENCEGAHAN          DETEKSI           RESPONS          KEPATUHAN
  ┌────────────┐    ┌────────────┐    ┌────────────┐    ┌────────────┐
- │ VAPT       │    │ Managed    │    │ Incident   │    │ GRC &      │
- │ Secure Web │ →  │ SOC        │ →  │ Response   │ →  │ Compliance │
- │ Infra      │    │            │    │            │    │            │
+ │ VAPT       │    │ MDR        │    │ Incident   │    │ GRC &      │
+ │ Secure Web │ →  │ (Detection │ →  │ Response   │ →  │ Compliance │
+ │ Infra      │    │  Response) │    │            │    │            │
  │ Phishing   │    │            │    │            │    │            │
  │ Training   │    │            │    │            │    │            │
  └────────────┘    └────────────┘    └────────────┘    └────────────┘

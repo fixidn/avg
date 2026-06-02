@@ -21,9 +21,9 @@ export default function ServicesPage() {
       glow: "group-hover:shadow-red-900/20"
     },
     {
-      title: "Managed SOC (Blue Team)",
+      title: "Managed Detection & Response (MDR)",
       slug: "soc",
-      description: "Monitoring keamanan 24/7 menggunakan teknologi SIEM terkini dan tim analis ahli untuk mendeteksi ancaman secara real-time dan melakukan mitigasi proaktif.",
+      description: "Pemantauan keamanan berkelanjutan berbasis SIEM untuk aplikasi web dan cloud, dengan deteksi otomatis dan analisis oleh tim ahli untuk merespons ancaman secara proaktif.",
       icon: <Activity className="w-8 h-8" />,
       color: "text-blue-500",
       bg: "bg-blue-500/10",

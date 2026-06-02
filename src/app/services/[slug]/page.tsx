@@ -32,16 +32,16 @@ const servicesData: any = {
     ]
   },
   "soc": {
-    title: "Managed SOC",
-    subtitle: "Security Operations Center (Blue Team)",
-    description: "Layanan pemantauan keamanan 24/7. Kami bertindak sebagai mata dan telinga digital Anda, mendeteksi ancaman secara real-time dan merespons sebelum kerusakan terjadi.",
+    title: "Managed Detection & Response (MDR)",
+    subtitle: "Security Monitoring untuk Aplikasi Web & Cloud",
+    description: "Pemantauan keamanan berkelanjutan berbasis SIEM untuk aplikasi web dan cloud Anda. Sistem kami memantau secara otomatis sepanjang waktu, dengan analisis dan respons oleh tim ahli kami.",
     gradient: "from-blue-500 to-cyan-500",
     iconColor: "text-blue-500",
     features: [
-      { title: "24/7 Real-time Monitoring", desc: "Analisis log lalu lintas jaringan tanpa henti oleh tim analis manusia dan AI." },
-      { title: "Threat Hunting", desc: "Secara proaktif mencari indikator kompromi (IoC) yang tersembunyi di jaringan." },
-      { title: "SIEM Management", desc: "Konfigurasi dan tuning dashboard SIEM (Wazuh/Splunk) agar minim false positive." },
-      { title: "Incident Response Support", desc: "Eskalasi langsung saat insiden kritis terdeteksi." }
+      { title: "Continuous SIEM Monitoring", desc: "Deteksi otomatis sepanjang waktu atas log aplikasi web, web server, WAF, dan cloud." },
+      { title: "Expert Alert Triage", desc: "Analis memvalidasi alert (jam kerja + eskalasi kritis) untuk memisahkan ancaman nyata dari false positive." },
+      { title: "Threat Detection", desc: "Identifikasi pola serangan dan indikator kompromi (IoC) pada layer aplikasi dan cloud." },
+      { title: "Incident Response Support", desc: "Eskalasi dan pendampingan respons cepat saat insiden kritis terdeteksi." }
     ],
     process: [
       { step: "01", name: "Log Ingestion", desc: "Mengumpulkan log dari Firewall, Server, dan Endpoint." },
