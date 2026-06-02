@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { Shield, Globe, Lock, Activity } from 'lucide-react';
 import { Metadata } from 'next';
 
@@ -38,24 +37,21 @@ export default function AboutPage() {
 
           <div className="border-t border-slate-800/60 pt-10 max-w-5xl mx-auto">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-10">
-              Diakui oleh Standar Global
+              Sertifikasi Tim Kami
             </p>
-            
-            <div className="grid grid-cols-2 gap-y-8 gap-x-8 md:grid-cols-3 lg:grid-cols-6 items-center justify-items-center">
-              {['ISO27001', 'oscp-plus', 'OSWE', 'EJPT', 'EMAPT', 'EWPT'].map((cert) => (
-                <div key={cert} className="group flex flex-col items-center justify-center w-full">
-                  
-                  <div className="relative h-12 w-full flex items-center justify-center grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 cursor-default">
 
-                    <Image 
-                      src={`/certs/${cert.toLowerCase().replace('+','-plus')}.svg`} 
-                      alt={cert}
-                      width={100} 
-                      height={50} 
-                      className="max-h-10 w-auto object-contain"
-                    />
-
-                  </div>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              {[
+                { code: 'CISA', label: 'Certified Information Systems Auditor' },
+                { code: 'CDSA', label: 'Certified Defensive Security Analyst' },
+              ].map((cert) => (
+                <div
+                  key={cert.code}
+                  className="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-900/50 px-5 py-3 transition-colors hover:border-blue-500/40"
+                >
+                  <span className="text-lg font-extrabold tracking-wider text-white">{cert.code}</span>
+                  <span className="hidden sm:block h-6 w-px bg-slate-700"></span>
+                  <span className="hidden sm:block text-xs text-slate-400">{cert.label}</span>
                 </div>
               ))}
             </div>
