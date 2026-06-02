@@ -15,13 +15,13 @@ const servicesData: any = {
   "vapt": {
     title: "VAPT & Ethical Hacking",
     subtitle: "Vulnerability Assessment & Penetration Testing",
-    description: "Simulasi serangan siber terkontrol untuk mengekspos celah keamanan pada aplikasi dan infrastruktur Anda sebelum peretas jahat menemukannya.",
+    description: "Simulasi serangan siber terkontrol terhadap aplikasi web Anda untuk mengekspos celah keamanan sebelum peretas jahat menemukannya.",
     gradient: "from-red-500 to-orange-500",
     iconColor: "text-red-500",
     features: [
-      { title: "Web & Mobile App Pentest", desc: "Menguji keamanan aplikasi iOS, Android, dan Web App (OWASP Top 10)." },
-      { title: "Network Infrastructure", desc: "Menemukan port terbuka, konfigurasi lemah, dan patch yang terlewat pada server." },
-      { title: "Social Engineering", desc: "Menguji kewaspadaan karyawan terhadap simulasi Phishing terarah." },
+      { title: "Web Application Pentest", desc: "Pengujian menyeluruh berbasis OWASP Top 10: injection, XSS, broken access control, dan lainnya." },
+      { title: "API Security Testing", desc: "Menguji keamanan endpoint REST/GraphQL: autentikasi, otorisasi, dan rate limiting." },
+      { title: "Authentication & Business Logic", desc: "Menguji manajemen sesi, privilege escalation, dan celah logika bisnis aplikasi." },
       { title: "Detailed Reporting", desc: "Laporan teknis untuk tim IT dan laporan eksekutif untuk manajemen." }
     ],
     process: [

@@ -13,7 +13,7 @@ export default function ServicesPage() {
     {
       title: "Vulnerability Assessment & Penetration Testing",
       slug: "vapt",
-      description: "Simulasi serangan siber terkontrol (Ethical Hacking) untuk mengekspos celah keamanan pada Web, Mobile App, dan Jaringan sebelum peretas menemukannya.",
+      description: "Simulasi serangan siber terkontrol (Ethical Hacking) untuk mengekspos celah keamanan pada aplikasi web Anda sebelum peretas menemukannya.",
       icon: <Search className="w-8 h-8" />,
       color: "text-red-500",
       bg: "bg-red-500/10",
