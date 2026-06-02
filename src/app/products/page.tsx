@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { Server, Shield, Zap, BarChart3, Cpu, Globe, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
@@ -9,6 +9,10 @@ export const metadata = {
 };
 
 export default function ProductsPage() {
+  // Halaman produk disembunyikan dari publik untuk sementara.
+  // Hapus baris notFound() di bawah untuk menampilkannya kembali.
+  notFound();
+
   return (
     <div className="bg-slate-950 min-h-screen relative overflow-hidden selection:bg-blue-500/30 selection:text-blue-200">
       

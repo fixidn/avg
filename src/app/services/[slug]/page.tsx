@@ -87,6 +87,44 @@ const servicesData: any = {
       { step: "03", name: "Eradication", desc: "Menghapus malware dan menutup celah keamanan." },
       { step: "04", name: "Recovery", desc: "Mengembalikan sistem ke operasional normal secara bertahap." }
     ]
+  },
+  "secure-design": {
+    title: "Secure Infrastructure Design",
+    subtitle: "System Hardening & Zero-Trust Architecture",
+    description: "Perancangan arsitektur jaringan dan server yang aman sejak awal (Security by Design), mulai dari System Hardening hingga implementasi segmentasi jaringan zero-trust.",
+    gradient: "from-cyan-500 to-blue-500",
+    iconColor: "text-cyan-500",
+    features: [
+      { title: "System Hardening", desc: "Pengerasan konfigurasi server, OS, dan layanan mengikuti baseline CIS Benchmark." },
+      { title: "Firewall, WAF & IPS", desc: "Desain dan implementasi perimeter defense berlapis untuk menyaring trafik berbahaya." },
+      { title: "Network Segmentation", desc: "Pemisahan zona jaringan (VLAN/micro-segmentation) untuk membatasi pergerakan lateral." },
+      { title: "Zero-Trust Access", desc: "Penerapan prinsip 'never trust, always verify' pada setiap akses sumber daya." }
+    ],
+    process: [
+      { step: "01", name: "Assessment", desc: "Memetakan arsitektur saat ini dan mengidentifikasi titik lemah desain." },
+      { step: "02", name: "Design", desc: "Menyusun blueprint arsitektur aman sesuai kebutuhan dan skala bisnis." },
+      { step: "03", name: "Implementation", desc: "Menerapkan kontrol hardening, segmentasi, dan perangkat keamanan." },
+      { step: "04", name: "Validation", desc: "Menguji efektivitas desain dan menyerahkan dokumentasi arsitektur." }
+    ]
+  },
+  "phishing": {
+    title: "Phishing Simulation & Training",
+    subtitle: "Security Awareness Program",
+    description: "Program edukasi karyawan melalui simulasi serangan phishing nyata untuk meningkatkan kesadaran keamanan dan mengurangi risiko human error sebagai celah masuk serangan.",
+    gradient: "from-orange-500 to-amber-500",
+    iconColor: "text-orange-500",
+    features: [
+      { title: "Realistic Phishing Campaign", desc: "Simulasi email phishing terarah yang menyerupai serangan nyata terhadap karyawan." },
+      { title: "Awareness Training", desc: "Materi pelatihan interaktif untuk mengenali dan melaporkan upaya social engineering." },
+      { title: "Behavior Analytics", desc: "Pengukuran click-rate dan tingkat pelaporan untuk memetakan area berisiko." },
+      { title: "Progress Reporting", desc: "Laporan perkembangan kesadaran keamanan dari waktu ke waktu untuk manajemen." }
+    ],
+    process: [
+      { step: "01", name: "Baseline Test", desc: "Mengukur tingkat kerentanan awal karyawan terhadap phishing." },
+      { step: "02", name: "Simulation", desc: "Menjalankan kampanye phishing terkontrol di lingkungan nyata." },
+      { step: "03", name: "Training", desc: "Memberikan edukasi langsung kepada karyawan yang terindikasi rentan." },
+      { step: "04", name: "Re-assessment", desc: "Mengulang pengujian untuk mengukur peningkatan kesadaran keamanan." }
+    ]
   }
 };
 
