@@ -2,6 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { Shield, Lock, Eye, FileText } from 'lucide-react';
 
+export const metadata = {
+  title: "Kebijakan Privasi | Avangard",
+  description: "Kebijakan privasi Avangard Security mengenai pengumpulan, penggunaan, dan perlindungan data pribadi Anda.",
+};
+
 export default function PrivacyPage() {
   const lastUpdated = "8 Januari 2026";
 
@@ -110,7 +115,7 @@ export default function PrivacyPage() {
               Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini atau praktik data kami, silakan hubungi Data Protection Officer (DPO) kami:
             </p>
             <div className="space-y-2 text-slate-300">
-              <p><strong className="text-white">Email:</strong> privacy@avangard.id</p>
+              <p><strong className="text-white">Email:</strong> privacy@stacopa-avangard.com</p>
               <p><strong className="text-white">Alamat:</strong> Jl. Jend Sudirman, Jakarta Selatan</p>
             </div>
             <div className="mt-8">
