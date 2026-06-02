@@ -30,7 +30,7 @@ const jobOpenings = [
     department: "Compliance",
     location: "Jakarta",
     type: "Full-time",
-    description: "Membantu klien mencapai kepatuhan standar ISO 27001, PCI-DSS, dan regulasi OJK."
+    description: "Membantu klien mencapai kepatuhan standar ISO 27001 dan UU Pelindungan Data Pribadi (UU PDP)."
   },
   {
     id: 4,
