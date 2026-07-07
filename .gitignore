@@ -43,3 +43,9 @@ next-env.d.ts
 # credentials & local config
 credential.md
 .claude/
+
+# lead data (jangan commit — berisi PII, & agar tidak tertimpa saat redeploy)
+/data/
+
+# local tooling config
+claude.json
