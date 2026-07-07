@@ -11,7 +11,6 @@ Format tanggal: `YYYY-MM-DD`.
 - Pin runtime **Node 22** via `.nvmrc` dan field `engines` di `package.json`.
 - `data/` (berisi lead form kontak / PII) di-*untrack* dari git dan di-`.gitignore` agar tidak ikut ke repo dan tidak tertimpa saat redeploy.
 - Hapus `deploy.py` (script deploy lama sudah tidak dipakai).
-- Repo dipindah dari akun `mobplay-script` ke `fixidn`.
 - DNS `stacopa-avangard.com` di Cloudflare diarahkan ke Hostinger (A record + proxy, SSL Full strict).
 
 ### SEO — Technical
