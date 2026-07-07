@@ -82,6 +82,31 @@ export const servicesData: Record<string, Service> = {
       { step: "02", name: "Correlation", desc: "Engine SIEM menghubungkan pola-pola aneh yang terdeteksi." },
       { step: "03", name: "Triage & Analysis", desc: "Analis L1/L2 memvalidasi apakah ini ancaman nyata atau false alarm." },
       { step: "04", name: "Response", desc: "Notifikasi ke klien dan tindakan mitigasi awal (blokir IP, isolasi host)." }
+    ],
+    h1: "Jasa Managed Detection & Response (MDR)",
+    seoTitle: "Jasa Managed Detection & Response (MDR)",
+    seoDescription: "Jasa MDR (Managed Detection & Response): monitoring keamanan berbasis SIEM untuk aplikasi web & cloud, triase alert oleh analis, dan dukungan incident response. Konsultasikan kebutuhan Anda.",
+    faq: [
+      {
+        q: "Apa itu MDR (Managed Detection & Response)?",
+        a: "MDR adalah layanan keamanan terkelola yang menggabungkan pemantauan berkelanjutan berbasis SIEM dengan analisis dan respons oleh tim ahli, sehingga ancaman terdeteksi dan ditangani lebih cepat."
+      },
+      {
+        q: "Apa bedanya MDR dan SOC?",
+        a: "SOC (Security Operations Center) adalah pusat operasi keamanan, sedangkan MDR adalah layanan terkelola yang memadukan teknologi, analis, dan respons dalam satu paket — tanpa Anda perlu membangun SOC sendiri."
+      },
+      {
+        q: "Apa itu SIEM?",
+        a: "SIEM (Security Information and Event Management) adalah sistem yang mengumpulkan dan mengorelasikan log dari berbagai sumber untuk mendeteksi pola serangan dan indikator kompromi."
+      },
+      {
+        q: "Apakah pemantauannya berjalan sepanjang waktu?",
+        a: "Deteksi otomatis berjalan sepanjang waktu. Validasi alert oleh analis dilakukan pada jam kerja dengan eskalasi untuk insiden kritis, sehingga ancaman nyata terpisah dari false positive."
+      },
+      {
+        q: "Sumber log apa saja yang dipantau?",
+        a: "Kami memantau log dari aplikasi web, web server, WAF, dan lingkungan cloud Anda untuk mengidentifikasi aktivitas mencurigakan pada layer aplikasi."
+      }
     ]
   },
   "compliance": {
@@ -101,6 +126,31 @@ export const servicesData: Record<string, Service> = {
       { step: "02", name: "Implementation", desc: "Membantu menerapkan kontrol keamanan dan perbaikan proses." },
       { step: "03", name: "Internal Audit", desc: "Simulasi audit untuk memastikan kesiapan organisasi." },
       { step: "04", name: "Certification", desc: "Pendampingan saat audit eksternal berlangsung." }
+    ],
+    h1: "Konsultan ISO 27001, UU PDP & GRC",
+    seoTitle: "Konsultan ISO 27001 & UU PDP (GRC)",
+    seoDescription: "Konsultan ISO 27001, UU PDP, dan GRC. Kami dampingi bisnis Anda dari gap analysis hingga audit readiness agar patuh standar keamanan informasi. Konsultasikan kebutuhan compliance Anda.",
+    faq: [
+      {
+        q: "Apa itu ISO 27001?",
+        a: "ISO 27001 adalah standar internasional untuk Sistem Manajemen Keamanan Informasi (ISMS) yang membantu organisasi mengelola risiko keamanan informasi secara sistematis."
+      },
+      {
+        q: "Berapa lama proses menuju sertifikasi ISO 27001?",
+        a: "Durasinya bergantung pada kesiapan organisasi saat ini. Kami memulai dari gap analysis untuk mengukur jarak menuju standar, lalu menyusun rencana implementasi yang realistis."
+      },
+      {
+        q: "Apa itu UU PDP dan apakah bisnis saya wajib patuh?",
+        a: "UU PDP (Undang-Undang Pelindungan Data Pribadi) mengatur pemrosesan data pribadi di Indonesia. Setiap organisasi yang mengumpulkan atau memproses data pribadi wajib mematuhinya."
+      },
+      {
+        q: "Apa saja yang dikerjakan konsultan GRC?",
+        a: "Kami melakukan gap analysis, membantu implementasi kontrol keamanan, menyusun kebijakan/SOP, menjalankan internal audit, dan mendampingi organisasi saat audit sertifikasi eksternal."
+      },
+      {
+        q: "Apakah Avangard menerbitkan sertifikat ISO 27001?",
+        a: "Kami mendampingi persiapan dan kesiapan audit Anda. Sertifikat ISO 27001 diterbitkan oleh lembaga sertifikasi independen, dan kami membantu memastikan organisasi Anda siap melewati audit tersebut."
+      }
     ]
   },
   "incident-response": {
@@ -120,6 +170,31 @@ export const servicesData: Record<string, Service> = {
       { step: "02", name: "Containment", desc: "Mengisolasi sistem yang terinfeksi agar tidak menyebar." },
       { step: "03", name: "Eradication", desc: "Menghapus malware dan menutup celah keamanan." },
       { step: "04", name: "Recovery", desc: "Mengembalikan sistem ke operasional normal secara bertahap." }
+    ],
+    h1: "Jasa Incident Response & Penanganan Ransomware",
+    seoTitle: "Jasa Incident Response & Penanganan Ransomware",
+    seoDescription: "Jasa incident response darurat: penanganan ransomware & malware, isolasi penyebaran, pemulihan sistem, dan root cause analysis. Tim kami siap terjun cepat saat insiden terjadi.",
+    faq: [
+      {
+        q: "Apa itu incident response?",
+        a: "Incident response adalah layanan penanganan insiden siber untuk mengidentifikasi lingkup serangan, mengisolasi sistem terinfeksi, menghentikan penyebaran, dan memulihkan operasional bisnis Anda."
+      },
+      {
+        q: "Bisnis saya terkena ransomware, apa langkah pertama?",
+        a: "Jangan mematikan atau menghapus sistem sembarangan karena dapat menghilangkan barang bukti. Segera isolasi perangkat yang terinfeksi dari jaringan dan hubungi tim incident response untuk penanganan terkontrol."
+      },
+      {
+        q: "Apakah data yang terenkripsi ransomware bisa dipulihkan?",
+        a: "Kami memprioritaskan pemulihan dari backup yang bersih secara terkendali. Kemungkinan pemulihan data bergantung pada jenis serangan dan ketersediaan backup — kami akan menilai kondisi Anda secara jujur."
+      },
+      {
+        q: "Seberapa cepat tim dapat merespons?",
+        a: "Kecepatan respons bergantung pada kesepakatan layanan dan tingkat kegawatan insiden. Hubungi kami untuk penanganan darurat agar tim dapat segera terjun."
+      },
+      {
+        q: "Apa yang saya terima setelah insiden ditangani?",
+        a: "Anda menerima Root Cause Analysis yang menjelaskan bagaimana serangan terjadi, laporan pasca-insiden, serta rekomendasi hardening agar serangan serupa tidak terulang."
+      }
     ]
   },
   "secure-design": {
@@ -139,6 +214,31 @@ export const servicesData: Record<string, Service> = {
       { step: "02", name: "Design", desc: "Menyusun blueprint arsitektur aman sesuai kebutuhan dan skala bisnis." },
       { step: "03", name: "Implementation", desc: "Menerapkan kontrol hardening, segmentasi, dan perangkat keamanan." },
       { step: "04", name: "Validation", desc: "Menguji efektivitas desain dan menyerahkan dokumentasi arsitektur." }
+    ],
+    h1: "Jasa Hardening & Keamanan Infrastruktur Web",
+    seoTitle: "Jasa Hardening & Keamanan Infrastruktur Web",
+    seoDescription: "Jasa hardening server & keamanan infrastruktur web: pengerasan konfigurasi (CIS Benchmark), proteksi WAF & DDoS, secure deployment, dan zero-trust access. Amankan infrastruktur sejak awal.",
+    faq: [
+      {
+        q: "Apa itu web server hardening?",
+        a: "Web server hardening adalah proses pengerasan konfigurasi web server, sistem operasi, dan layanan mengikuti baseline keamanan seperti CIS Benchmark untuk mengurangi permukaan serangan."
+      },
+      {
+        q: "Apa itu WAF dan apakah saya membutuhkannya?",
+        a: "WAF (Web Application Firewall) menyaring trafik berbahaya sebelum mencapai aplikasi web Anda. WAF penting untuk melindungi dari serangan OWASP dan lalu lintas berbahaya pada layer aplikasi."
+      },
+      {
+        q: "Apa bedanya layanan ini dengan penetration testing?",
+        a: "Penetration testing mencari dan membuktikan celah yang sudah ada, sedangkan Secure Web Infrastructure membangun dan mengeraskan pertahanan sejak awal (Security by Design) agar celah tidak muncul."
+      },
+      {
+        q: "Apa itu prinsip Zero-Trust?",
+        a: "Zero-Trust menerapkan prinsip 'never trust, always verify' — setiap permintaan akses ke aplikasi maupun panel admin diverifikasi, tidak ada yang otomatis dipercaya berdasarkan lokasi jaringan."
+      },
+      {
+        q: "Standar apa yang digunakan?",
+        a: "Kami mengacu pada CIS Benchmark untuk hardening serta praktik secure deployment (TLS/HTTPS, manajemen secret, dan pipeline CI/CD yang aman)."
+      }
     ]
   },
   "phishing": {
