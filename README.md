@@ -7,8 +7,9 @@ Website resmi [Avangard Security](https://stacopa-avangard.com), anak perusahaan
 - **Framework:** Next.js 16 (App Router)
 - **CMS:** Sanity v5
 - **Styling:** Tailwind CSS v4
-- **Runtime:** Node.js v20
-- **Deployment:** Proxmox LXC + Cloudflare Tunnel
+- **Runtime:** Node.js v22 (dikunci via `.nvmrc` & `engines`)
+- **Hosting:** Hostinger — Node.js Web App (auto-deploy dari GitHub)
+- **DNS & SSL:** Cloudflare (proxied, SSL Full strict) + Let's Encrypt
 
 ## Struktur Proyek
 
@@ -26,7 +27,7 @@ src/
 
 ## Environment Variables
 
-Buat file `.env.local` di root project:
+Untuk **development lokal**, buat file `.env.local` di root project. Untuk **produksi**, variabel diatur di **panel Hostinger** (hPanel → aplikasi → Environment Variables), bukan lewat file.
 
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
@@ -36,6 +37,10 @@ NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 TELEGRAM_BOT_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
 ```
+
+> **Penting:**
+> - Variabel `NEXT_PUBLIC_*` di-*bake* saat build — harus sudah terisi di panel Hostinger **sebelum** deploy.
+> - Form kontak (`/api/contact`) membutuhkan env Telegram; jika kosong, endpoint mengembalikan error 500.
 
 ## Development
 
@@ -48,26 +53,25 @@ Buka [http://localhost:3000](http://localhost:3000).
 
 Sanity Studio tersedia di [http://localhost:3000/studio](http://localhost:3000/studio).
 
-## Build & Deploy
+## Deploy
 
-Build dilakukan di lokal, hasil build di-upload ke server:
+Deploy berjalan **otomatis dari GitHub**. Cukup push ke branch `main`:
 
 ```bash
-# 1. Build
-npm run build
-
-# 2. Deploy ke server (192.168.18.102)
-python deploy.py
+git push origin main
 ```
 
-Script `deploy.py` akan mengupload `.next/`, `public/`, dan config files ke server, lalu restart service `avangard-next.service` secara otomatis.
+Hostinger otomatis menjalankan `npm install → npm run build → restart aplikasi`. Pantau progres di **hPanel → aplikasi → Deployments**.
 
-### Struktur Server
+### Referensi setup hosting
 
-- **App directory:** `/opt/apps/avangard`
-- **Service:** `avangard-next.service` (systemd)
-- **Port:** 3000 (diakses via Cloudflare Tunnel)
-- **Contacts CSV:** `/opt/apps/avangard/data/contacts.csv`
+- **Platform:** Hostinger Business — Node.js Web App
+- **Repo:** `github.com/fixidn/avg` (branch `main`)
+- **Node:** 22 · **Build:** `npm run build` · **Output:** `.next`
+- **Domain/DNS (Cloudflare):** A record `@` → IP origin Hostinger · CNAME `www` → apex · proxied (oranye) · SSL mode **Full (strict)**
+- **Env:** 5 variabel diisi di panel Hostinger (lihat bagian Environment Variables)
+
+Lead dari form kontak dikirim ke **Telegram** (channel utama) dan dicatat ke `data/contacts.csv` (cadangan lokal per-server; folder `data/` di-*gitignore* sehingga tidak tertimpa saat redeploy).
 
 ## Konten (Sanity CMS)
 
