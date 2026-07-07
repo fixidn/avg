@@ -1,4 +1,4 @@
-# Avangard Security — Website
+# Avangard Security
 
 Dibangun dengan Next.js App Router dan Sanity CMS.
 
