@@ -6,6 +6,9 @@ import { Calendar, ArrowLeft } from 'lucide-react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import type { Metadata, ResolvingMetadata } from 'next';
 import ShareButtons from '@/components/ShareButtons'; // <--- Import Komponen Share
+import JsonLd from '@/components/JsonLd';
+
+const SITE_URL = 'https://stacopa-avangard.com';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -110,6 +113,9 @@ export async function generateMetadata(
   return {
     title: `${post.title} | Avangard Insight`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -144,10 +150,41 @@ export default async function BlogPost({ params }: Props) {
   }
 
   // --- BUAT URL DINAMIS UNTUK SHARE ---
-  const postUrl = `https://stacopa-avangard.com/blog/${slug}`;
+  const postUrl = `${SITE_URL}/blog/${slug}`;
+
+  const articleImage = post.mainImage
+    ? urlFor(post.mainImage).width(1200).height(630).url()
+    : undefined;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    ...(articleImage ? { image: articleImage } : {}),
+    author: {
+      "@type": "Organization",
+      name: "Avangard Security",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Avangard Security",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/white.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl,
+    },
+  };
 
   return (
     <div className="bg-slate-950 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+      <JsonLd data={articleSchema} />
       <article className="max-w-3xl mx-auto">
         
         <Link 

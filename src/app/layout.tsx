@@ -3,25 +3,75 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const SITE_URL = "https://stacopa-avangard.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Avangard | Cyber Defense Solutions",
-    template: "%s | Avangard Security", 
+    template: "%s | Avangard Security",
   },
   description: "Layanan VAPT, Incident Response, dan Konsultasi Keamanan Siber Terpercaya.",
-  
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: 'Avangard Security',
     description: 'Mitra keamanan siber terpercaya untuk bisnis Anda.',
-    url: 'https://stacopa-avangard.com',
+    url: SITE_URL,
     siteName: 'Avangard Security',
     locale: 'id_ID',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Avangard Security',
+    description: 'Mitra keamanan siber terpercaya untuk bisnis Anda.',
+  },
+};
+
+// Structured data sitewide: identitas perusahaan + situs
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  name: "Avangard Security",
+  alternateName: "Avangard",
+  url: SITE_URL,
+  logo: `${SITE_URL}/white.svg`,
+  description:
+    "Penyedia layanan keamanan siber: VAPT/penetration testing, Managed Detection & Response (MDR), Incident Response, dan konsultasi GRC/compliance di Indonesia.",
+  parentOrganization: {
+    "@type": "Organization",
+    name: "STACOPA Group",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "Indonesia",
+  },
+  knowsAbout: [
+    "Penetration Testing",
+    "Vulnerability Assessment",
+    "Managed Detection and Response",
+    "Incident Response",
+    "ISO 27001",
+    "Cyber Security",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: "Avangard Security",
+  inLanguage: "id-ID",
+  publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
 export default function RootLayout({
@@ -33,8 +83,11 @@ export default function RootLayout({
     <html lang="id">
       <body className={`${inter.className} bg-slate-950 text-slate-200 min-h-screen flex flex-col`}>
         
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
+
         <Navbar />
-        
+
         <main className="flex-grow">
           {children}
         </main>
