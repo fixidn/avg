@@ -1,5 +1,15 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { ShieldCheck, Target, Terminal, Clock, ArrowRight, Lock, Activity, Globe } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: {
+    absolute: 'Jasa Keamanan Siber Indonesia — VAPT, MDR & Compliance | Avangard Security',
+  },
+  description:
+    'Avangard Security — jasa keamanan siber untuk aplikasi web di Indonesia: penetration testing (VAPT), Managed Detection & Response (MDR), incident response, dan konsultasi ISO 27001. Konsultasikan kebutuhan Anda.',
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
   return (
@@ -26,14 +36,14 @@ export default function Home() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white tracking-tight leading-tight">
-            Amankan Aset <br />
+            Amankan Aset Digital Anda <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 animate-gradient-x">
-              Digital Anda
+              dengan Keamanan Siber Terpercaya
             </span>
           </h1>
           
           <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Mitra strategis keamanan siber untuk bisnis modern. Kami fokus pada Offensive Security (VAPT), Compliance, dan Managed Detection & Response (MDR) untuk melindungi data Anda.
+            Avangard adalah penyedia jasa keamanan siber untuk aplikasi web di Indonesia. Kami fokus pada Penetration Testing (VAPT), Compliance (ISO 27001 & UU PDP), dan Managed Detection & Response (MDR) untuk melindungi bisnis Anda.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
@@ -162,6 +172,15 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          <p className="text-center text-slate-500 mt-12">
+            Layanan lainnya:{' '}
+            <Link href="/services/incident-response" className="text-slate-300 hover:text-white underline decoration-slate-700 underline-offset-4 transition-colors">Incident Response</Link>
+            {' · '}
+            <Link href="/services/secure-design" className="text-slate-300 hover:text-white underline decoration-slate-700 underline-offset-4 transition-colors">Secure Web Infrastructure</Link>
+            {' · '}
+            <Link href="/services/phishing" className="text-slate-300 hover:text-white underline decoration-slate-700 underline-offset-4 transition-colors">Phishing Simulation</Link>
+          </p>
         </div>
       </section>
 
