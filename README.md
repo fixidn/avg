@@ -1,6 +1,6 @@
 # Avangard Security — Website
 
-Website resmi [Avangard Security](https://stacopa-avangard.com), anak perusahaan STACOPA Group. Dibangun dengan Next.js App Router dan Sanity CMS.
+Dibangun dengan Next.js App Router dan Sanity CMS.
 
 ## Tech Stack
 
