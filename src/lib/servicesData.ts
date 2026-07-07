@@ -3,6 +3,7 @@
 
 export type ServiceFeature = { title: string; desc: string };
 export type ServiceProcess = { step: string; name: string; desc: string };
+export type ServiceFaq = { q: string; a: string };
 
 export type Service = {
   title: string;
@@ -12,6 +13,11 @@ export type Service = {
   iconColor: string;
   features: ServiceFeature[];
   process: ServiceProcess[];
+  // SEO on-page (opsional, diisi per layanan)
+  h1?: string;          // override judul H1 yang tampil; fallback ke `title`
+  seoTitle?: string;    // override title tag; fallback ke `${subtitle} | Avangard Services`
+  seoDescription?: string; // override meta description; fallback ke `description`
+  faq?: ServiceFaq[];   // jika ada, dirender + JSON-LD FAQPage
 };
 
 export const servicesData: Record<string, Service> = {
@@ -32,6 +38,31 @@ export const servicesData: Record<string, Service> = {
       { step: "02", name: "Scanning", desc: "Menggunakan tools otomatis dan manual untuk memetakan permukaan serangan." },
       { step: "03", name: "Exploitation", desc: "Mencoba mengeksploitasi celah untuk membuktikan dampak risiko (Proof of Concept)." },
       { step: "04", name: "Reporting", desc: "Menyusun laporan remediasi dan rekomendasi perbaikan." }
+    ],
+    h1: "Jasa VAPT & Penetration Testing Aplikasi Web",
+    seoTitle: "Jasa Penetration Testing (VAPT) Aplikasi Web",
+    seoDescription: "Jasa VAPT & penetration testing aplikasi web berbasis OWASP. Temukan celah keamanan sebelum peretas menemukannya — lengkap dengan laporan teknis & eksekutif. Konsultasikan kebutuhan Anda.",
+    faq: [
+      {
+        q: "Apa itu VAPT?",
+        a: "VAPT (Vulnerability Assessment & Penetration Testing) adalah gabungan pemindaian celah keamanan secara menyeluruh (VA) dan simulasi serangan nyata terkontrol (PT) untuk membuktikan dampak risiko pada aplikasi web Anda."
+      },
+      {
+        q: "Apa bedanya Vulnerability Assessment dan Penetration Testing?",
+        a: "Vulnerability Assessment memetakan dan mendata potensi celah secara luas, sedangkan Penetration Testing mencoba mengeksploitasi celah tersebut untuk membuktikan sejauh mana risikonya nyata (Proof of Concept)."
+      },
+      {
+        q: "Standar apa yang digunakan Avangard?",
+        a: "Pengujian kami mengacu pada standar internasional seperti OWASP Top 10 dan metodologi NIST, mencakup pengujian aplikasi web, API, autentikasi, dan celah logika bisnis."
+      },
+      {
+        q: "Apa yang saya terima setelah pengujian selesai?",
+        a: "Anda menerima laporan teknis mendetail (temuan, tingkat risiko, dan langkah remediasi) untuk tim IT, serta laporan ringkas untuk manajemen."
+      },
+      {
+        q: "Berapa biaya dan lama pengerjaan jasa penetration testing?",
+        a: "Biaya dan durasi bergantung pada ruang lingkup pengujian (jumlah aplikasi dan kompleksitas fitur). Hubungi kami untuk konsultasi dan penawaran yang sesuai dengan kebutuhan Anda."
+      }
     ]
   },
   "soc": {
@@ -127,6 +158,31 @@ export const servicesData: Record<string, Service> = {
       { step: "02", name: "Simulation", desc: "Menjalankan kampanye phishing terkontrol di lingkungan nyata." },
       { step: "03", name: "Training", desc: "Memberikan edukasi langsung kepada karyawan yang terindikasi rentan." },
       { step: "04", name: "Re-assessment", desc: "Mengulang pengujian untuk mengukur peningkatan kesadaran keamanan." }
+    ],
+    h1: "Jasa Simulasi Phishing & Security Awareness Training",
+    seoTitle: "Jasa Simulasi Phishing & Security Awareness Training",
+    seoDescription: "Jasa simulasi phishing & security awareness training untuk melatih karyawan mengenali serangan phishing dan social engineering. Kurangi risiko human error. Konsultasikan program Anda.",
+    faq: [
+      {
+        q: "Apa itu simulasi phishing?",
+        a: "Simulasi phishing adalah pengiriman email phishing tiruan yang terkontrol kepada karyawan untuk menguji dan meningkatkan kewaspadaan mereka terhadap serangan social engineering nyata, tanpa risiko yang sesungguhnya."
+      },
+      {
+        q: "Mengapa perusahaan membutuhkan security awareness training?",
+        a: "Sebagian besar serangan siber berhasil karena human error, misalnya karyawan mengeklik tautan berbahaya. Security awareness training menutup celah ini dengan melatih karyawan mengenali dan melaporkan upaya phishing."
+      },
+      {
+        q: "Bagaimana tahapan program di Avangard?",
+        a: "Kami mulai dari baseline test untuk mengukur tingkat kerentanan awal, menjalankan kampanye simulasi terkontrol, memberikan pelatihan bagi karyawan yang rentan, lalu melakukan re-assessment untuk mengukur peningkatan kesadaran."
+      },
+      {
+        q: "Apakah karyawan diberi tahu sebelum simulasi dilakukan?",
+        a: "Agar hasilnya mencerminkan perilaku nyata, kampanye simulasi umumnya dijalankan tanpa pemberitahuan. Fokus program adalah edukasi — hasilnya digunakan untuk pelatihan, bukan untuk menghukum karyawan."
+      },
+      {
+        q: "Laporan apa yang saya terima?",
+        a: "Anda menerima laporan click-rate, tingkat pelaporan, dan pemetaan area berisiko, beserta perkembangan kesadaran keamanan dari waktu ke waktu untuk manajemen."
+      }
     ]
   }
 };

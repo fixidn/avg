@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = servicesData[slug];
   if (!service) return { title: 'Service Not Found' };
   return {
-    title: `${service.subtitle} | Avangard Services`,
-    description: service.description,
+    title: service.seoTitle ?? `${service.subtitle} | Avangard Services`,
+    description: service.seoDescription ?? service.description,
     alternates: {
       canonical: `/services/${slug}`,
     },
@@ -71,11 +71,24 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     ],
   };
 
+  const faqSchema = service.faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      }
+    : null;
+
   return (
     <div className="bg-slate-950 min-h-screen relative overflow-hidden selection:bg-blue-500/30 selection:text-blue-200">
 
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema} />
+      {faqSchema && <JsonLd data={faqSchema} />}
 
       <div className={`absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-b ${service.gradient} opacity-10 blur-[120px] rounded-full pointer-events-none`}></div>
 
@@ -87,7 +100,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
-            {service.title}
+            {service.h1 ?? service.title}
           </h1>
           <h2 className={`text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r ${service.gradient} mb-8`}>
             {service.subtitle}
@@ -180,6 +193,28 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
          </div>
       </section>
+
+      {service.faq?.length ? (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-900">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-white">Pertanyaan yang Sering Diajukan</h2>
+              <p className="text-slate-400 mt-4">Hal-hal yang umum ditanyakan seputar layanan ini.</p>
+            </div>
+            <div className="space-y-4">
+              {service.faq.map((item, idx: number) => (
+                <div key={idx} className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                  <h3 className="text-lg font-bold text-white mb-3 flex items-start gap-3">
+                    <span className={`flex-none mt-1.5 w-1.5 h-5 rounded-sm bg-gradient-to-b ${service.gradient}`}></span>
+                    {item.q}
+                  </h3>
+                  <p className="text-slate-400 leading-relaxed pl-[18px]">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto text-center bg-slate-900 border border-slate-800 rounded-3xl p-12 relative overflow-hidden">
