@@ -1,21 +1,25 @@
 # Backlog
 
 Catatan pekerjaan lanjutan untuk proyek Avangard. Diurutkan berdasarkan prioritas.
-Status per 2026-07-07.
+Status per 2026-07-08.
 
 ---
 
-## 🔴 Prioritas 1 — Dependency & Keamanan
+## 🔴 Prioritas 1 — Dependency & Keamanan ✅ SELESAI (2026-07-08, branch `deps/p1-security-updates`)
 
-- [ ] **Update Next.js `16.1.1` → `16.2.10`** — menutup kerentanan **HIGH** (DoS via Image Optimizer `remotePatterns`). Relevan karena app self-hosted + memakai `remotePatterns` untuk `cdn.sanity.io`. Bawa serta `eslint-config-next` & `@next/third-parties` ke `16.2.10`.
-- [ ] **Update patch/minor dalam major yang sama** (risiko rendah):
+- [x] **Update Next.js `16.1.1` → `16.2.10`** — menutup kerentanan **HIGH** (DoS via Image Optimizer `remotePatterns`). `eslint-config-next` & `@next/third-parties` ikut ke `16.2.10`.
+- [x] **Update patch/minor dalam major yang sama** (risiko rendah):
   - react / react-dom `19.2.3` → `19.2.7`
   - sanity / @sanity/vision `5.2.0` → `5.31.1`
   - next-sanity `12.0.10` → `12.4.5`
-  - tailwindcss (+@tailwindcss/postcss) `4.1.18` → `4.3.2`
+  - tailwindcss (+@tailwindcss/postcss) → `4.3.2`
   - styled-components `6.2.0` → `6.4.3`
-  - @portabletext/react, @sanity/image-url, @types/react, @types/node (dalam 20.x)
-- [ ] Setelah update: `npm run build` + cek `/`, `/services/*`, `/studio`, `/blog/*`.
+  - @portabletext/react `6.2.0`, @sanity/image-url `2.1.1`, @types/react `19.2.17`, @types/react-dom `19.2.3`, @types/node `20.19.43`
+- [x] Verifikasi: `npm run build` sukses (31 route, TS lolos) + smoke test `/`, `/services/*`, `/studio`, `/blog/*`, sitemap, robots → semua **200**.
+
+**Catatan hasil:**
+- `npm audit` masih 18 vuln (16 moderate, 2 high) — **semua di rantai Sanity Studio/build-tool** (`@sanity/cli`, `@vercel/frameworks`, `flatted`, `js-yaml`, DOMPurify, dll), bukan runtime web. Baru tuntas via **Sanity 5→6 (P2)**. **JANGAN** `npm audit fix --force` (memaksa downgrade `sanity@3.70.0` = breaking).
+- ⚠️ npm warn: `next-sanity@12.4.5` "not recommended with Next.js v16" (arahnya ke next-sanity 13). Build & runtime tetap OK; tuntas via **next-sanity 12→13 (P2)**.
 
 ## 🟠 Prioritas 2 — Update major (breaking, kerjakan terpisah + uji)
 
