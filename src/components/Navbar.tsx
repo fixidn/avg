@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { Menu, X, ArrowRight, Linkedin, Twitter, Instagram, ChevronRight } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronRight } from 'lucide-react';
+import { Linkedin, Twitter, Instagram } from '@/components/BrandIcons';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

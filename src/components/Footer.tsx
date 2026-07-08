@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
+import { Linkedin, Twitter, Instagram } from '@/components/BrandIcons';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

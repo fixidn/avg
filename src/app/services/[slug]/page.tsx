@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Activity, FileCheck, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Activity, FileCheck, CircleCheckBig, ArrowRight } from 'lucide-react';
 import JsonLd from '@/components/JsonLd';
 import { servicesData } from '@/lib/servicesData';
 
@@ -132,7 +132,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             {service.features.map((feature, idx: number) => (
               <div key={idx} className="bg-slate-950 border border-slate-800 p-8 rounded-2xl hover:border-slate-600 transition-colors group">
                 <div className={`w-12 h-12 rounded-lg bg-slate-900 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-slate-800`}>
-                   <CheckCircle2 className={`w-6 h-6 ${service.iconColor}`} />
+                   <CircleCheckBig className={`w-6 h-6 ${service.iconColor}`} />
                 </div>
                 <h4 className="text-xl font-bold text-white mb-3">{feature.title}</h4>
                 <p className="text-slate-400 leading-relaxed">{feature.desc}</p>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, CheckCircle, ArrowRight, ShieldCheck, AlertCircle, Phone } from 'lucide-react';
+import { Mail, MapPin, CircleCheck, ArrowRight, ShieldCheck, CircleAlert, Phone } from 'lucide-react';
 
 interface FormData {
   name: string;
@@ -194,7 +194,7 @@ export default function ContactPage() {
                {formStatus === 'success' ? (
                  <div className="text-center py-20 animate-in fade-in zoom-in duration-500">
                    <div className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6 ring-4 ring-green-500/20">
-                     <CheckCircle className="w-12 h-12 text-green-500" />
+                     <CircleCheck className="w-12 h-12 text-green-500" />
                    </div>
                    <h3 className="text-3xl font-bold text-white mb-4">Pesan Diterima!</h3>
                    <p className="text-slate-400 max-w-md mx-auto mb-8 text-lg">
@@ -223,7 +223,7 @@ export default function ContactPage() {
                          />
                          {errors.name && (
                            <div className="flex items-center text-red-500 text-xs mt-1 ml-1 animate-pulse">
-                             <AlertCircle className="w-3 h-3 mr-1" /> {errors.name}
+                             <CircleAlert className="w-3 h-3 mr-1" /> {errors.name}
                            </div>
                          )}
                       </div>
@@ -240,7 +240,7 @@ export default function ContactPage() {
                          />
                          {errors.email && (
                             <div className="flex items-center text-red-500 text-xs mt-1 ml-1 animate-pulse">
-                              <AlertCircle className="w-3 h-3 mr-1" /> {errors.email}
+                              <CircleAlert className="w-3 h-3 mr-1" /> {errors.email}
                             </div>
                          )}
                       </div>
@@ -299,7 +299,7 @@ export default function ContactPage() {
                      ></textarea>
                      {errors.message && (
                         <div className="flex items-center text-red-500 text-xs mt-1 ml-1 animate-pulse">
-                          <AlertCircle className="w-3 h-3 mr-1" /> {errors.message}
+                          <CircleAlert className="w-3 h-3 mr-1" /> {errors.message}
                         </div>
                      )}
                    </div>
