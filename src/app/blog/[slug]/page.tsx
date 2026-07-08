@@ -2,13 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { client, urlFor } from '@/lib/sanity';
-import { Calendar, ArrowLeft } from 'lucide-react';
+import { Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import type { Metadata, ResolvingMetadata } from 'next';
 import ShareButtons from '@/components/ShareButtons'; // <--- Import Komponen Share
 import JsonLd from '@/components/JsonLd';
+import { servicesData } from '@/lib/servicesData';
 
 const SITE_URL = 'https://stacopa-avangard.com';
+
+// Layanan default bila post belum menetapkan `relatedServices` di Studio.
+const DEFAULT_RELATED_SERVICES = ['vapt', 'soc', 'compliance'];
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -80,9 +84,10 @@ async function getPost(slug: string) {
     title,
     mainImage,
     publishedAt,
+    relatedServices,
     body
   }`;
-  
+
   if (!slug) return null;
   return client.fetch(query, { slug });
 }
@@ -93,10 +98,11 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await params;
   
-  const query = `*[_type == "post" && slug.current == $slug][0] { 
-    title, 
-    "excerpt": array::join(string::split((pt::text(body)), "")[0..150], "") + "...",
-    mainImage 
+  const query = `*[_type == "post" && slug.current == $slug][0] {
+    title,
+    seoTitle,
+    "excerpt": coalesce(excerpt, array::join(string::split((pt::text(body)), "")[0..150], "") + "..."),
+    mainImage
   }`;
   const post = await client.fetch(query, { slug });
 
@@ -106,18 +112,22 @@ export async function generateMetadata(
     };
   }
 
-  const postImage = post.mainImage 
-    ? urlFor(post.mainImage).width(1200).height(630).url() 
+  const displayTitle = post.seoTitle || post.title;
+
+  const postImage = post.mainImage
+    ? urlFor(post.mainImage).width(1200).height(630).url()
     : null;
 
   return {
-    title: `${post.title} | Avangard Insight`,
+    // `absolute` mem-bypass template layout ("| Avangard Security") agar tidak
+    // terjadi suffix ganda; blog memakai sub-brand "Avangard Insight".
+    title: { absolute: `${displayTitle} | Avangard Insight` },
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${slug}`,
     },
     openGraph: {
-      title: post.title,
+      title: displayTitle,
       description: post.excerpt,
       images: postImage ? [postImage] : [],
       type: 'article',
@@ -126,7 +136,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
+      title: displayTitle,
       description: post.excerpt,
       images: postImage ? [postImage] : [],
     },
@@ -155,6 +165,12 @@ export default async function BlogPost({ params }: Props) {
   const articleImage = post.mainImage
     ? urlFor(post.mainImage).width(1200).height(630).url()
     : undefined;
+
+  // Internal link ke money page: pakai pilihan editor bila ada, jika tidak
+  // pakai layanan inti default. Saring slug yang benar-benar ada.
+  const relatedSlugs: string[] = (
+    post.relatedServices?.length ? post.relatedServices : DEFAULT_RELATED_SERVICES
+  ).filter((slug: string) => servicesData[slug]);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -233,7 +249,44 @@ export default async function BlogPost({ params }: Props) {
         <ShareButtons url={postUrl} title={post.title} />
 
         <hr className="my-12 border-slate-800" />
-        
+
+        {/* --- LAYANAN TERKAIT (internal link ke money page) --- */}
+        {relatedSlugs.length > 0 && (
+          <section aria-labelledby="layanan-terkait" className="mt-12">
+            <h2
+              id="layanan-terkait"
+              className="text-xl font-bold text-white mb-6"
+            >
+              Layanan Terkait
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {relatedSlugs.map((slug) => {
+                const service = servicesData[slug];
+                return (
+                  <Link
+                    key={slug}
+                    href={`/services/${slug}`}
+                    className="group flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition-colors hover:border-blue-500/50 hover:bg-slate-900"
+                  >
+                    <div>
+                      <h3 className="font-semibold text-white group-hover:text-blue-400 transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-400 leading-relaxed">
+                        {service.subtitle}
+                      </p>
+                    </div>
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-500">
+                      Pelajari
+                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
       </article>
     </div>
   );
