@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Server, Shield, Zap, BarChart3, Cpu, Globe, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Server, Shield, Zap, ChartColumn, Cpu, Globe, ArrowRight, CircleCheckBig } from 'lucide-react';
 
 export const metadata = {
   title: "Produk Keamanan | Avangard",
@@ -61,7 +61,7 @@ export default function ProductsPage() {
                   "Automated Reporting untuk Compliance (ISO/PCI-DSS)"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start">
-                    <CheckCircle2 className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <CircleCheckBig className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-slate-300">{item}</span>
                   </li>
                 ))}
@@ -247,8 +247,8 @@ export default function ProductsPage() {
                      </tr>
                      <tr className="hover:bg-slate-900/50 transition-colors">
                         <td className="px-6 py-4 font-medium text-white">Threat Intel Feed</td>
-                        <td className="px-6 py-4 flex items-center"><CheckCircle2 className="w-4 h-4 text-green-500 mr-2"/> Global Live Feed</td>
-                        <td className="px-6 py-4 flex items-center"><CheckCircle2 className="w-4 h-4 text-green-500 mr-2"/> Cached + Live Update</td>
+                        <td className="px-6 py-4 flex items-center"><CircleCheckBig className="w-4 h-4 text-green-500 mr-2"/> Global Live Feed</td>
+                        <td className="px-6 py-4 flex items-center"><CircleCheckBig className="w-4 h-4 text-green-500 mr-2"/> Cached + Live Update</td>
                      </tr>
                      <tr className="hover:bg-slate-900/50 transition-colors">
                         <td className="px-6 py-4 font-medium text-white">Maintenance</td>

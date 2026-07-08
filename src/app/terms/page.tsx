@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FileText, Scale, AlertTriangle, Ban, RefreshCcw } from 'lucide-react';
+import { FileText, Scale, TriangleAlert, Ban, RefreshCcw } from 'lucide-react';
 
 export const metadata = {
   title: "Syarat & Ketentuan | Avangard",
@@ -66,7 +66,7 @@ export default function TermsPage() {
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
-              <AlertTriangle className="w-6 h-6 mr-3 text-blue-500" />
+              <TriangleAlert className="w-6 h-6 mr-3 text-blue-500" />
               4. Batasan Tanggung Jawab
             </h2>
             <p className="mb-4">
