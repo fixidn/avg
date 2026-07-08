@@ -34,25 +34,28 @@ Status per 2026-07-08.
 
 **Catatan lint (pre-existing, di luar scope P2):** `npm run lint` melaporkan ~29 error lama (`react/no-unescaped-entities`, `no-explicit-any`, `prefer-const`, `no-html-link-for-pages`) di file konten yang tak tersentuh upgrade. Build Hostinger hanya `npm run build` (bukan lint) → tak memblokir deploy. Bisa dibersihkan sebagai tugas terpisah.
 
-## 🟡 Prioritas 3 — SEO Konten (pendorong trafik utama)
+## 🟡 Prioritas 3 — SEO Konten — SEDANG BERJALAN (2026-07-08, branch `seo/p3-content`)
 
-- [ ] **Kalender konten blog (8–12 artikel)** yang mengisi gap cluster layanan — belum ada artikel selaras money page. Target:
-  - "Apa itu VAPT / Penetration Testing?" → `/services/vapt`
-  - "Panduan ISO 27001 untuk perusahaan" → `/services/compliance`
-  - "Apa itu MDR & bedanya dengan SOC?" → `/services/soc`
-  - "Langkah pertama saat terkena ransomware" → `/services/incident-response`
-  - "Kepatuhan UU PDP untuk bisnis" → `/services/compliance`
-- [ ] **Audit & tambah internal link** dari 9 post yang ada ke halaman layanan:
-  - "240 Juta Data Bocor" → Compliance / Incident Response
-  - "Tanda Komputer Diretas" → Incident Response
-  - "CVE cPanel" → Secure Web Infrastructure / VAPT
-- [ ] **Pulihkan kadensi publikasi** (berhenti sejak Mei 2026).
-- [ ] Kurangi porsi konten berita/konsumen (malware Android), fokuskan ke topik selaras layanan B2B web.
+**Strategi & kode selesai:**
+- [x] **Kalender konten 12 artikel** cluster layanan → `docs/seo-content-plan.md` (bagian A). Memperluas 5 topik prioritas backlog jadi 12 (tiap artikel dipetakan ke money page + keyword + angle).
+- [x] **Peta internal-link 9 post lama** → money page (anchor text + URL presisi) → `docs/seo-content-plan.md` (bagian B). *Eksekusi = tugas Studio* (tambah link di Rich Text Editor tiap post).
+- [x] **Baseline internal link otomatis:** section "Layanan Terkait" di tiap halaman post (kode) → tiap post kini menaut ke money page tanpa perlu edit manual.
+- [x] Rekomendasi **kadensi** (2 artikel/bulan) & **rebalance** (kurangi berita/konsumen) → `docs/seo-content-plan.md` (bagian C).
+
+**Draf artikel (siap-paste ke Studio):**
+- [x] `docs/drafts/01-apa-itu-vapt.md` → `/services/vapt`
+- [x] `docs/drafts/02-panduan-iso-27001.md` → `/services/compliance`
+- [ ] Draf artikel #3–#12 berikutnya (MDR vs SOC, ransomware, UU PDP, OWASP, dst — lihat kalender).
+
+**Aksi manual (butuh Studio/CMS-mu):**
+- [ ] Paste 2 draf di atas ke Sanity Studio + publish (isi field excerpt/seoTitle/relatedServices sesuai header draf).
+- [ ] Tambah internal link ke 9 post lama sesuai peta (prioritas fit kuat: CVE cPanel, AI Coding Assistant, 240 Juta Data Bocor, Tanda Komputer Diretas, Ekstensi Chrome).
+- [ ] Pulihkan kadensi publikasi (berhenti sejak Mei 2026).
 
 ## 🟢 Prioritas 4 — SEO On-page & Technical (sisa)
 
 - [ ] (Opsional) FAQ homepage + section trust/E-E-A-T + sinyal lokasi (Jakarta/Indonesia).
-- [ ] Perbaiki title tag blog yang berpotensi suffix ganda (`${post.title} | Avangard Insight` + template layout `| Avangard Security`).
+- [x] ~~Perbaiki title tag blog yang berpotensi suffix ganda~~ — SELESAI (bareng P3, branch `seo/p3-content`): blog pakai `title.absolute` → `${title} | Avangard Insight` (bypass template layout, tak lagi double suffix).
 - [ ] Simpan peta keyword lengkap ke `docs/seo-keyword-map.md` sebagai acuan tim.
 
 ## 📋 Aksi manual (Google Search Console)
