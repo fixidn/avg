@@ -34,7 +34,7 @@ Status per 2026-07-08.
 
 **Catatan lint (pre-existing, di luar scope P2):** `npm run lint` melaporkan ~29 error lama (`react/no-unescaped-entities`, `no-explicit-any`, `prefer-const`, `no-html-link-for-pages`) di file konten yang tak tersentuh upgrade. Build Hostinger hanya `npm run build` (bukan lint) → tak memblokir deploy. Bisa dibersihkan sebagai tugas terpisah.
 
-## 🟡 Prioritas 3 — SEO Konten — SEDANG BERJALAN (2026-07-08, branch `seo/p3-content`)
+## 🟡 Prioritas 3 — SEO Konten — SEDANG BERJALAN (2026-07-08, strategi+kode sudah di `main`)
 
 **Strategi & kode selesai:**
 - [x] **Kalender konten 12 artikel** cluster layanan → `docs/seo-content-plan.md` (bagian A). Memperluas 5 topik prioritas backlog jadi 12 (tiap artikel dipetakan ke money page + keyword + angle).
@@ -55,7 +55,7 @@ Status per 2026-07-08.
 ## 🟢 Prioritas 4 — SEO On-page & Technical (sisa)
 
 - [ ] (Opsional) FAQ homepage + section trust/E-E-A-T + sinyal lokasi (Jakarta/Indonesia).
-- [x] ~~Perbaiki title tag blog yang berpotensi suffix ganda~~ — SELESAI (bareng P3, branch `seo/p3-content`): blog pakai `title.absolute` → `${title} | Avangard Insight` (bypass template layout, tak lagi double suffix).
+- [x] ~~Perbaiki title tag blog yang berpotensi suffix ganda~~ — SELESAI (bareng P3, di `main`): blog pakai `title.absolute` → `${title} | Avangard Insight` (bypass template layout, tak lagi double suffix).
 - [ ] Simpan peta keyword lengkap ke `docs/seo-keyword-map.md` sebagai acuan tim.
 
 ## 📋 Aksi manual (Google Search Console)
