@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { insertLead } from '@/lib/db';
 
 // In-memory rate limiter: max 5 requests per 15 minutes per IP.
 // Note: resets on server restart; use Upstash Redis for multi-instance/serverless deployments.
@@ -32,15 +31,6 @@ type ContactPayload = {
   phone?: string;
   service: string;
   message: string;
-};
-
-const escapeCsv = (text: string) => {
-  if (!text) return '';
-  const escaped = text.replace(/"/g, '""'); 
-  if (escaped.includes(',') || escaped.includes('\n') || escaped.includes('"')) {
-    return `"${escaped}"`;
-  }
-  return escaped;
 };
 
 const MAX_LENGTH = {
@@ -132,7 +122,7 @@ export async function POST(request: Request) {
 
     const sendToTelegram = async () => {
       const text = `
-🚨 **LEAD BARU (CSV SAVED)** 🚨
+🚨 **LEAD BARU** 🚨
 
 👤 **Nama:** ${name}
 🏢 **Email:** ${email}
@@ -156,54 +146,27 @@ ${message}
       }
     };
 
-    const saveToCsv = async () => {
-      const dataDir = path.join(process.cwd(), 'data');
-      const filePath = path.join(dataDir, 'contacts.csv');
-
-      try {
-        await fs.access(dataDir);
-      } catch {
-        await fs.mkdir(dataDir);
-      }
-
-      const csvRow = [
-        escapeCsv(date),
-        escapeCsv(name),
-        escapeCsv(email),
-        escapeCsv(phone || '-'),
-        escapeCsv(service),
-        escapeCsv(message)
-      ].join(',') + '\n';
-
-      let fileExists = false;
-      try {
-        await fs.access(filePath);
-        fileExists = true;
-      } catch {
-        fileExists = false;
-      }
-
-      if (!fileExists) {
-        const header = 'Tanggal,Nama,Email,HP,Layanan,Pesan\n';
-        await fs.writeFile(filePath, header + csvRow, 'utf8');
-      } else {
-        await fs.appendFile(filePath, csvRow, 'utf8');
-      }
+    const saveToDb = async () => {
+      await insertLead({ name, email, phone, service, message, ip });
     };
 
-    const results = await Promise.allSettled([sendToTelegram(), saveToCsv()]);
-    const failed = results.filter((result) => result.status === 'rejected');
+    const [telegramResult, dbResult] = await Promise.allSettled([
+      sendToTelegram(),
+      saveToDb(),
+    ]);
 
-    if (failed.length > 0) {
-      const failedTasks = results
-        .map((result, index) => ({ result, index }))
-        .filter((item) => item.result.status === 'rejected')
-        .map((item) => (item.index === 0 ? 'telegram' : 'csv'));
+    // Lead dianggap tersimpan jika MINIMAL salah satu saluran berhasil.
+    // Hanya balikkan error ke user kalau keduanya gagal (lead benar-benar hilang).
+    if (telegramResult.status === 'rejected') {
+      console.error('Telegram notify gagal:', telegramResult.reason);
+    }
+    if (dbResult.status === 'rejected') {
+      console.error('Simpan lead ke DB gagal:', dbResult.reason);
+    }
 
+    if (telegramResult.status === 'rejected' && dbResult.status === 'rejected') {
       return NextResponse.json(
-        {
-          error: `Gagal memproses data pada: ${failedTasks.join(', ')}`,
-        },
+        { error: 'Gagal memproses permintaan. Silakan coba lagi.' },
         { status: 502 }
       );
     }
