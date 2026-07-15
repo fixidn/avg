@@ -4,7 +4,7 @@ import { Shield, Lock, Eye, FileText } from 'lucide-react';
 
 export const metadata = {
   title: "Kebijakan Privasi | Avangard",
-  description: "Kebijakan privasi Avangard Security mengenai pengumpulan, penggunaan, dan perlindungan data pribadi Anda.",
+  description: "Kebijakan privasi Avangard mengenai pengumpulan, penggunaan, dan perlindungan data pribadi Anda.",
 };
 
 export default function PrivacyPage() {
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
               1. Pengantar
             </h2>
             <p className="mb-4">
-              Di <strong>Avangard Security</strong> ("kami", "kita", atau "milik kami"), privasi dan keamanan data Anda adalah prioritas utama kami. Sebagai perusahaan yang bergerak di bidang pertahanan siber, kami berkomitmen untuk melindungi informasi pribadi yang Anda bagikan kepada kami sesuai dengan standar keamanan global dan regulasi yang berlaku di Indonesia (termasuk UU Pelindungan Data Pribadi).
+              Di <strong>PT Stacopa Avangard Raya</strong> ("Avangard", "kami", "kita", atau "milik kami"), privasi dan keamanan data Anda adalah prioritas utama kami. Sebagai perusahaan yang bergerak di bidang pertahanan siber, kami berkomitmen untuk melindungi informasi pribadi yang Anda bagikan kepada kami sesuai dengan standar keamanan global dan regulasi yang berlaku di Indonesia (termasuk UU Pelindungan Data Pribadi).
             </p>
             <p>
               Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkapkan, dan menjaga informasi Anda ketika Anda mengunjungi situs web kami atau menggunakan layanan kami.
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-disc pl-6 space-y-2 marker:text-blue-500">
               <li>
-                <strong className="text-white">Data Pribadi:</strong> Informasi identifikasi pribadi, seperti nama, alamat email, nomor telepon, dan nama perusahaan yang Anda berikan secara sukarela saat mengisi formulir "Hubungi Kami".
+                <strong className="text-white">Data Pribadi:</strong> Informasi identifikasi pribadi, seperti nama, alamat email, dan nomor telepon yang Anda berikan secara sukarela saat mengisi formulir "Hubungi Kami".
               </li>
               <li>
                 <strong className="text-white">Data Teknis & Log:</strong> Informasi yang dikumpulkan server kami secara otomatis saat Anda mengakses situs, seperti alamat IP, tipe browser, sistem operasi, waktu akses, dan halaman yang dilihat. Data ini digunakan untuk analisis keamanan dan pemantauan ancaman.

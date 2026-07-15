@@ -4,7 +4,7 @@ import { FileText, Scale, TriangleAlert, Ban, RefreshCcw } from 'lucide-react';
 
 export const metadata = {
   title: "Syarat & Ketentuan | Avangard",
-  description: "Syarat dan ketentuan penggunaan situs web dan layanan Avangard Security.",
+  description: "Syarat dan ketentuan penggunaan situs web dan layanan Avangard.",
 };
 
 export default function TermsPage() {
@@ -31,7 +31,7 @@ export default function TermsPage() {
               1. Penerimaan Ketentuan
             </h2>
             <p className="mb-4">
-              Selamat datang di <strong>Avangard Security</strong> ("kami", "kita", atau "milik kami"). Dengan mengakses dan menggunakan situs web <strong>stacopa-avangard.com</strong> beserta seluruh layanan yang kami sediakan, Anda dianggap telah membaca, memahami, dan menyetujui untuk terikat oleh Syarat & Ketentuan ini.
+              Selamat datang di <strong>PT Stacopa Avangard Raya</strong> ("Avangard", "kami", "kita", atau "milik kami"). Dengan mengakses dan menggunakan situs web <strong>stacopa-avangard.com</strong> beserta seluruh layanan yang kami sediakan, Anda dianggap telah membaca, memahami, dan menyetujui untuk terikat oleh Syarat & Ketentuan ini.
             </p>
             <p>
               Jika Anda tidak menyetujui salah satu bagian dari ketentuan ini, mohon untuk tidak menggunakan situs web maupun layanan kami.
@@ -60,7 +60,7 @@ export default function TermsPage() {
               3. Kekayaan Intelektual
             </h2>
             <p>
-              Seluruh konten yang terdapat pada situs ini — termasuk namun tidak terbatas pada teks, grafik, logo, ikon, gambar, serta nama produk seperti <strong>Sentinel X™</strong> dan <strong>Avangard Secure Gateway</strong> — merupakan milik Avangard Security atau pemberi lisensinya dan dilindungi oleh hukum hak cipta serta merek dagang. Penggunaan tanpa izin dapat melanggar hukum yang berlaku.
+              Seluruh konten yang terdapat pada situs ini — termasuk namun tidak terbatas pada teks, grafik, logo, ikon, gambar, serta nama produk seperti <strong>Sentinel X™</strong> dan <strong>Avangard Secure Gateway</strong> — merupakan milik Avangard atau pemberi lisensinya dan dilindungi oleh hukum hak cipta serta merek dagang. Penggunaan tanpa izin dapat melanggar hukum yang berlaku.
             </p>
           </section>
 
@@ -73,7 +73,7 @@ export default function TermsPage() {
               Layanan dan informasi pada situs ini disediakan "sebagaimana adanya" (as is) tanpa jaminan dalam bentuk apa pun. Meskipun kami berkomitmen pada standar keamanan tertinggi, kami tidak menjamin bahwa layanan akan selalu bebas dari gangguan, kesalahan, atau kerentanan.
             </p>
             <p>
-              Sepanjang diizinkan oleh hukum, Avangard Security tidak bertanggung jawab atas kerugian langsung maupun tidak langsung yang timbul dari penggunaan atau ketidakmampuan menggunakan situs web maupun layanan kami.
+              Sepanjang diizinkan oleh hukum, Avangard tidak bertanggung jawab atas kerugian langsung maupun tidak langsung yang timbul dari penggunaan atau ketidakmampuan menggunakan situs web maupun layanan kami.
             </p>
           </section>
 
