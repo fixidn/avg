@@ -48,7 +48,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-disc pl-6 space-y-2 marker:text-blue-500">
               <li>
-                <strong className="text-white">Data Pribadi:</strong> Informasi identifikasi pribadi, seperti nama, alamat email, nomor telepon, dan nama perusahaan yang Anda berikan secara sukarela saat mengisi formulir "Hubungi Kami" atau melamar pekerjaan.
+                <strong className="text-white">Data Pribadi:</strong> Informasi identifikasi pribadi, seperti nama, alamat email, nomor telepon, dan nama perusahaan yang Anda berikan secara sukarela saat mengisi formulir "Hubungi Kami".
               </li>
               <li>
                 <strong className="text-white">Data Teknis & Log:</strong> Informasi yang dikumpulkan server kami secara otomatis saat Anda mengakses situs, seperti alamat IP, tipe browser, sistem operasi, waktu akses, dan halaman yang dilihat. Data ini digunakan untuk analisis keamanan dan pemantauan ancaman.
@@ -70,10 +70,12 @@ export default function PrivacyPage() {
             <ul className="list-disc pl-6 space-y-2 marker:text-blue-500">
               <li>Menyediakan, mengoperasikan, dan memelihara layanan keamanan kami.</li>
               <li>Merespons pertanyaan, komentar, atau permintaan layanan (Incident Response/Sales).</li>
-              <li>Memproses lamaran kerja Anda (untuk halaman Karir).</li>
               <li>Mendeteksi, mencegah, dan mengatasi masalah teknis atau insiden keamanan pada infrastruktur kami sendiri.</li>
               <li>Mematuhi kewajiban hukum dan peraturan yang berlaku.</li>
             </ul>
+            <p className="mt-4">
+              <strong className="text-white">Dasar hukum</strong> kami memproses data Anda adalah <strong>persetujuan (consent)</strong> yang Anda berikan saat mengisi formulir, serta <strong>kepentingan yang sah</strong> kami untuk menindaklanjuti permintaan Anda dan mengambil langkah pra-kontrak, sebagaimana diatur dalam UU Pelindungan Data Pribadi. Anda dapat menarik persetujuan tersebut kapan saja.
+            </p>
           </section>
 
           <section>
@@ -93,17 +95,32 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold text-white mb-4">
               5. Pengungkapan kepada Pihak Ketiga
             </h2>
+            <p className="mb-4">
+              Kami <strong>tidak menjual, memperdagangkan, atau menyewakan</strong> data pribadi Anda kepada pihak lain. Untuk mengoperasikan layanan, kami menggunakan <strong className="text-white">penyedia layanan hosting &amp; infrastruktur</strong> tepercaya (sebagai <em>processor</em>) tempat situs dan data kami disimpan secara aman, yang memproses data hanya atas nama dan berdasarkan instruksi kami.
+            </p>
             <p>
-              Kami tidak menjual, memperdagangkan, atau menyewakan informasi identifikasi pribadi Anda kepada pihak lain. Kami hanya dapat membagikan informasi umum demografis yang tidak terkait dengan informasi identifikasi pribadi apa pun kepada mitra bisnis dan pengiklan tepercaya kami untuk tujuan yang diuraikan di atas, atau jika diwajibkan oleh hukum (misalnya untuk penegakan hukum siber).
+              Kami juga dapat mengungkapkan data jika diwajibkan oleh hukum (misalnya untuk penegakan hukum siber).
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">
-              6. Hak Perlindungan Data Anda
+              6. Retensi dan Penghapusan Data
             </h2>
             <p className="mb-4">
-              Anda memiliki hak untuk meminta akses, koreksi, atau penghapusan data pribadi yang kami simpan tentang Anda. Jika Anda ingin menggunakan hak ini, silakan hubungi kami melalui detail kontak di bawah ini.
+              Kami menyimpan data pribadi Anda hanya selama diperlukan untuk mencapai tujuan pemrosesan, sesuai prinsip pembatasan penyimpanan (<em>storage limitation</em>) dalam UU Pelindungan Data Pribadi.
+            </p>
+            <p>
+              Khusus untuk data yang Anda kirimkan melalui formulir "Hubungi Kami", kami menyimpannya paling lama <strong className="text-white">24 bulan</strong> sejak interaksi terakhir, setelah itu data akan dihapus atau dianonimkan — kecuali terdapat kewajiban hukum yang mengharuskan penyimpanan lebih lama. Anda dapat meminta penghapusan lebih awal kapan saja (lihat Bagian 7).
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              7. Hak Perlindungan Data Anda
+            </h2>
+            <p className="mb-4">
+              Anda memiliki hak untuk meminta akses, koreksi, atau penghapusan data pribadi yang kami simpan tentang Anda, serta menarik persetujuan yang telah diberikan. Jika Anda ingin menggunakan hak ini, silakan hubungi kami melalui detail kontak di bawah ini.
             </p>
           </section>
 
