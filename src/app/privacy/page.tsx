@@ -54,7 +54,7 @@ export default function PrivacyPage() {
                 <strong className="text-white">Data Teknis & Log:</strong> Informasi yang dikumpulkan server kami secara otomatis saat Anda mengakses situs, seperti alamat IP, tipe browser, sistem operasi, waktu akses, dan halaman yang dilihat. Data ini digunakan untuk analisis keamanan dan pemantauan ancaman.
               </li>
               <li>
-                <strong className="text-white">Cookies:</strong> Kami menggunakan cookies untuk meningkatkan pengalaman pengguna dan menganalisis trafik situs web. Anda dapat mengatur browser Anda untuk menolak semua cookies jika diinginkan.
+                <strong className="text-white">Cookies:</strong> Kami menggunakan cookies untuk meningkatkan pengalaman pengguna dan menganalisis trafik situs web melalui Google Analytics. Anda dapat mengatur browser Anda untuk menolak semua cookies jika diinginkan.
               </li>
             </ul>
           </section>
@@ -84,7 +84,7 @@ export default function PrivacyPage() {
               4. Keamanan Data
             </h2>
             <p className="mb-4">
-              Kami menerapkan langkah-langkah keamanan teknis dan organisasional yang ketat untuk melindungi data pribadi Anda. Ini mencakup enkripsi data (in-transit dan at-rest), kontrol akses berbasis peran (RBAC), dan audit keamanan berkala.
+              Kami menerapkan langkah-langkah keamanan teknis dan organisasional yang wajar untuk melindungi data pribadi Anda, antara lain enkripsi data saat transit melalui protokol HTTPS/TLS, pembatasan akses hanya kepada personel yang berwenang, dan penggunaan penyedia infrastruktur tepercaya.
             </p>
             <p>
               Namun, perlu diingat bahwa tidak ada metode transmisi melalui internet atau metode penyimpanan elektronik yang 100% aman. Meskipun kami berusaha menggunakan standar komersial terbaik untuk melindungi data Anda, kami tidak dapat menjamin keamanannya secara mutlak.
