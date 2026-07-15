@@ -72,6 +72,9 @@ function validatePayload(input: unknown): { ok: true; data: ContactPayload } | {
   if (message.length < 10) {
     return { ok: false, error: 'Pesan minimal 10 karakter.' };
   }
+  if (body.consent !== true) {
+    return { ok: false, error: 'Persetujuan Kebijakan Privasi diperlukan.' };
+  }
 
   return {
     ok: true,

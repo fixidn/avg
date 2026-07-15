@@ -9,12 +9,14 @@ interface FormData {
   phone: string;
   service: string;
   message: string;
+  consent: boolean;
 }
 
 interface FormErrors {
   name?: string;
   email?: string;
   message?: string;
+  consent?: string;
 }
 
 export default function ContactPage() {
@@ -24,8 +26,9 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    service: 'Penetration Testing (VAPT)', 
-    message: ''
+    service: 'Penetration Testing (VAPT)',
+    message: '',
+    consent: false
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -72,14 +75,20 @@ export default function ContactPage() {
       isValid = false;
     }
 
+    if (!formData.consent) {
+      tempErrors.consent = "Anda harus menyetujui Kebijakan Privasi untuk melanjutkan";
+      isValid = false;
+    }
+
     setErrors(tempErrors);
     return isValid;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
+    const { name, value, type } = e.target;
+    const fieldValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+    setFormData(prev => ({ ...prev, [name]: fieldValue }) as FormData);
+
     if (name !== 'phone' && errors[name as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
     }
@@ -97,7 +106,8 @@ export default function ContactPage() {
       email: sanitizeInput(formData.email),
       phone: sanitizeInput(formData.phone),
       service: sanitizeInput(formData.service),
-      message: sanitizeInput(formData.message)
+      message: sanitizeInput(formData.message),
+      consent: formData.consent
     };
 
     try {
@@ -114,12 +124,13 @@ export default function ContactPage() {
       }
 
       setFormStatus('success');
-      setFormData({ 
-        name: '', 
-        email: '', 
+      setFormData({
+        name: '',
+        email: '',
         phone: '',
-        service: 'Penetration Testing (VAPT)', 
-        message: '' 
+        service: 'Penetration Testing (VAPT)',
+        message: '',
+        consent: false
       });
 
     } catch (error) {
@@ -304,9 +315,32 @@ export default function ContactPage() {
                      )}
                    </div>
 
-                   <button 
-                     type="submit" 
-                     disabled={formStatus === 'submitting'} 
+                   <div className="space-y-2">
+                     <label htmlFor="consent" className="flex items-start gap-3 cursor-pointer group">
+                        <input
+                          type="checkbox" id="consent" name="consent"
+                          checked={formData.consent}
+                          onChange={handleChange}
+                          className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-600 bg-slate-950/50 text-blue-600 focus:ring-2 focus:ring-blue-500 cursor-pointer accent-blue-600"
+                        />
+                        <span className="text-xs text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
+                          Saya menyetujui pemrosesan data pribadi saya sesuai{' '}
+                          <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline underline-offset-2 font-medium">
+                            Kebijakan Privasi
+                          </a>{' '}
+                          untuk keperluan konsultasi ini. <span className="text-red-500">*</span>
+                        </span>
+                     </label>
+                     {errors.consent && (
+                       <div className="flex items-center text-red-500 text-xs mt-1 ml-1 animate-pulse">
+                         <CircleAlert className="w-3 h-3 mr-1" /> {errors.consent}
+                       </div>
+                     )}
+                   </div>
+
+                   <button
+                     type="submit"
+                     disabled={formStatus === 'submitting'}
                      className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white text-lg font-bold rounded-xl shadow-lg shadow-blue-900/20 hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center group"
                    >
                       {formStatus === 'submitting' ? (
@@ -324,10 +358,6 @@ export default function ContactPage() {
                         </>
                       )}
                    </button>
-                   
-                   <p className="text-center text-xs text-slate-500 mt-4">
-                     Dengan mengirimkan formulir ini, Anda menyetujui Kebijakan Privasi kami.
-                   </p>
                  </form>
                )}
             </div>
