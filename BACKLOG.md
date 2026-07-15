@@ -1,7 +1,33 @@
 # Backlog
 
 Catatan pekerjaan lanjutan untuk proyek Avangard. Diurutkan berdasarkan prioritas.
-Status per 2026-07-08.
+Status per 2026-07-15.
+
+---
+
+## 🟣 Contact Form & Kepatuhan Data Pribadi (PDP) — ✅ SELESAI DI KODE (2026-07-15, semua di `main`)
+
+**Penyimpanan lead (ganti CSV):**
+- [x] Form contact → simpan ke **MySQL Hostinger** + notifikasi Telegram; buang CSV lokal (`/data/`) yang ephemeral saat deploy dari GitHub. Commit `8722c4b`.
+- [x] Database dibuat di akun Hostinger `u370567286` (paket Business): db `u370567286_avg_leads`, user `u370567286_avg_app`, kredensial di `.env` (prefix `MYSQL_`, gitignored).
+- [x] `src/lib/db.ts` (pool + `ensureLeadsTable` auto-create + `insertLead`); tabel `leads` (id, name, email, phone, service, message, ip, created_at).
+- [x] **Fix bug 502**: lead sukses jika minimal satu saluran (Telegram ATAU DB) berhasil; 502 hanya jika keduanya gagal.
+
+**Consent & kepatuhan (GDPR/UU PDP):**
+- [x] **Consent checkbox** wajib (default tidak tercentang) + link `/privacy`; validasi client (`page.tsx`) + server (`route.ts` tolak 400 bila `consent !== true`). Commit `f6b7e9c`.
+- [x] **`/privacy` overhaul** — dasar hukum (consent + kepentingan sah), **retensi 24 bulan** (Pasal 7 UU PDP), penerima pihak ketiga → "penyedia hosting & infrastruktur" (generik, tanpa nama vendor), "DPO" → "hubungi kami", hapus "nama perusahaan" & "lamaran kerja". Commit `7b98da1`, `a18fa8a`.
+- [x] **Klaim keamanan disamakan dgn kenyataan** (Section 4) — hapus at-rest/RBAC/audit berkala (overclaim); pertahankan in-transit HTTPS/TLS + pembatasan akses. Cookies sebut **Google Analytics** (GA aktif, `gaId G-54JM6XEQ62`). Commit `9c45588`.
+- [x] **Nama badan hukum** `PT Stacopa Avangard Raya` diselaraskan di `/privacy` & `/terms` (ganti "Avangard Security"; produk "Avangard Secure Gateway" tetap). Commit `796e08c`.
+
+**Belum selesai (follow-up):**
+- [ ] **Deploy + test di Hostinger**: rebuild agar `mysql2` aktif → submit form → verifikasi tabel `leads` terisi via phpMyAdmin. (Env `MYSQL_*` sudah di-set user di panel.)
+- [ ] **Penegakan retensi 24 bulan**: cron/scheduled job hapus lead `created_at > 24 bulan` (baru berupa janji di kebijakan; kolom sudah ada).
+- [ ] **Proses PDP** (bukan dokumen): DSAR (cara nyata hapus lead on-request), rencana breach ≤3×24 jam, inventaris data 1 halaman (RoPA-lite). Prioritas tertinggi sebenarnya = **penanganan data engagement klien** (konteks paling berisiko untuk firma cyber).
+- [ ] **Cookie consent banner** (opt-in) — GA kini jalan tanpa consent; perlu kalau menyasar klien EU.
+- [ ] (Opsional) Tambah hak mengadu ke lembaga berwenang di `/privacy` Section 7.
+- [ ] Alamat placeholder "Jl. Jend Sudirman" (tanpa nomor) di `/privacy`, `/terms`, `/contact`.
+
+**Catatan konteks (menurut penilaian, bukan nasihat hukum formal):** level PDP wajar untuk PT konsultan cyber 4–6 orang = *proportionate/risk-based baseline*. DPO **belum wajib** (Pasal 53 tak terpicu untuk volume lead rendah). Dokumen `/privacy` kini **lengkap & akurat**; yang tersisa murni sisi *proses* & *data klien*.
 
 ---
 
@@ -57,6 +83,20 @@ Status per 2026-07-08.
 - [ ] (Opsional) FAQ homepage + section trust/E-E-A-T + sinyal lokasi (Jakarta/Indonesia).
 - [x] ~~Perbaiki title tag blog yang berpotensi suffix ganda~~ — SELESAI (bareng P3, di `main`): blog pakai `title.absolute` → `${title} | Avangard Insight` (bypass template layout, tak lagi double suffix).
 - [ ] Simpan peta keyword lengkap ke `docs/seo-keyword-map.md` sebagai acuan tim.
+
+## 🔵 Prioritas 4b — GEO (Generative Engine Optimization) — AUDIT-ONLY (2026-07-09)
+
+Penilaian: fondasi GEO **~70–80% siap** (schema lengkap, SSR, FAQPage, metadata — beririsan dengan technical SEO yang sudah selesai). Belum ada perubahan kode; user minta disimpan dulu.
+
+**⚠️ Prasyarat #1 (menentukan segalanya):**
+- [ ] **Blok bot AI Cloudflare** — selama `Content-Signal: ai-train=no` (GPTBot/ClaudeBot/Google-Extended) aktif, situs TIDAK muncul di ChatGPT/Perplexity/AI Overviews sebaik apa pun schema-nya. **Cek dulu apakah Cloudflare masih di depan setelah migrasi Hostinger**, lalu putuskan (lihat "Keputusan pending"). Tanpa ini, gap di bawah nyaris nihil dampak.
+
+**Gap GEO (urut dampak):**
+- [ ] **`public/llms.txt`** (+opsional `llms-full.txt`) — ringkasan situs + halaman prioritas untuk LLM. *Quick win.*
+- [ ] **`robots.ts` eksplisit** allow GPTBot/ClaudeBot/PerplexityBot/Google-Extended (sekarang lolos via `*`; sebaiknya disengaja + terdokumentasi). *Quick win.*
+- [ ] **`sameAs` di Organization schema** (`layout.tsx`) — tautan LinkedIn/profil eksternal untuk entity disambiguation. *Quick win (butuh URL profil dari user).*
+- [ ] **`author` BlogPosting → `Person`** (kini `Organization`) — bobot E-E-A-T. Butuh ubah skema Sanity + data penulis.
+- [ ] **`dateModified` dinamis** (kini selalu = `datePublished`) — sinyal kesegaran. Butuh field/logic update di post.
 
 ## 📋 Aksi manual (Google Search Console)
 
