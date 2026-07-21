@@ -3,6 +3,21 @@
 Semua perubahan penting pada proyek Avangard didokumentasikan di file ini.
 Format tanggal: `YYYY-MM-DD`.
 
+## [2026-07-21]
+
+### Brand & SEO
+- **Konsolidasi brand** di metadata/schema/copyright: "Avangard Security" → **"Stacopa Avangard"** (blog tetap "Avangard Insight"; `alternateName` "Avangard"; +`legalName` `PT Stacopa Avangard Raya` di schema Organization).
+- **Fix canonical bocor:** hapus `canonical: "/"` di root `layout.tsx` (terwarisi ke semua halaman) → tiap halaman kini canonical self-referencing (`/about`, `/services`, `/contact`, `/careers`, `/privacy`, `/terms`, `/blog`).
+- **Fix suffix judul ganda** di `/services`, `/products`, `/terms`, `/privacy` (hardcode "| Avangard" + template).
+- Tambah metadata untuk `/blog` (index) & `/careers`; konsolidasi metadata `/privacy` (hapus duplikat di `page.tsx`).
+- **`/products` dibuang dari `sitemap.ts`** (halaman `notFound()`, tak lagi diiklankan sebagai 404).
+- **OG image default** (`public/og-image.png`, 1200×630) + `openGraph.images`/`twitter.images` di `layout.tsx`.
+
+### Contact API
+- **Notifikasi Telegram:** `parse_mode` Markdown → **HTML** (Markdown rapuh terhadap `_`/`*` di input) + **payload diminimalkan** (hanya nama + layanan + waktu; email/HP/pesan hanya tersimpan di MySQL).
+
+*(commit `89b44ac`)*
+
 ## [2026-07-07]
 
 ### Infrastruktur & Deploy

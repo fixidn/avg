@@ -1,7 +1,19 @@
 # Backlog
 
 Catatan pekerjaan lanjutan untuk proyek Avangard. Diurutkan berdasarkan prioritas.
-Status per 2026-07-15.
+Status per 2026-07-21.
+
+---
+
+## 🟢 Sesi 2026-07-21 — Rebrand + fix SEO + Telegram (commit `89b44ac`, pushed)
+
+- [x] Rebrand metadata → **"Stacopa Avangard"** (title template, schema + `legalName`, OG/Twitter, copyright); blog tetap "Avangard Insight".
+- [x] Fix **canonical bocor** dari root + **suffix judul ganda** (`/services`, `/products`, `/terms`, `/privacy`); +canonical self-ref & metadata `/blog`, `/careers`.
+- [x] **OG image default** `public/og-image.png` (1200×630) di `openGraph`/`twitter`.
+- [x] **Telegram**: HTML `parse_mode` + payload minimal (nama+layanan; email/HP/pesan hanya ke DB).
+- [ ] **Klaim "enkripsi End-to-End"** di `contact/page.tsx` (~`:197`) tidak akurat → ganti "dienkripsi saat transit (HTTPS/TLS)". (`/privacy` §4 sudah benar.)
+- [ ] **Klaim "STACOPA Group / 50+ years"** (schema `parentOrganization` di `layout.tsx`, badge hero home "SUBSIDIARY OF STACOPA GROUP — 50+ YEARS", `/about` "Grup Stacopa … 50 tahun") — verifikasi akurasi, selaraskan bila perlu.
+- [ ] Alamat footer masih "Jl. Jend Sudirman" (ringkas) — belum diganti ke alamat lengkap.
 
 ---
 
