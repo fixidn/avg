@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { ShieldAlert, Search, FileCheck, Lock, Server, Activity, ArrowRight, MousePointer2 } from 'lucide-react';
 
 export const metadata = {
-  title: "Layanan Keamanan Siber | Avangard",
+  title: "Layanan Keamanan Siber",
   description: "Solusi VAPT, SOC, dan Compliance Audit untuk melindungi bisnis Anda.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

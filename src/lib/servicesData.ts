@@ -15,7 +15,7 @@ export type Service = {
   process: ServiceProcess[];
   // SEO on-page (opsional, diisi per layanan)
   h1?: string;          // override judul H1 yang tampil; fallback ke `title`
-  seoTitle?: string;    // override title tag; fallback ke `${subtitle} | Avangard Services`
+  seoTitle?: string;    // override title tag; fallback ke `subtitle` (template menambah "| Stacopa Avangard")
   seoDescription?: string; // override meta description; fallback ke `description`
   faq?: ServiceFaq[];   // jika ada, dirender + JSON-LD FAQPage
 };

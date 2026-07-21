@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { Server, Shield, Zap, ChartColumn, Cpu, Globe, ArrowRight, CircleCheckBig } from 'lucide-react';
 
 export const metadata = {
-  title: "Produk Keamanan | Avangard",
+  title: "Produk Keamanan",
   description: "Solusi hardware dan software keamanan siber tingkat militer.",
 };
 

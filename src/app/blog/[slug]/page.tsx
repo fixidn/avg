@@ -119,7 +119,7 @@ export async function generateMetadata(
     : null;
 
   return {
-    // `absolute` mem-bypass template layout ("| Avangard Security") agar tidak
+    // `absolute` mem-bypass template layout ("| Stacopa Avangard") agar tidak
     // terjadi suffix ganda; blog memakai sub-brand "Avangard Insight".
     title: { absolute: `${displayTitle} | Avangard Insight` },
     description: post.excerpt,
@@ -132,7 +132,7 @@ export async function generateMetadata(
       images: postImage ? [postImage] : [],
       type: 'article',
       publishedTime: post.publishedAt,
-      authors: ['Avangard Security'],
+      authors: ['Stacopa Avangard'],
     },
     twitter: {
       card: 'summary_large_image',
@@ -181,12 +181,12 @@ export default async function BlogPost({ params }: Props) {
     ...(articleImage ? { image: articleImage } : {}),
     author: {
       "@type": "Organization",
-      name: "Avangard Security",
+      name: "Stacopa Avangard",
       url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "Avangard Security",
+      name: "Stacopa Avangard",
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/white.svg`,

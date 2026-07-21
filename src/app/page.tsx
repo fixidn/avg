@@ -4,10 +4,10 @@ import { ShieldCheck, Target, Terminal, Clock, ArrowRight, Lock, Activity, Globe
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Jasa Keamanan Siber Indonesia — VAPT, MDR & Compliance | Avangard Security',
+    absolute: 'Jasa Keamanan Siber Indonesia — VAPT, MDR & Compliance | Stacopa Avangard',
   },
   description:
-    'Avangard Security — jasa keamanan siber untuk aplikasi web di Indonesia: penetration testing (VAPT), Managed Detection & Response (MDR), incident response, dan konsultasi ISO 27001. Konsultasikan kebutuhan Anda.',
+    'Stacopa Avangard — jasa keamanan siber untuk aplikasi web di Indonesia: penetration testing (VAPT), Managed Detection & Response (MDR), incident response, dan konsultasi ISO 27001. Konsultasikan kebutuhan Anda.',
   alternates: { canonical: '/' },
 };
 

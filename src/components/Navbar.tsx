@@ -167,7 +167,7 @@ const Navbar = () => {
             </a>
           </div>
           <p className="text-center text-xs text-slate-600 mt-6">
-            &copy; {new Date().getFullYear()} Avangard Security.
+            &copy; {new Date().getFullYear()} Stacopa Avangard.
           </p>
         </div>
       </div>

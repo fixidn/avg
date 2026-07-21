@@ -125,23 +125,20 @@ export async function POST(request: Request) {
 
     const sendToTelegram = async () => {
       const text = `
-🚨 **LEAD BARU** 🚨
+🚨 <b>Lead Baru</b>
 
-👤 **Nama:** ${name}
-🏢 **Email:** ${email}
-📱 **HP:** ${phone || '-'}
-🛡️ **Layanan:** ${service}
-📝 **Pesan:**
-${message}
+👤 <b>Nama:</b> ${name}
+🛡️ <b>Layanan:</b> ${service}
+🕒 ${date}
 
-🕒 *${date}*
+📩 Email, no. HP &amp; pesan lengkap tersimpan di database.
       `;
       
       const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'Markdown' }),
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML' }),
       });
 
       if (!response.ok) {

@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { FileText, Scale, TriangleAlert, Ban, RefreshCcw } from 'lucide-react';
 
 export const metadata = {
-  title: "Syarat & Ketentuan | Avangard",
-  description: "Syarat dan ketentuan penggunaan situs web dan layanan Avangard.",
+  title: "Syarat & Ketentuan",
+  description: "Syarat dan ketentuan penggunaan situs web dan layanan Stacopa Avangard.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = servicesData[slug];
   if (!service) return { title: 'Service Not Found' };
   return {
-    title: service.seoTitle ?? `${service.subtitle} | Avangard Services`,
+    title: service.seoTitle ?? service.subtitle,
     description: service.seoDescription ?? service.description,
     alternates: {
       canonical: `/services/${slug}`,
@@ -52,7 +52,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     url: serviceUrl,
     provider: {
       "@type": "Organization",
-      name: "Avangard Security",
+      name: "Stacopa Avangard",
       url: SITE_URL,
     },
     areaServed: {

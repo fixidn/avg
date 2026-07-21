@@ -3,8 +3,9 @@ import { Shield, Globe, Lock, Activity } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Tentang Stacopa Avangard | Keamanan Siber Berbasis Intelijen",
+  title: "Tentang Kami | Keamanan Siber Berbasis Intelijen",
   description: "Divisi pertahanan siber dari Grup Stacopa, melindungi aset digital dengan warisan kepercayaan 50 tahun.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

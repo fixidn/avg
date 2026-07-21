@@ -4,6 +4,12 @@ import Image from 'next/image';
 import { client, urlFor } from '@/lib/sanity';
 import { Calendar, ArrowRight, Clock } from 'lucide-react';
 
+export const metadata = {
+  title: "Blog & Insight Keamanan Siber",
+  description: "Artikel, panduan, dan wawasan keamanan siber dari tim Stacopa Avangard — VAPT, ISO 27001, UU PDP, dan pertahanan siber.",
+  alternates: { canonical: "/blog" },
+};
+
 interface Post {
   _id: string;
   title: string;

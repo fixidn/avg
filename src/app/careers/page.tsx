@@ -4,6 +4,8 @@ import { Briefcase, MapPin, Clock, ArrowRight, Zap, Shield, Users, Search } from
 
 export const metadata = {
   title: "Karir",
+  description: "Bergabung dengan tim keamanan siber Stacopa Avangard — posisi Red Team, SOC Analyst, GRC Consultant, dan Security Engineer.",
+  alternates: { canonical: "/careers" },
 };
 
 // Data Mockup Lowongan (Nanti bisa diganti dengan database/CMS)

@@ -114,7 +114,7 @@ const Footer = () => {
 
         <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-xs">
-            &copy; {currentYear} PT Stacopa Avangard. All rights reserved.
+            &copy; {currentYear} PT Stacopa Avangard Raya. All rights reserved.
           </p>
           
           <div className="flex space-x-6">
