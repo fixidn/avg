@@ -185,8 +185,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                      <p className="text-white font-bold text-lg mb-1">Business Inquiry</p>
-                     <a href="mailto:sales@stacopa-avangard.com" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
-                       sales@stacopa-avangard.com
+                     <a href="mailto:hello@stacopa-avangard.com" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
+                       hello@stacopa-avangard.com
                      </a>
                   </div>
                </div>
